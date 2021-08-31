@@ -1,0 +1,145 @@
+/* 
+* feedDataHandling.js version 0.1.0
+*/
+/*
+*	Create Object with custom property/value pair from string
+*/
+function makeKeyValuePair(str){
+	str = removeSpaces(str);// Remove spaces from the string 
+	var _obj = {},
+			_split = str.split(':'),
+			_key = _split[0],
+			_value = _split[1];
+{{!--	
+	// This check allows you to pass a nwColors name as a color value. IE "color:NW Blue" 
+	//_value = (_key==="color") ? colorCheck(_value) : _value;--}}
+
+	_obj[_key] = _value;
+	return _obj;
+}
+
+/*
+*	Apply Custom CSS to div/span element listed as object property:value pair from Object.keys method
+*/
+function setObjPropToCss(element, obj){
+	// cl("	* setObjPropToCss "+gsap.getProperty(element,'id'));
+	Object.keys(obj).forEach(function (key){
+		var _value = (isString(obj[key])) ? obj[key] : toCssNum(obj[key]);// Convert JSON _key numbers to CSS string
+		element.style[key] = _value; // Apply key & value to DOM element
+		cl("		"+" "+key+":"+_value);
+	})
+}
+
+/*
+*	Apply Custom CSS to div/span element listed in Array from feed
+*/
+function applyFeedCss(element, propsArray){
+	cl("* applyFeedCss "+gsap.getProperty(element,'id')+" "+propsArray);
+
+	if (isArraylike(propsArray)){
+		propsArray.forEach(function(_str){
+			var _obj = makeKeyValuePair(_str);
+			setObjPropToCss(element, _obj);
+		});
+	}//else{cl("	NO CUSTOM CSS!")}
+}
+
+/*
+*	Apply dynamic text to divs & apply (if any) custom css from feed
+*/
+function setTxt(div, txt, css, data){
+	var _feedCss = isArraylike(css),
+			_jsonData =(data && hasObjProp(data));
+	// cl("-setTxt *txt: "+txt/*+" *_feedCss? "+_feedCss+" *_jsonData? "+_jsonData*/);
+
+	txt = txt.split(' <br>').join('<br>');// Remove spaces before <br> because Safari counts the whitespace in offsetWidth measurements.
+	// cl("-	: "+txt, 'red');
+	div.innerHTML = txt;
+
+	if (_jsonData){
+		// Used for most sizes to set txt div height
+		setObjPropToCss(div, data);// Apply JSON props to div
+	}
+	if (_feedCss){
+		applyFeedCss(div, css);// Apply custom CSS if any. Can overwrite json props if needed.
+	}
+}
+
+/*
+* Grabs image src from Dynamic Feed and applies attributes listed in the JSON file.
+* element : The existing element (div, img, svg image) you wish to target.
+* data : Pass in the image attributes as an object from feed CSS array or JSON obj
+* url (Optional) : The image URL provided from dynamic feed.
+*/
+function setImgStart(element, data, url){
+	// Check if there's a JSON obj and if it contains custom values. Otherwise use defaults.
+	var _useFeedCss = isArraylike(data),
+			_useJsonData = (!_useFeedCss && hasObjProp(data)),
+			_isExternalImg = (url && isString(url)); // false for embedded SVG logo and replay
+
+	if(_isExternalImg){
+		imgLoader.total++;
+	}
+	
+	{{!--	
+	/* Uncomment if you wish to mix <DIV> and <IMG>. I'm only using IMG + <image> at the moment.
+
+	if (_isExternalImg && element.tagName == 'DIV'){
+		element.style.backgroundImage = 'url('+url+')';
+		element.style.backgroundRepeat = 'no-repeat';
+
+		if (_useJsonData){
+			element.style.backgroundSize = toCssNum(data.width)+' '+toCssNum(data.height);
+		}else{
+			element.style.backgroundSize='inherit';// Set background size to same size as parent
+		}
+	}*/--}}
+	// Need to bind the onload event handler before you set the src attribute.
+	element.onload = function(){
+		imgLoader.completed++;
+		cl(element.tagName+' #'+imgLoader.completed+'/'+imgLoader.total+' LOADED!');
+		imgAsyncLoadCheck();
+	}
+	// element.onload = cl('LOAD '+element.tagName+' #'+imgLoader.completed+'/'+imgLoader.total);
+
+	if(element.tagName == 'IMG'){
+		// cl('LOAD <IMG> '+url, 'red');
+		element.src = url;
+	}
+	else if (element.tagName == 'image') {
+		// cl('LOAD SVG <IMAGE> #'+imgLoader.total, 'red');
+		element.setAttribute('href', url);
+		// element.setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', url);
+	}
+	{{!//element.setAttribute('aria-hidden', false); /* ADA Compliance */}}
+	// cl('setImgStart : '+gsap.getProperty(element,'id')+' _useFeedCss ? '+_useFeedCss+' _useJsonData? '+hasObjProp(data));
+	// cl('element.tagName: '+element.tagName,'red')
+
+	(_useJsonData) ? setObjPropToCss(element, data) : (_useFeedCss) ? applyFeedCss(element, data) : null;/*cl('	Use Default CSS')*/;
+}
+
+/* 
+*	Validate & Convert Color Name to Hex Number. Only accepting limited colors
+*/
+function colorNameToHex(color){
+	// cl('colorNameToHex: '+color);
+	if (!color) return false;
+	
+	var _color = removeSpaces(color).toLowerCase(); // Remove spaces and capital letters
+	
+	return (typeof nwColors[_color] != 'undefined') ? nwColors[_color] : false;
+}
+
+/* 
+*	Validate Hex Number
+*/
+function checkHex(color){
+	return (/(^#[0-9A-F]{6}$)|(^#[0-9A-F]{3}$)/i.test(color)) ? color : false;
+}
+
+/* 
+*	Validate Hex or valid nwColor name
+*/
+function colorCheck(color){
+	return (checkHex(color) || colorNameToHex(color));
+}

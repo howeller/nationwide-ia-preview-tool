@@ -1,0 +1,57 @@
+{{#if (isLeader)}}/*
+*	Check for left or right position in css to override centering of button
+*/
+function isCustomCtaPos(){
+	if (hasObjProp(dc.CtaBtn_css)){
+		for (var i in dc.CtaBtn_css) {
+			var prop = dc.CtaBtn_css[i];
+			if (prop.indexOf('left') > -1 || prop.indexOf('right') > -1){
+				// cl("	NEW LEFT/RIGHT POSITION FOUND: NO AUTO CENTER");
+				return true;
+			}
+		}
+	}
+	return false;
+}
+/*
+*	Centers CTA button between end of end txt and logo
+*/
+function centerCtaBtn(){
+	if (isCustomCtaPos())return; // Nuke this if there's a left position entered in custom CSS
+	var _endTxt = id('t2'),{{!-- 
+			// _rightX = gsap.getProperty('#{{logo.id}}', 'left'),
+			// _leftX = _endTxt.offsetWidth + gsap.getProperty(_endTxt,'left'),--}}
+			_rightX = gsap.getProperty('#t2-container', 'width'),
+			_leftX = _endTxt.offsetWidth,
+			_ctaSpace = _rightX - _leftX,
+			_centerX = Math.round(_leftX + _ctaSpace/2 ),
+			_ctaW = cta.container.clientWidth,
+			_ctaX = Math.round(_centerX-(_ctaW/2));
+
+	cl('	|•| autoCenterCtaBtn: _centerX:'+_centerX+' _ctaX:'+_ctaX+' cta width:'+_ctaW);
+	cta.container.style.left = toCssNum(_ctaX);
+}
+{{/if}}{{!/}}
+
+function ctaBounceTl(){
+	return gsap.timeline({paused:false, repeat: 1, repeatDelay: 0, yoyo: true})
+		.to(cta.btn,{scale:1.15, duration:.3, ease:'back.in(1.7)', force3D:false, overwrite:false});		
+}
+/*
+*	CTA Button interactions
+*/
+function onCtaOver(){
+	return gsap.timeline({paused:false})
+		.to(cta.btn,{scale:1.15, duration:.3, ease:'back.in(1.7)', force3D:false, overwrite:false});		
+}
+function onCtaOut(){
+	return gsap.timeline({paused:false})
+		.to(cta.btn,{scale:1.0, duration:.3, ease:'back.out(1.7)', force3D:false, overwrite:false});		
+}
+
+function initCtaAction(){
+	// cl("initCtaAction ");
+	clicker.addEventListener('mouseover', onCtaOver);
+	clicker.addEventListener('mouseout', onCtaOut);
+	cta.btn.addEventListener('click', clickOut, false); /* ADA Compliance */
+}

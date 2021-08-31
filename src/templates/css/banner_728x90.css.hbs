@@ -1,0 +1,190 @@
+svg#{{logo.id}}{
+	right: 16px;
+	width: 157px;	
+	height: auto;
+	top: 50%;
+	transform:translateY(-50%);
+}
+
+/* N-Crop Image */
+div#nc-parent, img.nc-pic{
+	top: 0; 
+	left: 0;
+	width: {{pic.width}}px;
+}
+img.nc-pic{
+	height: auto;
+}
+#nc-parent{
+	clip-path: polygon(0% 0%, {{pic.x2}}px 0%, 100% 100%, 0% 100%);
+	height: {{height}}px;
+}
+
+/* Positioning */
+
+#end-container{
+	background-color: var(--vibrantblue);
+	top: 0;
+	left: 0;
+	width: {{width}}px;
+	height: {{height}}px;
+	overflow: visible;
+}
+
+#end-container #end-stripe{
+	background-color: var(--darkblue);
+	clip-path: polygon(0% 0%, 815px 0%, 100% 100%, {{slope.x1}}px 100%);
+	-webkit-clip-path: polygon(0% 0%, 815px 0%, 100% 100%, {{slope.x1}}px 100%);
+	width: 902px; {{!--/*x2 = {{slope.x1}}. {{slope.x1}} + {{width}} + {{slope.x1}} */--}}
+	height: 100%;
+}
+
+#ribbon{
+	background-color: var(--mediumblue);
+	bottom: 1px;
+	clip-path: polygon(0% 0%, calc(100% - 20px) 0%, 100% 100%, 0% 100%);
+	height: auto;
+	display: flex;
+	align-items: center;
+	position: absolute;
+}
+
+/* Text Styles */
+
+#ribbon #ribbon-txt{
+	color: white;
+	font-weight: 700;
+	font-size: 12px;
+	line-height: 13px;
+	letter-spacing:0px;
+}
+.ribbon-txt{
+	max-width: 362px;
+	padding: 2px 25px 2px 160px;
+}
+
+.txt-container{
+	top: 0;
+	left:160px;
+	width: 395px;
+	height: 70px; /* Height to top of ribbon */
+}
+
+.t1{
+	color: white;
+	font-family: 'tiempos-headline', Georgia, Garamond, serif;
+	font-weight: 600;
+	font-size: 18px;
+	line-height: 20px;
+	letter-spacing:0;
+	text-align:left;
+	position: relative;
+	display: inline-block;
+	vertical-align: top;
+	top: 50%;
+	transform:translateY(-50%);
+}
+
+.ng-t1{
+	max-width: 385px;
+}
+
+/* end-txt */
+
+#t2{
+	color: white;
+	font-weight: 600;
+	font-size: 18px;
+	line-height: 18px;
+	letter-spacing:0;
+	top: 50%;
+	transform:translateY(-50%);
+	position: relative;
+	display: inline-block;
+	vertical-align: top;
+}
+.t2{
+	width: auto;
+	max-width: 273px;
+}
+
+/* Text Only Classes */
+
+.to-txt-container{
+	top: 0;
+	left:29px;
+	width: 527px;
+	height: 70px; /* Height to top of ribbon */
+}
+.to-t1{
+	font-size: 21px;
+	line-height: 23px;
+	max-width: 517px;
+}
+.to-t2 {
+	max-width: 404px;
+}
+.to-ribbon-txt {
+	padding: 2px 24px 2px 29px;
+	max-width: 494px;
+}
+
+/* CTA */
+
+#cta-container {
+	top: 0;
+	height: 90px;
+	display:block;
+	position: absolute;
+	vertical-align: top;
+}
+#cta {
+	background-color:var(--mintgreen);
+	height: 20px;
+	padding: 0px 15px;
+	position: relative;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	overflow: hidden;
+	top: 50%;
+	transform:translateY(-50%);
+}
+#cta-txt {
+	color: var(--darkblue);
+	display: block;
+	font-family: proxima-nova, Arial, sans-serif;
+	font-weight: 600;
+	font-style: normal;
+	font-size: 11px;
+	line-height: 13px;
+	position: relative;
+	white-space: nowrap;
+	width: auto;
+}
+
+/* Replay Btn */
+
+.replay {
+	top: 0;
+	left: 136px;
+}
+.replay-to {
+	top: 0;
+	left:0;
+}
+#replay-container {
+	width: 30px;
+	height: 30px;
+	cursor: pointer;
+	visibility: hidden;
+}
+svg#replaySvg{
+	display: inline-block;
+	position: absolute;
+	width: 14px;
+	height: 14px;
+	left: 5px;
+	top: 5px;
+	opacity:0.7;
+}

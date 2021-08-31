@@ -1,0 +1,68 @@
+function nGraphicIntroTl() {
+	cl('	+ nGraphicIntroTl ','red');
+	return gsap.timeline({paused:false})
+		.set(aniProps.container, {visibility:'visible'})
+		.add(fadeInContainerTl())
+		.from(svg.nGraphic, { scale:0, duration:0.5, ease:'back.out(1.5)'},'+=1')
+		.fromTo([end.container,'#logo-container'], {clipPath:getPath('fromBottomLeftStart')}, {clipPath:getPath('fromBottomLeftEnd'), duration:1 }, '+=1')
+		.add('f2out', '+='+dc.Txt1_Pause)
+		.fromTo(aniProps.t1, {clipPath: getPath('wipeInEnd') }, {clipPath: getPath('wipeOutToLeft'), duration:1 }, 'f2out');
+}
+
+function nWindowIntroTl() {
+	cl('	+ nWindowIntroTl ','orange');
+	var _maskScale2 = 4.52, // From PSD
+			_maskX2 = -852, // Get number from PSD
+			_maskY2 = -809, // Get number from PSD
+			_zoomSpeed = 1{{!--,/*
+			_picsTweenFrom = _json.picTweenFrom || { y:23 };
+			_picsTweenTo = _json.picTweenTo || {y:0, duration:_zoomSpeed}*/--}};
+	aniOptions.NGraphic.t1.style.visibility = 'hidden';
+
+	return gsap.timeline({paused:false})
+		.set('.mask-path', {fill:colorNameToHex(theme.bgColor)})
+		.set(aniProps.container, {visibility:'visible'})
+		.add(fadeInContainerTl())
+		.add('f2', '+=1')
+		.to('.fake-mask', {scale:_maskScale2, x:_maskX2, y:_maskY2, duration:_zoomSpeed, transformOrigin:'0% 0%'}, 'f2')
+		.fromTo(['#nw-pic-back','#nw-pic-front'], { y:23 },{ y:0, duration:_zoomSpeed/2, force3D:false }, 'f2')
+		.fromTo(aniProps.t1, {clipPath: getPath('wipeInFromLeftStart') }, {clipPath: getPath('wipeInEnd'), duration:1})
+		.from('#{{logo.id}}', {autoAlpha:0, duration:0.3})
+		.add('f2out', '+='+dc.Txt1_Pause)
+		.fromTo(end.container, {clipPath:getPath('fromBottomLeftStart')}, {clipPath:getPath('fromBottomLeftEnd'), duration:1 }, 'f2out')
+}
+
+function txtOnlyIntroTl() {
+	cl('	+ txtOnlyIntroTl ','red');
+	// wipe in t1 > pause > reverse wipe out
+	return _tl = gsap.timeline({paused:false})
+		.set(aniProps.container, {visibility:'visible'})
+		.add(fadeInContainerTl())
+		.fromTo(aniProps.t1, {clipPath: getPath('wipeInFromLeftStart') }, {clipPath: getPath('wipeInEnd'), duration:1, repeat: 1, repeatDelay:dc.Txt1_Pause, yoyo: true })
+}
+
+function animate() {
+	cl(':: animate :: {{width}}x{{height}}');
+	var _introTl = aniProps.frame1Tl(),
+			_stripeSpeed = 1;
+
+	tl
+		.add(_introTl)
+		.add('end', aniProps.overlap)
+		.fromTo('#t2', {clipPath: getPath('wipeInFromLeftStart')}, {clipPath: getPath('wipeInEnd'), duration:1, ease:'power3.easein' }, 'end')
+		.set([cta.btn, cta.txt],{skewX:0.1}, 'end')
+		.fromTo(cta.btn, {clipPath: getPath('wipeInFromLeftStart')}, {clipPath: getPath('wipeInEnd'), duration:1 },'-=0.5')
+		.fromTo(end.stripe, {x:300}, {x:-(end.stripe.offsetWidth/3), duration:_stripeSpeed, ease:'power1.out'},'+=0.5')
+		.to(end.stripe, {x:-(end.stripe.offsetWidth), duration:_stripeSpeed, ease:'power1.in'})
+		.add(ctaBounceTl(), "-="+_stripeSpeed)
+		.from(replay.container, { autoAlpha: 0 })
+		.add(initReplayAction)
+		.add('cta')
+		.add(ctaBounceTl(), "+=1")
+		.add(initCtaAction)
+		// tl.pause("3");
+		// .seek('end-=.3')
+		// .seek(_introTl.labels[_introTl.previousLabel()]);
+		;
+	console.log('Animation Runtime is ' + tl.endTime());
+}

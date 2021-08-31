@@ -1,0 +1,241 @@
+var tl = gsap.timeline({ defaults:{ paused:false, duration:0.5, ease:'power3.out' }});// GSAP 3!
+
+var initBanner = (function(){
+
+	var _json, aniStyle, aniOptions, aniProps, initCompleted, /*isWinChrome,*/ isTextOnly, theme, useDefaultTheme,
+			cta, end, imgLoader, replay, ribbon, svg,{{#if (isSkyscraper)}} stripeSpeed,{{/if}}{{#if (isLeader)}}slope,{{/if}}
+			version={{#if (isLeader)}}'0.2.3'{{else}}'0.9.6'{{/if}};// Major.Minor.Bug Fix
+
+	{{> colorList.js}}
+	{{> utilities.js}}
+	{{> feedDataHandling.js}}
+	{{> globalAnimations.js}}
+	{{> (bannerAnimateJs)}}
+
+	/*
+	* Initial Setup & load calls after Enabler and dynamic content has loaded in initial.js
+	* Assign all divs as var, define main timeline, define imported JSON
+	*/
+
+	function initBanner(){
+		cl('initBanner :: v.'+version);
+		var _feedTheme = removeSpaces(dc.BgTheme);
+
+		aniStyle = removeSpaces(dc.Ani_Style);
+		// Do not modify colors if any customizations are entered in the feed.
+		useDefaultTheme = (_feedTheme === 'VibrantBlue-White' && !dc.TxtColor && !dc.RibbonColor && !dc.RibbonTxtColor && !dc.ReplayColor);
+		theme = themeMap[_feedTheme]; //Get color choices
+		isTextOnly = (aniStyle === 'TextOnly');
+		cl('useDefaultTheme ? '+useDefaultTheme, 'red');
+
+		_json = (dc.Banner_json.Url) ? myJson.data['{{width}}x{{height}}'][dc.Color_Version][aniStyle] : {};
+
+		svg = {
+			nGraphic: id('n-graphic'),
+			nGraphicPath: id('n-graphic-path'){{#if (isSkyscraper)}},
+			endStripe: id('svgStripePath'){{/if}}
+		}
+		imgLoader = {
+			total: 0,
+			completed: 0,
+			timerStarted: false
+		}
+		cta = {
+			btn: id('cta'),
+			txt: id('cta-txt'),
+			container: id('cta-container')
+		}
+		end = {
+			container: id('end-container'),
+			t2: id('t2'),
+			stripe: id('end-stripe')
+		}
+		replay = {
+			container: id('replay-container'),
+			svg: id('replaySvg'),
+			path: id('replayPath'),
+			on: false,
+			tween: {}
+		}
+		ribbon = {
+			txt: id('ribbon-txt'),
+			container: id('ribbon')
+		}
+
+		aniOptions = { {{#unless (isLeader)}}
+			'NGraphic':{
+				frame1Tl: nGraphicIntroTl,
+				container: id('ng-parent'),
+				t1: id('t1'),
+				overlap: _json.overlap || '-=0.3',
+				imgBack: id('ng-pic-back'),
+				imgFront: id('ng-pic-front'){{#if (isSkyscraper)}},
+				endStripeTl: defaultStripeTl,
+				newEndPos:false{{/if}}{{!/}}
+			},
+			'NWindow':{
+				frame1Tl: nWindowIntroTl,
+				container: id('nw-parent'),
+				t1: id('nw-t1'),
+				overlap: _json.overlap || '-=0.5',
+				imgBack: id('nw-pic-back'),
+				imgFront: id('nw-pic-front'),
+				replayClass:'replay-nw'{{#if (isSkyscraper)}},
+				endStripeTl: clippedStripeTl,
+				newEndPos:true{{/if}}{{!/}}
+			},{{else}}
+			'NCrop':{
+				frame1Tl: nCropIntroTl,
+				container: id('nc-parent'),
+				t1: id('t1'),
+				overlap: _json.overlap || '-=0',
+				imgBack: id('nc-pic')
+			},{{/unless}}{{!/}}
+			'TextOnly':{
+				frame1Tl: txtOnlyIntroTl,
+				container: id('end-container'),
+				t1: id('t1'),
+				overlap: _json.overlap || '+=0.1',
+				replayClass:'replay-to'{{#if (isSkyscraper)}},
+				endStripeTl: defaultStripeTl,
+				newEndPos:true{{/if}}{{!/}}
+			}
+		}
+
+		aniProps = aniOptions[aniStyle]; // Assign properties unique to the 3/4 animation options
+
+		var _btn = id('clicker');
+		_btn.addEventListener('click', clickOut, false);
+		_btn.setAttribute('aria-label', dc.CtaTxt); /* ADA Compliance */
+
+		// FIRE!
+		initImgs();
+		setLogoColor();//initLogo();
+		initColors();
+		initTxt();
+		initADACompliance();
+		{{#if (isLeader)}}centerCtaBtn();{{else}}setRibbonSize();{{/if}}
+		initReplay();
+		if(isTextOnly){
+			animate();
+		}
+		initCompleted = true;
+		cl('* initCompleted *');	
+	}
+
+	/*
+	* Convert all color names in feed to hex #s and assign defaults if none are entered.
+	*/
+	function initColors(){
+		if(useDefaultTheme) return;
+		cl('+initColors ');
+
+		// Apply colors: Look at feed customizations 1st
+		aniProps.t1.style.color = end.t2.style.color = colorCheck(dc.TxtColor||theme.txtColor);
+		ribbon.txt.style.color = colorCheck(dc.RibbonTxtColor||theme.ribbonTxtColor);
+		ribbon.container.style.backgroundColor =  colorCheck(dc.RibbonColor||theme.ribbonColor);
+		replay.path.style.fill = colorCheck(dc.TxtColor||theme.TxtColor);
+
+		// Set defaults from the theme (not customizable)
+		cta.txt.style.color = theme.ctaTxtColor;
+		cta.btn.style.backgroundColor = theme.ctaBtnColor;
+		end.container.style.backgroundColor = id('banner').style.backgroundColor = colorNameToHex(theme.bgColor);
+		end.stripe.style.backgroundColor = colorNameToHex(theme.stripeColor);
+	}
+
+	{{#unless (isLeader)}}/*
+	* If Ribbon text is more lines than the height of a single line then redraw the polygon. 
+	* Need to manually caselulate the slope (M) = (y2 - y1) / (x2 - x1)
+	*/
+	function setRibbonSize(){
+		if(ribbon.container.offsetHeight <= {{ribbon.singleLineHeight}}){return;}
+		cl('setRibbonSize	NEW RIBBON HEIGHT '+ribbon.container.offsetHeight+' <= {{ribbon.singleLineHeight}}', 'red');
+		cl(Math.ceil(ribbon.container.offsetHeight / {{ribbon.singleLineHeight}})+' Lines of text', 'red');
+
+		var _slope = -1.0{{!getRibbonSlope}},//-1.03225806//-1.055555556
+				_height = ribbon.container.offsetHeight,
+				_xOffset = 5,
+				_newPaddingRight = Math.abs(_height / _slope) + _xOffset;
+		cl('	_height: '+_height+'\n	_startWidth: '+ribbon.container.scrollWidth+'\n	 NEW RIGHT PADDING: '+_newPaddingRight,'pink');
+		// cl('	.getBoundingClientRect(): '+ribbon.container.getBoundingClientRect().width+'\n	scrollWidth: '+ribbon.container.scrollWidth+'\n	 clientWidth: '+ribbon.container.clientWidth+'\n	 gsap width: '+gsap.getProperty(ribbon.container, 'width'),'pink');
+
+		gsap.set(ribbon.txt, { paddingRight: _newPaddingRight});
+		// cl(document.fonts.check('1em proxima-nova'), 'black');
+		
+		var _x2 = ((_height * _slope) + ribbon.container.scrollWidth).toString();
+
+		ribbon.container.style.clipPath = 'polygon(0% 0%, '+_x2+'px 0%, 100% 100%, 0% 100%)';
+	}{{/unless}}{{!/}}
+
+	function setLogoColor(){
+
+		switch(theme.logoColor){
+			case 'white':
+				gsap.set(['#logoWordmark', '#logoN', '#logoEagle'], { fill: '#ffffff' })
+				gsap.set('#logoEagleStroke', { alpha: 0 })
+				break;
+			case '2color':
+				gsap.set( ['#logoEagle','#logoWordmark'] , {fill:"#ffffff"});
+				gsap.set( ['#logoN','#logoEagleStroke'], {fill:"#1658a5"});
+				break;
+			default:
+				break;
+		}
+	}
+
+	function initTxt(){
+		cl('initTxt ');
+
+		if(isTextOnly){
+			{{#if (isSkyscraper)}}gsap.set([end.container, id('nw-t1-container')], {top:'0px'});// Move copy up
+			gsap.set(end.container, {height:'100%'});
+			gsap.set('.txt-container', {top:'{{textOnly.txtTop}}px', paddingTop:0 });
+			swapClasses(aniProps.t1, 'ng-t1', 'to-t1');
+			swapClasses(end.t2, 'ng-t2', 'to-t2');{{/if}}{{!/}}{{#if (isLeader)}}
+			swapClasses(aniProps.t1, 'ng-t1', 'to-t1');
+			swapClasses(end.t2, 'ng-t2', 'to-t2');
+			swapClasses(ribbon.txt, 'ribbon-txt', 'to-ribbon-txt');
+			swapClasses(id('t1-container'), 'txt-container', 'to-txt-container');
+			swapClasses(id('t2-container'), 'txt-container', 'to-txt-container');{{/if}}{{!/}}
+		}
+
+		setTxt(ribbon.txt, dc.RibbonTxt, dc.RibbonTxt_css);
+		setTxt(cta.txt, dc.CtaTxt, dc.CtaTxt_css);
+		setTxt(aniProps.t1, dc.Txt1, dc.Txt1_css);
+		setTxt(end.t2, dc.Txt2, dc.Txt2_css);
+		applyFeedCss(cta.btn, dc.CtaBtn_css);
+
+	}
+	function initADACompliance(){
+		cl('initADACompliance');
+		var t1Container = (aniStyle === 'NWindow') ? id('nw-t1-container') : id('t1-container');
+		t1Container.removeAttribute('aria-hidden');
+
+		aniProps.t1.setAttribute('role', "heading");
+		aniProps.t1.setAttribute('aria-level', 1);
+	}
+
+	function initImgs(){
+		if(isTextOnly){return};
+		cl('initImgs');
+		setImgStart(aniProps.imgBack, null, dc.Back_img.Url);
+		{{#unless (isLeader)}}setImgStart(aniProps.imgFront, null, dc.Front_img.Url);{{/unless}}{{!/}}
+	}
+
+	function imgAsyncLoadCheck(){
+		cl('imgAsyncLoadCheck '+imgLoader.completed+'/'+imgLoader.total);
+
+		if (imgLoader.completed === imgLoader.total && initCompleted){
+			clearTimeout(imgLoader.timer);
+			animate();
+			return;
+		}
+		else if(!imgLoader.timerStarted){
+			imgLoader.timerStarted = true;
+			imgLoader.timer = setTimeout(imgAsyncLoadCheck, 50);
+		}
+	}
+	{{> cta.js }}
+	{{> replay.js }}
+	return initBanner();
+});

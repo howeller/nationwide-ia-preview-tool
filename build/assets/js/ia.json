@@ -1,0 +1,38 @@
+{
+	"data":{
+		"Name":"Social Security",
+		"160x600":{
+			"T1":{
+				"NGraphic":{},
+				"NWindow":{},
+				"TextOnly":{}
+			}
+		},
+		"300x250":{
+			"T1":{
+				"NGraphic":{},
+				"NWindow":{},
+				"TextOnly":{}
+			}
+		},
+		"300x600":{
+			"T1":{
+				"NGraphic":{},
+				"NWindow":{},
+				"TextOnly":{}
+			}
+		},
+		"728x90":{
+			"T1":{
+				"NCrop":{},
+				"TextOnly":{}
+			}
+		},
+		"970x90":{
+			"T1":{
+				"NCrop":{},
+				"TextOnly":{}
+			}
+		}
+	}
+}

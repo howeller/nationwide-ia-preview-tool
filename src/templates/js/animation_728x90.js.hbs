@@ -1,0 +1,71 @@
+function wipeInFromLeftStart(index, element){
+	var _w = element.offsetWidth,
+		_h = element.offsetHeight+3,
+		_x1 = _h /slope - _w,
+		_x2 = _h /slope,
+		_x4 = -_w;
+	return 'polygon('+_x1+'px 0px, '+_x2+'px 0px, 0px '+_h+'px, '+_x4+'px '+_h+'px)';
+}
+
+function wipeInEnd(index, element){
+	var _w = element.offsetWidth,
+		_h = element.offsetHeight+3,
+		_x1 = _h /slope,
+		_x2 = _w,//,
+		_x3 = -_h / slope + _w
+		_x4 = 0;
+	return 'polygon('+_x1+'px 0px, '+_x2+'px 0px, '+_x3+'px '+_h+'px, '+_x4+'px '+_h+'px)';
+}
+
+function nCropIntroTl() {
+	cl('	+ nCropIntroTl ','red');
+
+	var _pic = id('nc-parent'),
+		_endX = _json.endX || -212;
+
+	return gsap.timeline({paused:false})
+		.set(aniProps.container, {visibility:'visible'})
+		.add(fadeInContainerTl())
+		.from(_pic, { scale:1.2, autoAlpha:0, duration:0.5, ease:'power3.out'})
+		.to(_pic, {x:_endX, duration:0.5, ease:'power3.inout'})
+		.from(ribbon.container, {x:-ribbon.container.offsetWidth, duration:0.5, ease:'power2'}, '-=0.25')
+		.fromTo(aniProps.t1, {clipPath:wipeInFromLeftStart}, {clipPath:wipeInEnd, duration:1 })
+		.add('f2out', '+='+dc.Txt1_Pause)
+		.to(aniProps.t1, {clipPath: wipeInFromLeftStart, duration:1 }, 'f2out');
+}
+
+function txtOnlyIntroTl() {
+	cl('	+ txtOnlyIntroTl ','red');
+	// wipe in t1 > pause > reverse wipe out
+	return gsap.timeline({paused:false})
+		.set(aniProps.container, {visibility:'visible'})
+		.add(fadeInContainerTl())
+		.fromTo(aniProps.t1, {clipPath:wipeInFromLeftStart}, {clipPath:wipeInEnd, duration:1, repeat: 1, repeatDelay:dc.Txt1_Pause, yoyo: true })
+}
+
+function animate() {
+	cl(':: animate :: {{width}}x{{height}}');
+
+	slope = {{getSlope 87 0 0 90}};// cl({{getSlope 87 0 0 90}} , 'red');
+	var _introTl = aniProps.frame1Tl(),
+		_stripeSpeed = 1;
+
+	tl
+		.add(_introTl)
+		.add('end', aniProps.overlap)
+		.fromTo('#t2', {clipPath: wipeInFromLeftStart}, {clipPath: wipeInEnd, duration:1.5, ease:'power3.easein' }, 'end')
+		.set([cta.btn, cta.txt],{skewX:0.1}, 'end')
+		.fromTo(cta.btn, {clipPath: wipeInFromLeftStart}, {clipPath: wipeInEnd, duration:1.5 },'-=0.5')
+		.fromTo(end.stripe, {x:{{width}} }, {x:-{{slope.x1}}, duration:_stripeSpeed, ease:'power1.out'},'+=0.5')
+		.to(end.stripe, {x:-(end.stripe.offsetWidth), duration:_stripeSpeed, ease:'power1.in'})
+		.add(ctaBounceTl(), "-="+_stripeSpeed)
+		.from(replay.container, { autoAlpha: 0 })
+		.add(initReplayAction)
+		.add('cta')
+		.add(ctaBounceTl(), "+=1")
+		.add(initCtaAction)
+		// tl.pause("5");
+		// .seek('end')
+		;
+	console.log('Animation Runtime is ' + tl.endTime());
+}

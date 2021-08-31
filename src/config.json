@@ -1,0 +1,111 @@
+{
+	"global":{
+	},
+	"NW_2021_Dyn_Brand_160x600": {
+		"width": 160, "height": 600,
+		"logo": { "id": "logoVert", "svg": "NW_logo_vert.svg"},
+		"ribbon":{
+			"singleLineHeight": 18,
+			"twoLineMaxWidth" : 122
+		},
+		"textOnly":{ "txtTop":98 },
+		"invocation":{
+			"Ani_Style": "N Graphic",
+			"BgTheme": "Vibrant Blue - White",
+			"RibbonTxt": "Social Security Basics",
+			"_RibbonTxt": "Investing in a Highly Politicized Climate White Paper",
+			"Txt1": "Are your clients uncertain about the benefits of their Social Security?",
+			"Txt1_Pause": 3,
+			"Txt2": "Help clients understand their foundation for a retirement plan.",
+			"CtaTxt": "Learn More"
+		}
+	},
+	"NW_2021_Dyn_Brand_300x250": {
+		"width": 300, "height": 250,
+		"logo": { "id": "logoVert", "svg": "NW_logo_vert.svg"},
+		"ribbon":{
+			"maxWidth":300,
+			"singleLineHeight": 20,
+			"twoLineMaxWidth" : 190
+		},
+		"invocation":{
+			"Ani_Style": "N Graphic",
+			"BgTheme": "Vibrant Blue - White",
+			"RibbonTxt": "Social Security Basics",
+			"_RibbonTxt": "Investing in a Highly Politicized Climate White Paper",
+			"Txt1": "Are your clients uncertain about <br>the benefits of <br>their Social Security?",
+			"Txt1_Pause": 3,
+			"Txt2": "Help clients understand <br>their foundation for <br>a retirement plan.",
+			"CtaTxt": "Learn More"
+		}
+	},
+	"NW_2021_Dyn_Brand_300x600": {
+		"width": 300, "height": 600,
+		"logo": { "id": "logoVert", "svg": "NW_logo_vert.svg"},
+		"ribbon":{
+			"singleLineHeight": 21,
+			"twoLineMaxWidth" : 160
+		},
+		"textOnly":{"txtTop":102 },
+		"invocation":{
+			"Ani_Style": "N Graphic",
+			"BgTheme": "Vibrant Blue - White",
+			"RibbonTxt": "Social Security Basics",
+			"_RibbonTxt": "Investing in a Highly Politicized Climate White Paper",
+			"Txt1": "Are your clients uncertain about <br>the benefits of <br>their Social Security?",
+			"Txt1_Pause": 3,
+			"Txt2": "Help clients understand <br>their foundation for <br>a retirement plan.",
+			"CtaTxt": "Learn More"
+		}
+	},
+	"NW_2021_Dyn_Brand_728x90": {
+		"width": 728, "height": 90,
+		"logo": { "id": "logoHorz", "svg": "NW_logo_horz.svg"},
+		"pic":{
+			"width":369,
+			"x2": 281
+		},
+		"slope":{
+			"x1":87, "x2":0, "y1":0, "y2":90
+		},
+		"ribbon":{
+			"maxWidth":547,
+			"endPadding":24
+		},
+		"invocation":{
+			"Ani_Style": "N Crop",
+			"BgTheme": "Vibrant Blue - White",
+			"RibbonTxt": "Social Security Basics",
+			"_RibbonTxt": "Investing in a Highly Politicized Climate White Paper",
+			"Txt1": "Are your clients uncertain about <br>the benefits of their Social Security?",
+			"Txt1_Pause": 3.0,
+			"Txt2": "Help clients understand their <br>foundation for a retirement plan.",
+			"CtaTxt": "Learn More"
+		}
+	},
+	"NW_2021_Dyn_Brand_970x90": {
+		"width": 970, "height": 90,
+		"logo": { "id": "logoHorz", "svg": "NW_logo_horz.svg"},
+		"pic":{
+			"width":412,
+			"x2": 325
+		},
+		"slope":{
+			"x1":87, "x2":0, "y1":0, "y2":90
+		},
+		"ribbon":{
+			"maxWidth":754,
+			"endPadding":24
+		},
+		"invocation":{
+			"Ani_Style": "N Crop",
+			"BgTheme": "Vibrant Blue - White",
+			"RibbonTxt": "Social Security Basics",
+			"_RibbonTxt": "Investing in a Highly Politicized Climate White Paper",
+			"Txt1": "Are your clients uncertain about <br>the benefits of their Social Security?",
+			"Txt1_Pause": 3.0,
+			"Txt2": "Help clients understand their <br>foundation for a retirement plan.",
+			"CtaTxt": "Learn More"
+		}
+	}
+}	

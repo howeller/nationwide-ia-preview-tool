@@ -1,0 +1,41 @@
+/*
+*	Replay Button actions :; replay.js v.2.0
+*/
+
+function initReplay(){
+	cl('initReplay ');
+		
+	if(aniProps.replayClass){
+		swapClasses(replay.container, 'relay-n', aniProps.replayClass);
+	}
+	setImgStart(replay.svg, dc.Replay_css);// Set props of replay svg
+	gsap.set(replay.container, {'visibility':'visibile', rotation:0});
+}
+
+function initReplayAction(){
+	cl('initReplayAction');
+	replay.tween = {spinSpeed:0.6, speed:0.3, tweenFrom:{autoAlpha:0}, delay:0};
+
+	replay.container.addEventListener('click', onReplayClick, false);
+	replay.container.addEventListener('mouseenter', onReplayOver);
+	replay.container.addEventListener('mouseleave', onReplayOut);
+	// id('banner').addEventListener('mouseleave', onReplayOut);
+}
+function onReplayClick() { 
+	tl.restart();
+	replay.container.blur();
+}
+
+function onReplayOver() {
+	if (replay.on) return;
+	replay.on = true;
+	gsap.to(replay.svg, { duration:replay.tween.spinSpeed, alpha: 1 });
+	gsap.to(replay.svg, { duration:replay.tween.spinSpeed, rotate: '+=360_cw', repeat: -1, transformOrigin: 'center center', ease:'none' });
+}
+function onReplayOut() {
+	replay.on = false;
+	var _r = gsap.getProperty(replay.svg, 'rotate'),// GSAP 3!
+			_newR = (_r < 360) ? 360 : '+=' + (720 - _r).toString();
+
+	gsap.to(replay.svg, { duration:replay.tween.spinSpeed, alpha: 0.6, rotate: _newR, transformOrigin: 'center center', overwrite:true, ease: 'Power1.out', onComplete: function() { gsap.set(replay.svg, { rotation: 0 }); } });
+}

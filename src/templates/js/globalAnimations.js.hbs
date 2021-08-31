@@ -1,0 +1,25 @@
+{{#unless (isLeader)}}function getPath(direction) {
+	// cl('		> getPath '+direction);
+	var path={
+		// fromBottomRightStart: 'polygon(100% 0%, 210% 0, 0% 210%, 0% 100%, 0% 0%)',// Corner to corner shape
+		// fromBottomRightEnd: 'polygon(100% 0%, 100% -110%, -110% 100%, 0% 100%, 0% 0%)',// Corner to corner shape
+		fromBottomLeftStart: 'polygon(0% 0%, -110% 0%, 100% 200%, 100% 100%, 0% 100%)', // Corner to corner shape
+		fromBottomLeftEnd: 'polygon(0% 0%, 0% -110%, 200% 100%, 100% 100%, 0% 100%)', // Corner to corner shape
+		wipeInFromLeftStart:'polygon(-166% 0%, -33% 0%, 0% 100%, -133% 100%)',// Uses parallel shape
+		wipeInFromRightStart:'polygon(100% 0%, 233% 0%, 266% 100%, 133% 100%)',// Uses parallel shape
+		// wipeInEnd:'polygon(-33% 0%, 100% 0%, 133% 102%, 0% 102%)'// Uses parallel shape
+		wipeInEnd:'polygon(-87px 0%, 100% 0%, 133% 102%, 0% 102%)'// Uses parallel shape
+	}
+	// path.fromTopRightEnd = path.fromBottomLeftStart;// fromTopRightEnd is reverse of fromBottomLeftStart
+	// path.fromTopRightStart = path.fromBottomLeftEnd;// fromTopRightStart is reverse of fromBottomLeftEnd
+	path.wipeOutToLeft = path.wipeInFromLeftStart;
+
+	return path[direction];
+} {{else}}
+
+
+{{/unless}}{{!/}}
+	
+function fadeInContainerTl(){return gsap.timeline({paused:false}).to('#banner', { autoAlpha:1, duration:0.4 }); }
+
+function emptyTl(){return gsap.timeline({paused:true})}

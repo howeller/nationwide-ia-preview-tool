@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="ad.size" content="width={{width}},height={{height}}">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0{{!, maximum-scale=1.0, user-scalable=0}}">
+	<title>{{#if (isPreview)}}[[$data.Banner_ID]]{{else}}{{name}}{{/if}}</title>
+	<link rel="stylesheet" href="https://use.typekit.net/lon1mtd.css"><!-- Adobe ProximaNova -->
+	<script src="https://s0.2mdn.net/ads/studio/Enabler.js" ></script>
+	<script src="https://s0.2mdn.net/ads/studio/cached_libs/gsap_3.5.1_min.js"></script><!-- GSAP 3.5.1 -->
+	<style>
+		{{> fonts.css }}
+		{{> global.css }}
+		{{> (bannerCss) }}
+	</style>
+	<script title="dynamic-invocation-code" type="text/javascript">
+		var dc;
+		function dynamicDataAvailable(){
+			console.log("* dynamicDataAvailable");
+			/*
+			 * Dynamic Content Enable code for Profile: 10671564
+			 *
+			 * The following code initializes the following dynamic variables for
+			 * development testing and live serving of Fields associated to the above profile
+			 * "devDynamicContent" values are for local testing. 
+			*/
+			Enabler.setProfileId(10671564);
+			{{> (invocationJs) }}
+			Enabler.setDevDynamicContent(devDynamicContent);
+			
+			dc = dynamicContent.NWF_Feed_Brand_2021[0];
+		}
+		function clickOut(){
+			console.log('clickOut');
+			Enabler.exitOverride('Background Click', dc.Exit_URL.Url)
+		}
+	</script>
+	<script title="js-loading">
+		{{> initial.js}}
+	</script>
+</head>
+<body>
+	<div style="visibility:hidden; font-family:proxima-nova; position: absolute;" aria-hidden="true" aria-wait="Loading">Loading</div>
+	<div id="banner" class="full-size" role="banner">{{#unless (isLeader)}}
+		<div id="ng-parent" class="full-size hide">
+			<img id="ng-pic-back" class="pic-back" src="" alt="" aria-hidden="true"/>
+			{{> Ngraphic.svg}}
+			<img id="ng-pic-front" class="pic-front" src="" alt="" aria-hidden="true"/>
+		</div>
+		<div id="nw-parent" class="full-size hide">
+			{{> (getSvg 'nWindow')}}
+			<div id="nw-t1-container" class="abs" aria-hidden="true">
+				<div id="nw-t1" class="nw-t1 t1 abs">*</div>
+			</div>
+		</div>{{/unless}}
+		<div id="end-container" class="abs">{{#if (isSkyscraper)}}
+			{{> (getSvg 'nWindowEndStripe')}}{{/if}}
+			<div id="end-stripe" class="abs"></div>
+			<div id="t1-container" class="txt-container abs" aria-hidden="true">
+				<div id="t1" class="ng-t1 t1 abs">*</div>
+			</div>
+			<div id="t2-container" class="txt-container abs">
+				<div id="t2" class="t2" role="heading" aria-level="1"></div><div id="cta-container">
+					<div id="cta" class="fake-button" role="button" tabindex="0">
+						<div id="cta-txt"></div>
+					</div>
+				</div> 
+			</div>
+		</div>
+		<div id="logo-container" class="full-size">
+			{{> (logoToUse)}}
+		</div>
+		<div id="ribbon">
+			<div id="ribbon-txt"{{#if (isLeader)}} class="ribbon-txt"{{/if}}>ribbon</div>
+		</div>{{#if (isLeader)}}
+		<div id="nc-parent" class="hide">
+			<img id="nc-pic" class="nc-pic" src="" alt="" aria-hidden="true"/>
+		</div>{{/if}}
+		<div id="border" class="border full-size"></div>
+		<button id="clicker" class="abs full-size"></button>
+		<button id="replay-container" class="replay abs" aria-label="replay">
+			{{> replay.svg}}
+		</button>
+	</div>{{#if (isPreview)}}
+	<div style="display:flex; justify-content:center; padding:5px;"><button onClick="tl.seek('end');">Skip to Endframe >></button></div>{{/if}}
+</body>
+</html>

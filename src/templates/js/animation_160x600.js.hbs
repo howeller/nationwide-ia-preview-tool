@@ -1,0 +1,105 @@
+function nGraphicIntroTl() {
+	cl('	+ nGraphicIntroTl ','red');
+
+	return gsap.timeline({paused:false})
+		.set(aniProps.container, {visibility:'visible'})
+		.add(fadeInContainerTl())
+		.from(svg.nGraphic, { scale:0, duration:0.5, ease:'back.out(1.5)'},'+=1')
+		.fromTo(end.container, {clipPath:getPath('fromBottomLeftStart')}, {clipPath:getPath('fromBottomLeftEnd'), duration:1 })
+		.add('f2out', '+='+dc.Txt1_Pause)
+		.fromTo(aniProps.t1, {clipPath: getPath('wipeInEnd') }, {clipPath: getPath('wipeOutToLeft'), duration:1 }, 'f2out');
+}
+
+function nWindowIntroTl() {
+	cl('	+ nWindowIntroTl ','red');
+	var _maskScale2 = 4.73, // From PSD
+		_maskX2 = -474, // Get number from PSD
+		_maskY2 = -705, // Get number from PSD
+		_logoCenterY = 133,
+		_f2NBottom = 201,
+		_picHeight = aniProps.imgBack.getBBox().height,
+		_halfPicHeight = Math.round(_picHeight/2),
+		_picX1 = 80 - Math.round(aniProps.imgBack.getBBox().width/2),// center img
+		_picY1 = _logoCenterY - _halfPicHeight,// center img inside logo
+		_picScale2 = _json._picScale2 || 1.55,
+		_picY2 = (_f2NBottom - (_picHeight * _picScale2)),// anchor pic to bottom of NWindow mask on frame 2
+		_zoomSpeed = 1,
+		_picsTweenTo = _json.picTweemTo || {y:_picY2, scale: _picScale2, transformOrigin:'50% 0%', duration:_zoomSpeed};
+
+	end.container.style.top = id('nw-t1-container').style.top = '201px';// Move copy up
+	end.container.style.height = '399px'
+	end.t2.style.paddingTop = '33px';
+	
+	aniOptions.NGraphic.t1.style.visibility = 'hidden';
+
+	return gsap.timeline({paused:false})
+		.set('.mask-path', {fill:colorNameToHex(theme.bgColor)})
+		.set('#svgStripePath', {fill:colorNameToHex(theme.stripeColor)})
+		.set(aniProps.container, {visibility:'visible'})
+		.set([aniProps.imgBack, aniProps.imgFront], {skewX:0.1, x:_picX1, y:_picY1})
+		.add(fadeInContainerTl())
+		.add('f2', '+=1')
+		.to('.fake-mask', {scale:_maskScale2, x:_maskX2, y:_maskY2, duration:_zoomSpeed, transformOrigin:'0% 0%'}, 'f2')
+		.to(['#nw-pic-back','#nw-pic-front'], _picsTweenTo, 'f2')
+		.fromTo(aniProps.t1, {clipPath: getPath('wipeInFromLeftStart') }, {clipPath: getPath('wipeInEnd'), duration:1})
+		.add('f2out', '+='+dc.Txt1_Pause)
+		.fromTo(end.container, {clipPath:getPath('fromBottomLeftStart')}, {clipPath:getPath('fromBottomLeftEnd'), duration:1 }, 'f2out')
+}
+
+function txtOnlyIntroTl() {
+	cl('	+ txtOnlyIntroTl ','red');
+	swapClasses(replay.container, 'relay-n', 'replay-to');
+
+	// wipe in t1 > pause > reverse wipe out
+	return gsap.timeline({paused:false})
+		.set(aniProps.container, {visibility:'visible'})
+		.add(fadeInContainerTl())
+		.fromTo(aniProps.t1, {clipPath: getPath('wipeInFromLeftStart') }, {clipPath: getPath('wipeInEnd'), duration:1, repeat: 1, repeatDelay:dc.Txt1_Pause, yoyo: true })
+}
+
+function clippedStripeTl() {
+	// cl('	//	 clippedStripeTl ');
+	var _stripeWidth = svg.endStripe.getBBox().width;
+
+	return gsap.timeline({paused:false})
+		.set('#nw-end-stripe', {visibility: 'visible', top:-63})
+		.fromTo(svg.endStripe, {x:{{width}} }, {x:-(_stripeWidth/2.5), duration:stripeSpeed, ease:'power1.out'})
+		.to(svg.endStripe, {x:-(_stripeWidth), duration:stripeSpeed, ease:'power1.in'});
+}
+
+function defaultStripeTl() {
+	// cl('	//	 defaultStripeTl ');
+
+	return gsap.timeline({paused:false})
+		.set('#end-stripe', {visibility: 'visible'})
+		.fromTo(end.stripe, {x:{{width}} }, {x:-(end.stripe.offsetWidth/3), duration:stripeSpeed, ease:'power1.out'})
+		.to(end.stripe, {x:-(end.stripe.offsetWidth), duration:stripeSpeed, ease:'power1.in'})
+}
+
+function animate() {
+	cl(':: animate :: {{width}}x{{height}}');
+	
+	stripeSpeed = 1;
+
+	var _introTl = aniProps.frame1Tl(), // Get intro TL to use
+			_endStripeTl = aniProps.endStripeTl();// Choose standard vs masked SVG stripe 
+
+	tl
+		.add(_introTl)
+		.add('end', aniProps.overlap)
+		.fromTo('#t2', {clipPath: getPath('wipeInFromLeftStart')}, {clipPath: getPath('wipeInEnd'), duration:1, ease:'power3.easein' }, 'end')
+		.set([cta.btn, cta.txt],{skewX:0.1}, 'end')
+		.fromTo(cta.btn, {clipPath: getPath('wipeInFromLeftStart')}, {clipPath: getPath('wipeInEnd'), duration:1 },'-=0.5')
+		.add(_endStripeTl, '+=0.5')
+		.add(ctaBounceTl(), "-="+stripeSpeed)
+		.from(replay.container, { autoAlpha: 0 })
+		.add(initReplayAction)
+		.add('cta')
+		.add(ctaBounceTl(), "+=1")
+		.add(initCtaAction)
+		// tl.pause("3");
+		// .seek('end')
+		// .seek(_introTl.labels[_introTl.previousLabel()]);
+		;
+	console.log('Animation Runtime is ' + tl.endTime());
+}

@@ -1,0 +1,7 @@
+node_modules
+PSD
+project
+preview/templates_c/*
+preview/cache/*
+preview/templates/assets/js/*.min.js
+

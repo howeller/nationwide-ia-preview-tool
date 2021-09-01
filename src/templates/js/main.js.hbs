@@ -2,7 +2,7 @@ var tl = gsap.timeline({ defaults:{ paused:false, duration:0.5, ease:'power3.out
 
 var initBanner = (function(){
 
-	var _json, aniStyle, aniOptions, aniProps, initCompleted, /*isWinChrome,*/ isTextOnly, theme, useDefaultTheme,
+	var _json, aniStyle, aniOptions, aniProps, initCompleted, isRibbon, isTextOnly, theme, useDefaultTheme,
 			cta, end, imgLoader, replay, ribbon, svg,{{#if (isSkyscraper)}} stripeSpeed,{{/if}}{{#if (isLeader)}}slope,{{/if}}
 			version={{#if (isLeader)}}'0.0.0'{{else}}'0.0.0'{{/if}};// Major.Minor.Bug Fix
 
@@ -22,11 +22,17 @@ var initBanner = (function(){
 		var _feedTheme = removeSpaces(dc.BgTheme);
 
 		aniStyle = removeSpaces(dc.Ani_Style);
+		
 		// Do not modify colors if any customizations are entered in the feed.
 		useDefaultTheme = (_feedTheme === 'VibrantBlue-White' && !dc.TxtColor && !dc.RibbonColor && !dc.RibbonTxtColor && !dc.ReplayColor);
+		
 		theme = themeMap[_feedTheme]; //Get color choices
+
+		isRibbon = (dc.RibbonTxt.length > 0);cl('isRibbon ? '+isRibbon, 'red');
+
 		isTextOnly = (aniStyle === 'TextOnly');
-		cl('useDefaultTheme ? '+useDefaultTheme, 'red');
+
+		// cl('useDefaultTheme ? '+useDefaultTheme, 'red');
 
 		_json = (dc.Banner_json.Url) ? myJson.data['{{width}}x{{height}}'][dc.Color_Version][aniStyle] : {};
 
@@ -48,7 +54,9 @@ var initBanner = (function(){
 		end = {
 			container: id('end-container'),
 			t2: id('t2'),
-			stripe: id('end-stripe')
+			stripe: id('end-stripe'),
+			stripeStatic: id('end-stripe-static'),
+			stripeStaticPath:id('endStripeStaticPath')
 		}
 		replay = {
 			container: id('replay-container'),
@@ -136,13 +144,14 @@ var initBanner = (function(){
 		aniProps.t1.style.color = end.t2.style.color = colorCheck(dc.TxtColor||theme.txtColor);
 		ribbon.txt.style.color = colorCheck(dc.RibbonTxtColor||theme.ribbonTxtColor);
 		ribbon.container.style.backgroundColor =  colorCheck(dc.RibbonColor||theme.ribbonColor);
-		replay.path.style.fill = colorCheck(dc.TxtColor||theme.TxtColor);
+		replay.path.style.fill = colorCheck(dc.TxtColor||theme.txtColor);
 
 		// Set defaults from the theme (not customizable)
 		cta.txt.style.color = theme.ctaTxtColor;
 		cta.btn.style.backgroundColor = theme.ctaBtnColor;
 		end.container.style.backgroundColor = id('banner').style.backgroundColor = colorNameToHex(theme.bgColor);
 		end.stripe.style.backgroundColor = colorNameToHex(theme.stripeColor);
+		end.stripeStaticPath.style.fill = colorNameToHex(theme.stripeColor);
 	}
 
 	{{#unless (isLeader)}}/*
@@ -161,7 +170,7 @@ var initBanner = (function(){
 		cl('	_height: '+_height+'\n	_startWidth: '+ribbon.container.scrollWidth+'\n	 NEW RIGHT PADDING: '+_newPaddingRight,'pink');
 		// cl('	.getBoundingClientRect(): '+ribbon.container.getBoundingClientRect().width+'\n	scrollWidth: '+ribbon.container.scrollWidth+'\n	 clientWidth: '+ribbon.container.clientWidth+'\n	 gsap width: '+gsap.getProperty(ribbon.container, 'width'),'pink');
 
-		gsap.set(ribbon.txt, { paddingRight: _newPaddingRight});
+		gsap.set(ribbon.txt, { paddingRight: _newPaddingRight });
 		// cl(document.fonts.check('1em proxima-nova'), 'black');
 		
 		var _x2 = ((_height * _slope) + ribbon.container.scrollWidth).toString();
@@ -201,10 +210,11 @@ var initBanner = (function(){
 			swapClasses(id('t2-container'), 'txt-container', 'to-txt-container');{{/if}}{{!/}}
 		}
 
-		if(dc.RibbonTxt){
+		if(isRibbon){
 			setTxt(ribbon.txt, dc.RibbonTxt, dc.RibbonTxt_css);
 			ribbon.container.style.visibility = 'visible';{{#unless (isLeader)}}
-			setRibbonSize();{{/unless}}{{!/}}
+			setRibbonSize();
+			swapClasses(id('logo'), 'logo-no-ribbon', 'logo-over-ribbon');{{/unless}}{{!/}}
 		}
 		setTxt(cta.txt, dc.CtaTxt, dc.CtaTxt_css);
 		setTxt(aniProps.t1, dc.Txt1, dc.Txt1_css);

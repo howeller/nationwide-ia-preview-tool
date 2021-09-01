@@ -10,7 +10,7 @@
 
 		gtag('config', 'UA-174201828-1');
 	</script>
-	<title>Nationwide Financial Banner Preview</title>
+	<title>Nationwide Dynamic Banner Preview</title>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<link rel="stylesheet" href="local.css" />
@@ -40,7 +40,7 @@
 	
 	[[if isset($data.values)]]
 	<section id="list">
-		<h2>Available Banners in <a href="https://docs.google.com/spreadsheets/d/1xPr3z7CbQViAzTy1D4a7lMR6yXcGhWxeR6KVbfEcw_M/edit?usp=sharing" target="_blank" style="text-decoration: underline;">Brand_2021</a> Feed Sheet</h2>
+		<h2>Available Banners in <a href="https://docs.google.com/spreadsheets/d/19fokeHLH4s2s-O4h7hFQtM_xMMeHfnpYio12QXpGBco/edit?usp=sharing" target="_blank" style="text-decoration: underline;">Independent_Agent</a> Feed Sheet</h2>
 		<table>
 			<tr>
 				<th>Banner ID</th>

@@ -109,11 +109,12 @@
 		}
 		img#logo{
 			right: 16px;
-			bottom: 19px;/*39px*/
 			height: 67px;
 			width: auto;
 			object-fit: contain;
 		}
+		img.logo-no-ribbon{bottom: 16px}
+		img.logo-over-ribbon{bottom: 36px}
 		
 		/* N-Crop Images */
 		image{
@@ -156,18 +157,20 @@
 		}
 		#end-container #end-stripe{
 			background-color: var(--darkblue);
-			clip-path: polygon(0% 0%, 66% 0%, 100% 100%, 33% 100%); /* parallel shape */
-			-webkit-clip-path: polygon(0% 0%, 66% 0%, 100% 100%, 33% 100%); 
+			clip-path: polygon(33% 0%, 100% 1.2%, 66.00% 100%, 0% 100%); /* parallel shape */
+			-webkit-clip-path: polygon(33% 0%, 100% 1.2%, 66.00% 100%, 0% 100%); 
 			width: 300%;
 			height: 100%;
 		}
-		#end-stripe-static{
-			background-color: var(--darkblue);
+		svg#end-stripe-static{
+			height: 250px;
+			width: 395px;
+			left: -202px;
+			top: 0;
+			/*background-color: var(--darkblue);*/
 			/* slim parallel shape */
 			/*clip-path: polygon(0% 0%, 66% 0%, 100% 100%, 33% 100%); 
-			-webkit-clip-path: polygon(0% 0%, 66% 0%, 100% 100%, 33% 100%); 
-			width: 300%;
-			height: 100%;*/
+			-webkit-clip-path: polygon(0% 0%, 66% 0%, 100% 100%, 33% 100%); */
 		}
 		
 		#ribbon{
@@ -214,6 +217,7 @@
 			line-height: 20px;
 			top: 125px;
 			padding: 11px 0px 15px 19px;
+			width: 182px;
 		}
 		
 		/* end-txt */
@@ -306,9 +310,9 @@
 			devDynamicContent.NW_Feed_Independent_Agent[0].TxtColor = "";
 			devDynamicContent.NW_Feed_Independent_Agent[0].RibbonTxtColor = "";
 			devDynamicContent.NW_Feed_Independent_Agent[0].RibbonColor = "";
-			devDynamicContent.NW_Feed_Independent_Agent[0].RibbonTxt = "";
+			devDynamicContent.NW_Feed_Independent_Agent[0].RibbonTxt = "Agency Forward";
 			devDynamicContent.NW_Feed_Independent_Agent[0].RibbonTxt_css = [];
-			devDynamicContent.NW_Feed_Independent_Agent[0].Txt1 = "It’s a new world, and <br>customers are online <br>more than ever.";
+			devDynamicContent.NW_Feed_Independent_Agent[0].Txt1 = "It’s a new world, and customers are online more than ever.";
 			devDynamicContent.NW_Feed_Independent_Agent[0].Txt1_css = [];
 			devDynamicContent.NW_Feed_Independent_Agent[0].Txt1_Pause = 3;
 			devDynamicContent.NW_Feed_Independent_Agent[0].Txt2 = "Evolve the way you do business with digital strategies from<br>Agency Forward.";
@@ -317,20 +321,21 @@
 			devDynamicContent.NW_Feed_Independent_Agent[0].CtaTxt_css = [];
 			devDynamicContent.NW_Feed_Independent_Agent[0].CtaBtn_css = [];
 			devDynamicContent.NW_Feed_Independent_Agent[0].Replay_css = [];
-			devDynamicContent.NW_Feed_Independent_Agent[0].Banner_json = {};
-			devDynamicContent.NW_Feed_Independent_Agent[0].Banner_json.Type = "file";
-			devDynamicContent.NW_Feed_Independent_Agent[0].Banner_json.Url = "";
-			// devDynamicContent.NW_Feed_Independent_Agent[0].Banner_json.Url = "../../assets/js/ia.json";
+			devDynamicContent.NW_Feed_Independent_Agent[0].LogoSlideX = 141;
 			devDynamicContent.NW_Feed_Independent_Agent[0].Logo_img = {};
 			devDynamicContent.NW_Feed_Independent_Agent[0].Logo_img.Type = "file";
 			devDynamicContent.NW_Feed_Independent_Agent[0].Logo_img.Url = "../../assets/images/nw_ppi_logo_white_2x.png";
 			devDynamicContent.NW_Feed_Independent_Agent[0].Logo_img_css = [];
+			devDynamicContent.NW_Feed_Independent_Agent[0].Banner_json = {};
+			devDynamicContent.NW_Feed_Independent_Agent[0].Banner_json.Type = "file";
+			devDynamicContent.NW_Feed_Independent_Agent[0].Banner_json.Url = ""; // LOCAL TESTING ONLY
+			// devDynamicContent.NW_Feed_Independent_Agent[0].Banner_json.Url = "../../assets/js/tlq4.json";
 			devDynamicContent.NW_Feed_Independent_Agent[0].Back_img = {};
 			devDynamicContent.NW_Feed_Independent_Agent[0].Back_img.Type = "file";
 			devDynamicContent.NW_Feed_Independent_Agent[0].Back_img.Url = "../../assets/images/tl_back_opt1_300x250_2x.jpg";
 			devDynamicContent.NW_Feed_Independent_Agent[0].Front_img = {};
 			devDynamicContent.NW_Feed_Independent_Agent[0].Front_img.Type = "file";
-			devDynamicContent.NW_Feed_Independent_Agent[0].Front_img.Url = "../../assets/images/tl_frontop_t1_300x250_2x.png";
+			devDynamicContent.NW_Feed_Independent_Agent[0].Front_img.Url = "../../assets/images/spacer.png";
 			Enabler.setDevDynamicContent(devDynamicContent);
 			
 			dc = dynamicContent.NW_Feed_Independent_Agent[0];
@@ -419,7 +424,7 @@
 			</div>
 		</div>
 		<div id="end-container" class="abs">
-			<div id="end-stripe-static" class="abs"></div>
+			<svg id="end-stripe-static" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 394.4 250"><path id="endStripeStaticPath" fill="#141b4d" fill-rule="evenodd" clip-rule="evenodd" d="M141.9 250H0L252.5 0h141.9z"/></svg>
 			<div id="end-stripe" class="abs"></div>
 			<div id="t1-container" class="txt-container abs" aria-hidden="true">
 				<div id="t1" class="ng-t1 t1 abs">*</div>
@@ -433,7 +438,7 @@
 			</div>
 		</div>
 		<div id="logo-container" class="full-size">
-			<img id="logo" src="" alt="" aria-hidden="true"/>
+			<img id="logo" class="logo-no-ribbon" src="" alt="" aria-hidden="true"/>
 		</div>
 		<div id="ribbon">
 			<div id="ribbon-txt">ribbon</div>

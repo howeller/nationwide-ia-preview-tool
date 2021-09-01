@@ -1,7 +1,6 @@
 /*
 *	Utility / Helper Functions
 */
-{{!function cl(txt){console.log(txt); } }}
 function cl(txt, color){console.log('%c '+txt,'background: rgba(51, 255, 0, 0.3); color:'+(color||'white')+';'); }
 function id(id){return document.getElementById(id); }
 function toCssNum(num){return num.toString()+'px'; }
@@ -21,12 +20,12 @@ function swapClasses(element, classToRemove, classToAdd ){
 	return gsap.getProperty(elem, prop);
 	// return window.getComputedStyle(elem,null).getPropertyValue(prop);
 }
-function cssToNum(cssVal){return parseInt(cssVal, 10);}*/
+function cssToNum(cssVal){return parseInt(cssVal, 10);}
 function getCssNum(elem, prop){
 	return gsap.getProperty(elem, prop);
-	/*var _val = window.getComputedStyle(elem,null).getPropertyValue(prop);
-	return parseInt(_val, 10);*/
-}--}}
+	// var _val = window.getComputedStyle(elem,null).getPropertyValue(prop);
+	// return parseInt(_val, 10);
+}*/--}}
 function getPercentage(num1, num2){
 	// return Math.round((num1 / num2)*100) // whole number
 	 return Math.ceil((num1 / num2)*100)/100; // Decimal rounded to 100th
@@ -35,7 +34,7 @@ function removeSpaces(str){
 	return str.replace(/\s/g,''); 
 }
 
-{{!--function isNested(obj, key) {
+{{!--/*function isNested(obj, key) {
 	return key.split(".").every(function(x) {
 			if(typeof obj != "object" || obj === null || ! x in obj)
 				return false;
@@ -43,7 +42,7 @@ function removeSpaces(str){
 			return true;
 	});
 }
-/*function isRetina(){
+function isRetina(){
 	var mediaQuery = "(-webkit-min-device-pixel-ratio: 1.5),\ (min--moz-device-pixel-ratio: 1.5),\ (-o-min-device-pixel-ratio: 3/2),\ (min-resolution: 1.5dppx)";
 	if (window.devicePixelRatio > 1)
 		return true;

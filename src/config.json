@@ -22,7 +22,7 @@
 	},
 	"NW_Dyn_IA_300x250": {
 		"width": 300, "height": 250,
-		"logo": { "id": "logoVert", "svg": "NW_logo_vert.svg"},
+		"__logo": { "id": "logoVert", "svg": "NW_logo_vert.svg"},
 		"ribbon":{
 			"maxWidth":300,
 			"singleLineHeight": 20,
@@ -30,12 +30,14 @@
 		},
 		"invocation":{
 			"Ani_Style": "N Crop",
+			"_BgTheme": "White-DarkBlue",
 			"BgTheme": "Vibrant Blue - White",
-			"RibbonTxt": "",
-			"Txt1": "It’s a new world, and <br>customers are online <br>more than ever.",
+			"RibbonTxt": "Agency Forward",
+			"Txt1": "It’s a new world, and customers are online more than ever.",
 			"Txt1_Pause": 3,
 			"Txt2": "Evolve the way you do business with digital strategies from<br>Agency Forward.",
-			"CtaTxt": "See how"
+			"CtaTxt": "See how",
+			"logoSlideX":141
 		}
 	},
 	"NW_Dyn_IA_300x600": {

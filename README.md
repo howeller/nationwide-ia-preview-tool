@@ -21,8 +21,7 @@ Google Studio | Internal
 [Google Dynamic Profile ID&nbsp;10615014](https://www.google.com/doubleclick/studio/#ContentManagement/ProfileGuides:id=10024964&pr=10671564) | [Preview site](https://www.campaign.hogarthww.digital/ctus-nationwide/nw-h216652/preview/)
 [Google Feed Sheet](https://docs.google.com/spreadsheets/d/19fokeHLH4s2s-O4h7hFQtM_xMMeHfnpYio12QXpGBco/edit?usp=sharing) | [NW Dynamic Portal](https://app.smartsheet.com/b/publish?EQBCT=70380f11c65145f0877331e26abd1ab4)
 [Google Creatives In&nbsp;Studio](https://www.google.com/doubleclick/studio/#campaign:campaignId=60276429&advertiserId=42896968&ownerId=300648) | [JIRA - Main Build](https://hogarthdigital.atlassian.net/browse/CTUS-423)
-[Google&nbsp;Asset&nbsp;Library]() | 
-
+[Google&nbsp;Asset&nbsp;Library](###) | 
 
 ### Dev overview
 
@@ -91,7 +90,7 @@ myTimeline.fromTo( '#myElement', { clipPath: getPath('wipeInEnd') }, { clipPath:
 
 ---
 ### Versioning
-Creating versions requires 1) making and populating a new row in the feed and 2) loading the image assets in the local library (`build/assets/images/`) & [Google&nbsp;Asset&nbsp;Library](https://www.google.com/doubleclick/studio/#assets:accountId=1441&folderId=62211977). Even though I have built in the option to customize animation properties through the JSON file and CSS properties in the feed sheet, this project hasn't needed to do so after the first several batches of versions.
+Creating versions requires 1) making and populating a new row in the feed and 2) loading the image assets in the local library (`build/assets/images/`) & [Google&nbsp;Asset&nbsp;Library](###). Even though I have built in the option to customize animation properties through the JSON file and CSS properties in the feed sheet, this project hasn't needed to do so after the first several batches of versions.
 
 - Create images for **N-Graphic** and **N-Window** layouts:
     - There is a PNG in the foreground and a JPG in the background. 

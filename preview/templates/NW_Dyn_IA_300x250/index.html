@@ -19,6 +19,7 @@
 			font-style: normal;
 			src: url("https://s0.2mdn.net/creatives/assets/2701989/tiempos-headline-web-semibold.woff2") format("woff2"), url("https://s0.2mdn.net/creatives/assets/2701989/tiempos-headline-web-semibold.woff") format("woff"), url("https://s0.2mdn.net/creatives/assets/2701989/tiempos-headline-web-semibold.eot") format("embedded-opentype")
 		}
+		@charset "UTF-8";
 		:root {
 			--coolgray8: #87898b;
 			--darkblue: #141b4d;
@@ -106,17 +107,20 @@
 			position: relative;
 			overflow: hidden;
 		}
-		svg#logoVert{
+		img#logo{
 			right: 16px;
-			bottom: 39px;
-			width: 70px;
-			height: auto;
+			height: 67px;
+			width: auto;
+			object-fit: contain;
 		}
+		img.logo-no-ribbon{bottom: 16px}
+		img.logo-over-ribbon{bottom: 36px}
 		
-		/* N-Window Images */
+		/* N-Crop Images */
 		image{
 			width: 300px;
 			height: auto;
+			object-fit:contain;
 		}
 		
 		/* N-Graphic Imgs */
@@ -142,7 +146,7 @@
 			height: 100%;
 		}
 		
-		#end-container, #nw-t1-container{
+		#end-container, #nc-t1-container{
 			width: 300px;
 			height: 250px;
 			top: 0;
@@ -153,14 +157,24 @@
 		}
 		#end-container #end-stripe{
 			background-color: var(--darkblue);
-			clip-path: polygon(0% 0%, 66% 0%, 100% 100%, 33% 100%); /* parallel shape */
-			-webkit-clip-path: polygon(0% 0%, 66% 0%, 100% 100%, 33% 100%); 
+			clip-path: polygon(33% 0%, 100% 1.2%, 66.00% 100%, 0% 100%); /* parallel shape */
+			-webkit-clip-path: polygon(33% 0%, 100% 1.2%, 66.00% 100%, 0% 100%); 
 			width: 300%;
 			height: 100%;
 		}
+		svg#end-stripe-static{
+			height: 250px;
+			width: 395px;
+			left: -202px;
+			top: 0;
+			/*background-color: var(--darkblue);*/
+			/* slim parallel shape */
+			/*clip-path: polygon(0% 0%, 66% 0%, 100% 100%, 33% 100%); 
+			-webkit-clip-path: polygon(0% 0%, 66% 0%, 100% 100%, 33% 100%); */
+		}
 		
 		#ribbon{
-			background-color: var(--mediumblue);
+			background-color: var(--darkblue);
 			bottom: 0px;
 			left: 0;
 			display: block;
@@ -168,6 +182,7 @@
 			width: auto;
 			clip-path: polygon(0% 0%, calc(100% - 20px) 0%, 100% 100%, 0% 100%);
 			height: auto;
+			visibility: hidden;
 		}
 		
 		/* Text Styles */
@@ -197,11 +212,12 @@
 			padding: 16px 0px 15px 19px;
 		}
 		
-		#nw-t1{
+		#nc-t1{
 			font-size: 18px;
 			line-height: 20px;
 			top: 125px;
 			padding: 11px 0px 15px 19px;
+			width: 182px;
 		}
 		
 		/* end-txt */
@@ -272,54 +288,59 @@
 		function dynamicDataAvailable(){
 			console.log("* dynamicDataAvailable");
 			/*
-			 * Dynamic Content Enable code for Profile: 10615014
+			 * Dynamic Content Enable code for Profile: 10671564
 			 *
 			 * The following code initializes the following dynamic variables for
 			 * development testing and live serving of Fields associated to the above profile
-			 * "devDynamicContent" values are for local testing. 
+			 *"devDynamicContent" values are for local testing. 
 			*/
-			Enabler.setProfileId(10615014);
+			Enabler.setProfileId(10671564);
 			var devDynamicContent = {};
 			
-			devDynamicContent.NWF_Feed_Brand_2021= [{}];
-			devDynamicContent.NWF_Feed_Brand_2021[0]._id = 0;
-			devDynamicContent.NWF_Feed_Brand_2021[0].Creative_Dimension = [];
-			devDynamicContent.NWF_Feed_Brand_2021[0].Creative_Dimension[0] = {"Width": 300, "Height": 250 };
-			devDynamicContent.NWF_Feed_Brand_2021[0].Exit_URL = {};
-			devDynamicContent.NWF_Feed_Brand_2021[0].Exit_URL.Url = "[[$data.Exit_URL]]";
-			devDynamicContent.NWF_Feed_Brand_2021[0].Concept = "[[$data.Concept]]";
-			devDynamicContent.NWF_Feed_Brand_2021[0].Color_Version = "[[$data.Color_Version]]";
-			devDynamicContent.NWF_Feed_Brand_2021[0].Ani_Style = "[[$data.Ani_Style]]";
-			devDynamicContent.NWF_Feed_Brand_2021[0].BgTheme = "[[$data.BgTheme]]";
-			devDynamicContent.NWF_Feed_Brand_2021[0].TxtColor = "[[$data.TxtColor]]";
-			devDynamicContent.NWF_Feed_Brand_2021[0].RibbonTxtColor = "[[$data.RibbonTxtColor]]";
-			devDynamicContent.NWF_Feed_Brand_2021[0].RibbonColor = "[[$data.RibbonColor]]";
-			devDynamicContent.NWF_Feed_Brand_2021[0].RibbonTxt = "[[$data.RibbonTxt]]";
-			devDynamicContent.NWF_Feed_Brand_2021[0].RibbonTxt_css = [ [[$data.RibbonTxt_css]] ];
-			devDynamicContent.NWF_Feed_Brand_2021[0].Txt1 = "[[$data.Txt1]]";
-			devDynamicContent.NWF_Feed_Brand_2021[0].Txt1_css = [ [[$data.Txt1_css]] ];
-			devDynamicContent.NWF_Feed_Brand_2021[0].Txt1_Pause = [[$data.Txt1_Pause]];
-			devDynamicContent.NWF_Feed_Brand_2021[0].Txt2 = "[[$data.Txt2]]";
-			devDynamicContent.NWF_Feed_Brand_2021[0].Txt2_css = [ [[$data.Txt2_css]] ];
-			devDynamicContent.NWF_Feed_Brand_2021[0].CtaTxt = "[[$data.CtaTxt]]";
-			devDynamicContent.NWF_Feed_Brand_2021[0].CtaTxt_css = [ [[$data.CtaTxt_css]] ];
-			devDynamicContent.NWF_Feed_Brand_2021[0].CtaBtn_css = [ [[$data.CtaBtn_css]] ];
-			devDynamicContent.NWF_Feed_Brand_2021[0].Replay_css = [ [[$data.Replay_css]] ];
-			devDynamicContent.NWF_Feed_Brand_2021[0].Banner_json = {};
-			devDynamicContent.NWF_Feed_Brand_2021[0].Banner_json.Type = "file";
+			devDynamicContent.NW_Feed_Independent_Agent= [{}];
+			devDynamicContent.NW_Feed_Independent_Agent[0]._id = 0;
+			devDynamicContent.NW_Feed_Independent_Agent[0].Creative_Dimension = [];
+			devDynamicContent.NW_Feed_Independent_Agent[0].Creative_Dimension[0] = {"Width": 300, "Height": 250 };
+			devDynamicContent.NW_Feed_Independent_Agent[0].Exit_URL = {};
+			devDynamicContent.NW_Feed_Independent_Agent[0].Exit_URL.Url = "[[$data.Exit_URL]]";
+			devDynamicContent.NW_Feed_Independent_Agent[0].Concept = "[[$data.Concept]]";
+			devDynamicContent.NW_Feed_Independent_Agent[0].Color_Version = "[[$data.Color_Version]]";
+			devDynamicContent.NW_Feed_Independent_Agent[0].Ani_Style = "[[$data.Ani_Style]]";
+			devDynamicContent.NW_Feed_Independent_Agent[0].BgTheme = "[[$data.BgTheme]]";
+			devDynamicContent.NW_Feed_Independent_Agent[0].TxtColor = "[[$data.TxtColor]]";
+			devDynamicContent.NW_Feed_Independent_Agent[0].RibbonTxtColor = "[[$data.RibbonTxtColor]]";
+			devDynamicContent.NW_Feed_Independent_Agent[0].RibbonColor = "[[$data.RibbonColor]]";
+			devDynamicContent.NW_Feed_Independent_Agent[0].RibbonTxt = "[[$data.RibbonTxt]]";
+			devDynamicContent.NW_Feed_Independent_Agent[0].RibbonTxt_css = [ [[$data.RibbonTxt_css]] ];
+			devDynamicContent.NW_Feed_Independent_Agent[0].Txt1 = "[[$data.Txt1]]";
+			devDynamicContent.NW_Feed_Independent_Agent[0].Txt1_css = [ [[$data.Txt1_css]] ];
+			devDynamicContent.NW_Feed_Independent_Agent[0].Txt1_Pause = [[$data.Txt1_Pause]];
+			devDynamicContent.NW_Feed_Independent_Agent[0].Txt2 = "[[$data.Txt2]]";
+			devDynamicContent.NW_Feed_Independent_Agent[0].Txt2_css = [ [[$data.Txt2_css]] ];
+			devDynamicContent.NW_Feed_Independent_Agent[0].CtaTxt = "[[$data.CtaTxt]]";
+			devDynamicContent.NW_Feed_Independent_Agent[0].CtaTxt_css = [ [[$data.CtaTxt_css]] ];
+			devDynamicContent.NW_Feed_Independent_Agent[0].CtaBtn_css = [ [[$data.CtaBtn_css]] ];
+			devDynamicContent.NW_Feed_Independent_Agent[0].Replay_css = [ [[$data.Replay_css]] ];
+			devDynamicContent.NW_Feed_Independent_Agent[0].LogoSlideX = [[$data.LogoSlideX]];
+			devDynamicContent.NW_Feed_Independent_Agent[0].Logo_img = {};
+			devDynamicContent.NW_Feed_Independent_Agent[0].Logo_img.Type = "file";
+			devDynamicContent.NW_Feed_Independent_Agent[0].Logo_img.Url = "[[$data.localImagePath]][[$data.Logo_img]]";
+			devDynamicContent.NW_Feed_Independent_Agent[0].Logo_img_css = [ [[$data.Logo_img_css]] ];
+			devDynamicContent.NW_Feed_Independent_Agent[0].Banner_json = {};
+			devDynamicContent.NW_Feed_Independent_Agent[0].Banner_json.Type = "file";
 			[[if $data.Banner_json != '']]
-			 devDynamicContent.NWF_Feed_Brand_2021[0].Banner_json.Url = "[[$data.localAssetPath]][[$data.Banner_json]]";
-			[[else]]devDynamicContent.NWF_Feed_Brand_2021[0].Banner_json.Url = "";
+			 devDynamicContent.NW_Feed_Independent_Agent[0].Banner_json.Url = "[[$data.localAssetPath]][[$data.Banner_json]]";
+			[[else]]devDynamicContent.NW_Feed_Independent_Agent[0].Banner_json.Url = "";
 			[[/if]]
-			devDynamicContent.NWF_Feed_Brand_2021[0].Back_img = {};
-			devDynamicContent.NWF_Feed_Brand_2021[0].Back_img.Type = "file";
-			devDynamicContent.NWF_Feed_Brand_2021[0].Back_img.Url = "[[$data.localImagePath]][[$data.Back_img]]";
-			devDynamicContent.NWF_Feed_Brand_2021[0].Front_img = {};
-			devDynamicContent.NWF_Feed_Brand_2021[0].Front_img.Type = "file";
-			devDynamicContent.NWF_Feed_Brand_2021[0].Front_img.Url = "[[$data.localImagePath]][[$data.Front_img]]";
+			devDynamicContent.NW_Feed_Independent_Agent[0].Back_img = {};
+			devDynamicContent.NW_Feed_Independent_Agent[0].Back_img.Type = "file";
+			devDynamicContent.NW_Feed_Independent_Agent[0].Back_img.Url = "[[$data.localImagePath]][[$data.Back_img]]";
+			devDynamicContent.NW_Feed_Independent_Agent[0].Front_img = {};
+			devDynamicContent.NW_Feed_Independent_Agent[0].Front_img.Type = "file";
+			devDynamicContent.NW_Feed_Independent_Agent[0].Front_img.Url = "[[$data.localImagePath]][[$data.Front_img]]";
 			Enabler.setDevDynamicContent(devDynamicContent);
 			
-			dc = dynamicContent.NWF_Feed_Brand_2021[0];
+			dc = dynamicContent.NW_Feed_Independent_Agent[0];
 		}
 		function clickOut(){
 			console.log('clickOut');
@@ -329,7 +350,7 @@
 	<script title="js-loading">
 		var myJson;
 		(function(){
-			var myUrl = '../build/assets/js/NWF_Brand_Animation_300x250.js';
+			var myUrl = '../build/assets/js/NW_IA_Animation_300x250.js';
 		
 			function startBanner() {
 		
@@ -399,13 +420,13 @@
 			<svg id="n-graphic" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 341.6 300.2" aria-hidden="true"><path id="n-graphic-path" fill="#0047bb" d="M263.2 0v186.3L86 .6H0v299.6h77.5V119.8l178.9 179.8h85.2V0z"/></svg>
 			<img id="ng-pic-front" class="pic-front" src="" alt="" aria-hidden="true"/>
 		</div>
-		<div id="nw-parent" class="full-size hide">
-			<svg id="nwindow" class="full-size" viewBox="0 0 300 250" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><g id="picBack"><image id="nw-pic-back" class="pic-back" href="" x="0" y="0"></image></g><g id="maskBack" class="fake-mask" x="0" y="0"><path class="mask-path" fill="black" d="M0,0.1v250h300V0.1H0z M255,206.6h-52.1L93.4,95.9V207H46V22.4h52.6L207,136.8V22h48V206.6z"/></g><g id="picFront"><image id="nw-pic-front" class="pic-front" href="" x="0" y="0"></image></g><g id="maskFront" class="fake-mask" x="0" y="0"><polygon class="mask-path" fill="black" points="255,0.1 255,206.6 202.9,206.6 93.4,96.7 93.4,207 46,207 46,0.1 0,0.1 0,250.1 300,250.1 300,0.1"/></g></svg>
-			<div id="nw-t1-container" class="abs" aria-hidden="true">
-				<div id="nw-t1" class="nw-t1 t1 abs">*</div>
+		<div id="nc-parent" class="full-size hide">
+			<svg id="ncrop" class="full-size" viewBox="0 0 300 250" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><g id="picBack"> <image id="nc-pic-back" class="pic-back" href="" x="0" y="0"></image></g><!--<g id="maskBack" class="fake-mask" x="0" y="0"><path class="mask-path" fill="black" d="M0,0.1v250h300V0.1H0z M255,206.6h-52.1L93.4,95.9V207H46V22.4h52.6L207,136.8V22h48V206.6z"/></g> <g id="picFront"><image id="nc-pic-front" class="pic-front" href="" x="0" y="0"></image></g>--><g id="maskFront" class="fake-mask" x="0" y="0"><polygon class="mask-path" fill="black" points="255,0.1 255,206.6 202.9,206.6 93.4,96.7 93.4,207 46,207 46,0.1 0,0.1 0,250.1 300,250.1 300,0.1"/></g></svg>			<div id="nc-t1-container" class="abs" aria-hidden="true">
+				<div id="nc-t1" class="nc-t1 t1 abs">*</div>
 			</div>
 		</div>
 		<div id="end-container" class="abs">
+			<svg id="end-stripe-static" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 394.4 250"><path id="endStripeStaticPath" fill="#141b4d" fill-rule="evenodd" clip-rule="evenodd" d="M141.9 250H0L252.5 0h141.9z"/></svg>
 			<div id="end-stripe" class="abs"></div>
 			<div id="t1-container" class="txt-container abs" aria-hidden="true">
 				<div id="t1" class="ng-t1 t1 abs">*</div>
@@ -419,8 +440,7 @@
 			</div>
 		</div>
 		<div id="logo-container" class="full-size">
-			<!-- NW Stacked Logo -->
-			<svg id="logoVert" class="logo" viewBox="0 0 280 280" xmlns="http://www.w3.org/2000/svg" version="1.1" role="img" aria-labelledby="logo-title"><title id="logo-title">Nationwide&reg;</title><style>.darkgrey{fill:#231f20}.blue{fill:#1658a5}.white{fill:#ffffff}</style><path id="logoWordmark" class="darkgrey" d="M91.5 242.4c2.4 0 4.4 1.8 4.4 4.1s-2 4.1-4.4 4.1c-2.4 0-4.4-1.8-4.4-4.1.1-2.2 2.1-4.1 4.4-4.1M202.9 242.4c2.4 0 4.4 1.8 4.4 4.1s-2 4.1-4.4 4.1c-2.4 0-4.4-1.8-4.4-4.1 0-2.2 2-4.1 4.4-4.1M61.6 264v15.5h-6.7v-2.6a9.63 9.63 0 0 1-7.3 3.2c-5.3.2-9.5-3.1-9.5-8 0-7.5 7.9-9.1 15.7-9.1h.9c0-2.1-.9-4-5-4-2.8 0-5.2.9-6.8 2.5l-4.1-4.1c2.8-2.8 6.8-4.2 11.1-4.2s6.7.6 9.1 2.8c2.1 2 2.6 5.9 2.6 8m-7 4.3h-.7c-1.1 0-3.9.1-6 .7-1.4.4-2.6 1.3-2.6 2.6 0 1.9 1.8 2.7 3.5 2.7 3.6 0 5.7-2.3 5.7-5.2v-.8M76.4 253.8v-8.1h-7.3v8.1h-5v6.1h5v10.9c0 3.6.6 5.8 2.1 7.3 1.4 1.4 3.4 2 6.5 2 2 0 3.9-.4 5.5-1v-5.8c-.9.3-2.3.5-3.9.5-2.3 0-2.8-1.2-2.8-3.3V260h6.8v-6.1h-6.9M268.7 267.1v1.9H250c.1 2.6 3.1 4.9 6.6 5 3.3.1 5-1.2 6.7-3l4.6 3.4c-2.8 3.6-6.3 5.6-11.2 5.6-7.8 0-14.2-4.9-14.2-13.4 0-6.9 4.3-13.4 13.3-13.4 9.2 0 12.9 7.2 12.9 13.9m-7.7-3.3c-.3-2.8-1.9-4.8-5.5-4.8-3.1.1-5.2 2.2-5.5 4.8h11M25.6 242.2v25.3L9.8 242.2H0v37.3h8v-26.2l16.2 26.2h9.4v-37.3h-8M188.9 253.8l-4.1 16-4.1-16h-7.6l-4 15.9-4.2-15.9h-8l8.2 25.7h7.3l4.4-16.2 4.9 16.2h6.8l8.1-25.7h-7.7M95.2 253.8h-7.3v25.7h7.3v-25.7M199.2 253.8h7.4v25.7h-7.4zM152.4 255.6c-1.5-1.6-3.5-2.4-6.3-2.3-2.8 0-6.1 1.4-7.6 3.4v-2.8h-7.1v25.7h7.4v-13.9c0-1.8.5-3.2 1.3-4.1.7-.8 1.8-1.4 3.2-1.5 1.7-.1 2.6.6 3.2 1.4.8 1 1 2.7 1 5.1v13h7.4v-16c-.1-3.3-.5-5.9-2.5-8M238.3 242.2v37.2h-6.9v-2.9c-1.6 1.9-4.3 3.5-7.9 3.5-3.5 0-6.6-1.2-8.9-3.5-2.4-2.4-3.8-6-3.8-10 0-7.8 5.2-13.4 12.4-13.4 3.1 0 5.8 1 7.8 2.9v-13.8h7.3zm-7.2 24.4c0-3.5-2.2-6.9-6.5-6.9s-6.5 3.5-6.5 6.9c0 3.4 2.2 6.9 6.5 6.9 4.3.1 6.5-3.4 6.5-6.9M127.2 266.6c0 7.8-5.8 13.4-13.8 13.4s-13.8-5.7-13.8-13.4c0-7.8 5.8-13.4 13.8-13.4 7.9 0 13.8 5.7 13.8 13.4m-13.9-6.9c-4.3 0-6.5 3.5-6.5 6.9 0 3.4 2.2 6.9 6.5 6.9s6.5-3.5 6.5-6.9c0-3.4-2.2-6.9-6.5-6.9M272 251.4h1.2v-2.7h.9l1.7 2.7h1.3l-1.7-2.8c.9-.1 1.6-.7 1.6-1.8 0-1.3-.8-2-2.4-2H272v6.6zm1.2-5.7h.9c.8 0 1.6 0 1.6.9s-.8.9-1.6.9h-.9v-1.8zm-4.8 2.4a5.91 5.91 0 0 0 11.8 0 5.91 5.91 0 0 0-11.8 0m1 0a4.8 4.8 0 0 1 9.6 0c0 2.6-2.2 4.8-4.8 4.8-2.6 0-4.8-2.2-4.8-4.8"/><path id="logoN" class="blue" d="M176.7 51.7v85l-10.9-10.6V159c0 11.8-4.4 17.5-4.6 17.7l12 11.3h41.3V51.7h-37.8M86.3 105.7s16.9 16 18.4 17.4c-1.6-5.9-2.9-13.9.3-19l1.8-3c-1.7-9.3-1.1-19.1 4.4-25.2l1.5-1.6-23-22.6H48.5v136.4h37.8v-82.4"/><path id="logoEagleStroke" class="blue" d="M161.2 176.8c.2-.2.4-.7.6-.9l.1-.1c3.6-4.5 4-9.5 4-17.1V58.5c-.2-39.8 4.5-58.6 4.5-58.6-12.8 0-19.4 12.1-20.9 15.7-7.2.8-13.1 4.9-17 13-2.2 4.6-3.3 9-3.7 11.1-14.2 3.3-16.2 27.2-15.6 34.1l-1.9 1.9c-5.9 6.4-6.3 16.1-4.6 25.4l-1.7 2.7c-3.2 5.1-2.1 12.9-.5 18.8l.2.5c1.7 5 3.3 7 3.3 7l-7.2-6.1c-1.3 13.4 2.5 20.2 6 25.3l-8.7-7.4c-.7 13.3 5.7 21.4 9.7 24.9l-11.5-5.7c-.8 7.9 7.2 19.6 11.8 21.8l-9.7-1.4c2.1 11 9.7 14.9 9.7 14.9s-16.7-.4-24.4-.4c-21.3 0-35.2 2-35.2 2s9.4 9.4 21.4 9.8l-10.7 6.6c7.8 2.5 15.2 1.7 15.2 1.7l-6.2 7.4s19.5-7.5 27.7-6.9c6.5.5 37.1 12.4 57.6 12.4 13.8 0 23.7-5.3 31.7-9.5 4.9-2.6 9.1-4.7 13.2-5.3 7.4-1.1 10.8 1.6 10.8 1.6.8-3.1 3.1-11-9-12.9-.5-2.1-2.6-4.9-5.7-5.4-6.5-1-33.7-3.1-34.5-3.1-2.3-.1-10.2-1.7-3-12 .6-1 4.2-5.6 4.2-5.6z"/><path id="logoEagle" class="white" d="M159.1 174c-4.2 4.9-9.7 11.8-8.5 16.9.9 4.2 6.8 6.8 6.8 6.8l12.7 6.9-8.2 7.2 9.9 3.1s-9.1 9.3-10.1 10.2c-2.6.4-5.3.7-8.3.7-21 0-50.2-12.4-57.4-12.5-8.7-.1-19.6 4.9-19.6 4.9L82 212s-7.5 1.5-14.7.9l10.2-6.9c-9-.3-16.8-3-20.5-5.6 0 0 16.5-1.3 38.9-1.1 9.1.1 24.4 1 24.4 1-7.6-3.2-14.7-7.5-17.7-15l14.5 2.2c-6.1-3.7-14.9-13.1-16.5-20.3l16.2 5.7c-2.9-3.1-12.9-12.5-14.7-23.3l12.8 8c-3.4-3.4-12.4-21.3-10.9-26.6l11.9 8c-5.7-7.1-12.4-25.8-7.8-33.1 3.6 14.1 11.7 19.2 11.7 19.2-5.3-7.7-16.7-34.9-5.8-46.8 2.9 27.1 14.4 36.3 14.4 36.3-9.5-15.2-20.4-61.9-.1-71.3-4 30 5.6 46.3 5.6 46.3-6-27.6-5.8-66.8 14.7-70.4-10.1 29.5-2.9 52.3-2.9 52.3-1.5-69 20.8-67.9 20.8-67.9s-3.7 19.6-3.7 54.5V159c-.2 7.2-.8 11.3-3.7 15zm13.2 24.4c8.9.7 15.3 1.3 21.7 2.1 2.4.3 3.4 3.1 3.7 4.4-3.1-.8-7.9-1-7.9-1l-.3 2.9s4.1-1.2 8.7-1.2c0 0 9.3 0 8.8 6.2-2.5-1.8-7.7-1.1-9.2-.8-4.7.8-9.1 2.9-14.2 5.6-4.7 2.5-9.8 5.2-15.7 7 2.6-2.5 9.4-10.1 9.4-10.1l-9.1-3.2 7.4-6.5-11.4-6.2c2.9.4 5.5.6 8.1.8"/></svg>
+			<img id="logo" class="logo-no-ribbon" src="" alt="" aria-hidden="true"/>
 		</div>
 		<div id="ribbon">
 			<div id="ribbon-txt">ribbon</div>

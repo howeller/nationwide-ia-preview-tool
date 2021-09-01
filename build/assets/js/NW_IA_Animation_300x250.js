@@ -2,7 +2,7 @@ var tl = gsap.timeline({ defaults:{ paused:false, duration:0.5, ease:'power3.out
 
 var initBanner = (function(){
 
-	var _json, aniStyle, aniOptions, aniProps, initCompleted, /*isWinChrome,*/ isTextOnly, theme, useDefaultTheme,
+	var _json, aniStyle, aniOptions, aniProps, initCompleted, isRibbon, isTextOnly, theme, useDefaultTheme,
 			cta, end, imgLoader, replay, ribbon, svg,
 			version='0.0.0';// Major.Minor.Bug Fix
 
@@ -252,12 +252,12 @@ var initBanner = (function(){
 	}
 	
 	function nCropIntroTl() {
-		cl('	+ nWindowIntroTl ','orange');
+		cl('	+ nCropIntroTl ','orange');
 		var _maskScale2 = 4.52, // From PSD
-				_maskX1 = -852, // Get number from PSD
-				_maskY1 = -734, // Get number from PSD
-				_maskY2 = -809, // Get number from PSD
-				_zoomSpeed = 1;
+			_maskX1 = -852, // Get number from PSD
+			_maskY1 = -734, // Get number from PSD
+			_maskY2 = -809, // Get number from PSD
+			_zoomSpeed = 1;
 		aniOptions.NGraphic.t1.style.visibility = 'hidden';
 	
 		return gsap.timeline({paused:false})
@@ -269,7 +269,7 @@ var initBanner = (function(){
 			.to('.fake-mask', { y:_maskY2, duration:_zoomSpeed, transformOrigin:'0% 0%'}, 'f2')
 			.fromTo('#nc-pic-back', { y:0 },{ y:-20, duration:_zoomSpeed/2, force3D:false }, 'f2')
 			.fromTo(aniProps.t1, {clipPath: getPath('wipeInFromLeftStart') }, {clipPath: getPath('wipeInEnd'), duration:1})
-			.from('#logo', {autoAlpha:0, duration:0.3})
+			.from('#logo', { autoAlpha:0, duration:0.3}, '-=.3')
 			.add('f2out', '+='+dc.Txt1_Pause)
 			.fromTo(end.container, {clipPath:getPath('fromBottomLeftStart')}, {clipPath:getPath('fromBottomLeftEnd'), duration:1 }, 'f2out')
 	}
@@ -286,12 +286,15 @@ var initBanner = (function(){
 	function animate() {
 		cl(':: animate :: 300x250');
 		var _introTl = aniProps.frame1Tl(),
-				_stripeSpeed = 1;
-	
+			_logoSlideTl = (dc.LogoSlideX > 0) ? gsap.timeline({paused:false}).from('#logo', { x:dc.LogoSlideX, duration:0.5}) : emptyTl(),
+			_stripeSpeed = 1;
+		
+			// cl('_logoSlideTl ? '+(dc.LogoSlideX > 0));
 		tl
 			.add(_introTl)
 			.add('end', aniProps.overlap)
 			.fromTo('#t2', {clipPath: getPath('wipeInFromLeftStart')}, {clipPath: getPath('wipeInEnd'), duration:1, ease:'power3.easein' }, 'end')
+			.add(_logoSlideTl,'end')
 			.set([cta.btn, cta.txt],{skewX:0.1}, 'end')
 			.fromTo(cta.btn, {clipPath: getPath('wipeInFromLeftStart')}, {clipPath: getPath('wipeInEnd'), duration:1 },'-=0.5')
 			.fromTo(end.stripe, {x:300}, {x:-(end.stripe.offsetWidth/3), duration:_stripeSpeed, ease:'power1.out'},'+=0.5')
@@ -303,7 +306,7 @@ var initBanner = (function(){
 			.add(ctaBounceTl(), "+=1")
 			.add(initCtaAction)
 			// tl.pause("3");
-			// .seek('end-=.3')
+			// .seek('end-=.3');
 			// .seek(_introTl.labels[_introTl.previousLabel()]);
 			;
 		console.log('Animation Runtime is ' + tl.endTime());
@@ -319,11 +322,17 @@ var initBanner = (function(){
 		var _feedTheme = removeSpaces(dc.BgTheme);
 
 		aniStyle = removeSpaces(dc.Ani_Style);
+		
 		// Do not modify colors if any customizations are entered in the feed.
 		useDefaultTheme = (_feedTheme === 'VibrantBlue-White' && !dc.TxtColor && !dc.RibbonColor && !dc.RibbonTxtColor && !dc.ReplayColor);
+		
 		theme = themeMap[_feedTheme]; //Get color choices
+
+		isRibbon = (dc.RibbonTxt.length > 0);cl('isRibbon ? '+isRibbon, 'red');
+
 		isTextOnly = (aniStyle === 'TextOnly');
-		cl('useDefaultTheme ? '+useDefaultTheme, 'red');
+
+		// cl('useDefaultTheme ? '+useDefaultTheme, 'red');
 
 		_json = (dc.Banner_json.Url) ? myJson.data['300x250'][dc.Color_Version][aniStyle] : {};
 
@@ -344,7 +353,9 @@ var initBanner = (function(){
 		end = {
 			container: id('end-container'),
 			t2: id('t2'),
-			stripe: id('end-stripe')
+			stripe: id('end-stripe'),
+			stripeStatic: id('end-stripe-static'),
+			stripeStaticPath:id('endStripeStaticPath')
 		}
 		replay = {
 			container: id('replay-container'),
@@ -416,13 +427,14 @@ var initBanner = (function(){
 		aniProps.t1.style.color = end.t2.style.color = colorCheck(dc.TxtColor||theme.txtColor);
 		ribbon.txt.style.color = colorCheck(dc.RibbonTxtColor||theme.ribbonTxtColor);
 		ribbon.container.style.backgroundColor =  colorCheck(dc.RibbonColor||theme.ribbonColor);
-		replay.path.style.fill = colorCheck(dc.TxtColor||theme.TxtColor);
+		replay.path.style.fill = colorCheck(dc.TxtColor||theme.txtColor);
 
 		// Set defaults from the theme (not customizable)
 		cta.txt.style.color = theme.ctaTxtColor;
 		cta.btn.style.backgroundColor = theme.ctaBtnColor;
 		end.container.style.backgroundColor = id('banner').style.backgroundColor = colorNameToHex(theme.bgColor);
 		end.stripe.style.backgroundColor = colorNameToHex(theme.stripeColor);
+		end.stripeStaticPath.style.fill = colorNameToHex(theme.stripeColor);
 	}
 
 	/*
@@ -441,7 +453,7 @@ var initBanner = (function(){
 		cl('	_height: '+_height+'\n	_startWidth: '+ribbon.container.scrollWidth+'\n	 NEW RIGHT PADDING: '+_newPaddingRight,'pink');
 		// cl('	.getBoundingClientRect(): '+ribbon.container.getBoundingClientRect().width+'\n	scrollWidth: '+ribbon.container.scrollWidth+'\n	 clientWidth: '+ribbon.container.clientWidth+'\n	 gsap width: '+gsap.getProperty(ribbon.container, 'width'),'pink');
 
-		gsap.set(ribbon.txt, { paddingRight: _newPaddingRight});
+		gsap.set(ribbon.txt, { paddingRight: _newPaddingRight });
 		// cl(document.fonts.check('1em proxima-nova'), 'black');
 		
 		var _x2 = ((_height * _slope) + ribbon.container.scrollWidth).toString();
@@ -472,10 +484,11 @@ var initBanner = (function(){
 			
 		}
 
-		if(dc.RibbonTxt){
+		if(isRibbon){
 			setTxt(ribbon.txt, dc.RibbonTxt, dc.RibbonTxt_css);
 			ribbon.container.style.visibility = 'visible';
 			setRibbonSize();
+			swapClasses(id('logo'), 'logo-no-ribbon', 'logo-over-ribbon');
 		}
 		setTxt(cta.txt, dc.CtaTxt, dc.CtaTxt_css);
 		setTxt(aniProps.t1, dc.Txt1, dc.Txt1_css);

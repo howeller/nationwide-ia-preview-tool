@@ -1,10 +1,11 @@
 img#logo{
 	right: 16px;
-	bottom: 19px;/*39px*/
 	height: 67px;
 	width: auto;
 	object-fit: contain;
 }
+img.logo-no-ribbon{bottom: 16px}
+img.logo-over-ribbon{bottom: 36px}
 
 /* N-Crop Images */
 image{
@@ -47,18 +48,22 @@ svg#n-graphic{
 }
 #end-container #end-stripe{
 	background-color: var(--darkblue);
-	clip-path: polygon(0% 0%, 66% 0%, 100% 100%, 33% 100%); /* parallel shape */
-	-webkit-clip-path: polygon(0% 0%, 66% 0%, 100% 100%, 33% 100%); 
+	clip-path: polygon(33% 0%, 100% 1.2%, 66.00% 100%, 0% 100%); /* parallel shape */
+	-webkit-clip-path: polygon(33% 0%, 100% 1.2%, 66.00% 100%, 0% 100%); 
+	{{!--clip-path: polygon(0% 0%, 66% 0%, 100% 100%, 33% 100%); /* parallel shape */
+			-webkit-clip-path: polygon(0% 0%, 66% 0%, 100% 100%, 33% 100%); --}}
 	width: 300%;
 	height: 100%;
 }
-#end-stripe-static{
-	background-color: var(--darkblue);
+svg#end-stripe-static{
+	height: 250px;
+	width: 395px;
+	left: -202px;
+	top: 0;
+	/*background-color: var(--darkblue);*/
 	/* slim parallel shape */
 	/*clip-path: polygon(0% 0%, 66% 0%, 100% 100%, 33% 100%); 
-	-webkit-clip-path: polygon(0% 0%, 66% 0%, 100% 100%, 33% 100%); 
-	width: 300%;
-	height: 100%;*/
+	-webkit-clip-path: polygon(0% 0%, 66% 0%, 100% 100%, 33% 100%); */
 }
 
 #ribbon{
@@ -105,6 +110,7 @@ svg#n-graphic{
 	line-height: 20px;
 	top: 125px;
 	padding: 11px 0px 15px 19px;
+	width: 182px;
 }
 
 /* end-txt */

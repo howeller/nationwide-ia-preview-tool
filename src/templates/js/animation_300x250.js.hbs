@@ -10,14 +10,14 @@ function nGraphicIntroTl() {
 }
 
 function nCropIntroTl() {
-	cl('	+ nWindowIntroTl ','orange');
+	cl('	+ nCropIntroTl ','orange');
 	var _maskScale2 = 4.52, // From PSD
-			_maskX1 = -852, // Get number from PSD
-			_maskY1 = -734, // Get number from PSD
-			_maskY2 = -809, // Get number from PSD
-			_zoomSpeed = 1{{!--,/*
-			_picsTweenFrom = _json.picTweenFrom || { y:23 };
-			_picsTweenTo = _json.picTweenTo || {y:0, duration:_zoomSpeed}*/--}};
+		_maskX1 = -852, // Get number from PSD
+		_maskY1 = -734, // Get number from PSD
+		_maskY2 = -809, // Get number from PSD
+		_zoomSpeed = 1{{!--,/*
+		_picsTweenFrom = _json.picTweenFrom || { y:23 };
+		_picsTweenTo = _json.picTweenTo || {y:0, duration:_zoomSpeed}*/--}};
 	aniOptions.NGraphic.t1.style.visibility = 'hidden';
 
 	return gsap.timeline({paused:false})
@@ -29,30 +29,10 @@ function nCropIntroTl() {
 		.to('.fake-mask', { y:_maskY2, duration:_zoomSpeed, transformOrigin:'0% 0%'}, 'f2')
 		.fromTo('#nc-pic-back', { y:0 },{ y:-20, duration:_zoomSpeed/2, force3D:false }, 'f2')
 		.fromTo(aniProps.t1, {clipPath: getPath('wipeInFromLeftStart') }, {clipPath: getPath('wipeInEnd'), duration:1})
-		.from('#logo', {autoAlpha:0, duration:0.3})
+		.from('#logo', { autoAlpha:0, duration:0.3}, '-=.3')
 		.add('f2out', '+='+dc.Txt1_Pause)
 		.fromTo(end.container, {clipPath:getPath('fromBottomLeftStart')}, {clipPath:getPath('fromBottomLeftEnd'), duration:1 }, 'f2out')
 }
-{{!--function nWindowIntroTl() {
-	cl('	+ nWindowIntroTl ','orange');
-	var _maskScale2 = 4.52, // From PSD
-			_maskX2 = -852, // Get number from PSD
-			_maskY2 = -809, // Get number from PSD
-			_zoomSpeed = 1;
-	aniOptions.NGraphic.t1.style.visibility = 'hidden';
-
-	return gsap.timeline({paused:false})
-		.set('.mask-path', {fill:colorNameToHex(theme.bgColor)})
-		.set(aniProps.container, {visibility:'visible'})
-		.add(fadeInContainerTl())
-		.add('f2', '+=1')
-		.to('.fake-mask', {scale:_maskScale2, x:_maskX2, y:_maskY2, duration:_zoomSpeed, transformOrigin:'0% 0%'}, 'f2')
-		.fromTo(['#nw-pic-back','#nw-pic-front'], { y:23 },{ y:0, duration:_zoomSpeed/2, force3D:false }, 'f2')
-		.fromTo(aniProps.t1, {clipPath: getPath('wipeInFromLeftStart') }, {clipPath: getPath('wipeInEnd'), duration:1})
-		.from('#{{logo.id}}', {autoAlpha:0, duration:0.3})
-		.add('f2out', '+='+dc.Txt1_Pause)
-		.fromTo(end.container, {clipPath:getPath('fromBottomLeftStart')}, {clipPath:getPath('fromBottomLeftEnd'), duration:1 }, 'f2out')
-}--}}
 
 function txtOnlyIntroTl() {
 	cl('	+ txtOnlyIntroTl ','red');
@@ -66,12 +46,15 @@ function txtOnlyIntroTl() {
 function animate() {
 	cl(':: animate :: {{width}}x{{height}}');
 	var _introTl = aniProps.frame1Tl(),
-			_stripeSpeed = 1;
-
+		_logoSlideTl = (dc.LogoSlideX > 0) ? gsap.timeline({paused:false}).from('#logo', { x:dc.LogoSlideX, duration:0.5}) : emptyTl(),
+		_stripeSpeed = 1;
+	
+		// cl('_logoSlideTl ? '+(dc.LogoSlideX > 0));
 	tl
 		.add(_introTl)
 		.add('end', aniProps.overlap)
 		.fromTo('#t2', {clipPath: getPath('wipeInFromLeftStart')}, {clipPath: getPath('wipeInEnd'), duration:1, ease:'power3.easein' }, 'end')
+		.add(_logoSlideTl,'end')
 		.set([cta.btn, cta.txt],{skewX:0.1}, 'end')
 		.fromTo(cta.btn, {clipPath: getPath('wipeInFromLeftStart')}, {clipPath: getPath('wipeInEnd'), duration:1 },'-=0.5')
 		.fromTo(end.stripe, {x:300}, {x:-(end.stripe.offsetWidth/3), duration:_stripeSpeed, ease:'power1.out'},'+=0.5')
@@ -83,7 +66,7 @@ function animate() {
 		.add(ctaBounceTl(), "+=1")
 		.add(initCtaAction)
 		// tl.pause("3");
-		// .seek('end-=.3')
+		// .seek('end-=.3');
 		// .seek(_introTl.labels[_introTl.previousLabel()]);
 		;
 	console.log('Animation Runtime is ' + tl.endTime());

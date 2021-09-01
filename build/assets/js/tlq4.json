@@ -1,24 +1,24 @@
 {
 	"data":{
-		"Name":"Social Security",
+		"Name":"Thought Leadership Q4",
 		"160x600":{
 			"T1":{
+				"NCrop":{},
 				"NGraphic":{},
-				"NWindow":{},
 				"TextOnly":{}
 			}
 		},
 		"300x250":{
-			"T1":{
+			"Opt1":{
+				"NCrop":{},
 				"NGraphic":{},
-				"NWindow":{},
 				"TextOnly":{}
 			}
 		},
 		"300x600":{
 			"T1":{
+				"NCrop":{},
 				"NGraphic":{},
-				"NWindow":{},
 				"TextOnly":{}
 			}
 		},

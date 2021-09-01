@@ -1,14 +1,16 @@
-svg#{{logo.id}}{
+img#logo{
 	right: 16px;
-	bottom: 39px;
-	width: 70px;
-	height: auto;
+	bottom: 19px;/*39px*/
+	height: 67px;
+	width: auto;
+	object-fit: contain;
 }
 
-/* N-Window Images */
+/* N-Crop Images */
 image{
 	width: {{width}}px;
 	height: auto;
+	object-fit:contain;
 }
 
 /* N-Graphic Imgs */
@@ -34,7 +36,7 @@ svg#n-graphic{
 	height: 100%;
 }
 
-#end-container, #nw-t1-container{
+#end-container, #nc-t1-container{
 	width: 300px;
 	height: 250px;
 	top: 0;
@@ -50,9 +52,17 @@ svg#n-graphic{
 	width: 300%;
 	height: 100%;
 }
+#end-stripe-static{
+	background-color: var(--darkblue);
+	/* slim parallel shape */
+	/*clip-path: polygon(0% 0%, 66% 0%, 100% 100%, 33% 100%); 
+	-webkit-clip-path: polygon(0% 0%, 66% 0%, 100% 100%, 33% 100%); 
+	width: 300%;
+	height: 100%;*/
+}
 
 #ribbon{
-	background-color: var(--mediumblue);
+	background-color: var(--darkblue);
 	bottom: 0px;
 	left: 0;
 	display: block;
@@ -60,6 +70,7 @@ svg#n-graphic{
 	width: auto;
 	clip-path: polygon(0% 0%, calc(100% - {{ribbon.singleLineHeight}}px) 0%, 100% 100%, 0% 100%);
 	height: auto;
+	visibility: hidden;
 }
 
 /* Text Styles */
@@ -89,7 +100,7 @@ svg#n-graphic{
 	padding: 16px 0px 15px 19px;
 }
 
-#nw-t1{
+#nc-t1{
 	font-size: 18px;
 	line-height: 20px;
 	top: 125px;

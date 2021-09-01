@@ -1,7 +1,7 @@
 {
 	"global":{
 	},
-	"NW_2021_Dyn_Brand_160x600": {
+	"NW_Dyn_IA_160x600": {
 		"width": 160, "height": 600,
 		"logo": { "id": "logoVert", "svg": "NW_logo_vert.svg"},
 		"ribbon":{
@@ -20,7 +20,7 @@
 			"CtaTxt": "Learn More"
 		}
 	},
-	"NW_2021_Dyn_Brand_300x250": {
+	"NW_Dyn_IA_300x250": {
 		"width": 300, "height": 250,
 		"logo": { "id": "logoVert", "svg": "NW_logo_vert.svg"},
 		"ribbon":{
@@ -29,17 +29,16 @@
 			"twoLineMaxWidth" : 190
 		},
 		"invocation":{
-			"Ani_Style": "N Graphic",
+			"Ani_Style": "N Crop",
 			"BgTheme": "Vibrant Blue - White",
-			"RibbonTxt": "Social Security Basics",
-			"_RibbonTxt": "Investing in a Highly Politicized Climate White Paper",
-			"Txt1": "Are your clients uncertain about <br>the benefits of <br>their Social Security?",
+			"RibbonTxt": "",
+			"Txt1": "It’s a new world, and <br>customers are online <br>more than ever.",
 			"Txt1_Pause": 3,
-			"Txt2": "Help clients understand <br>their foundation for <br>a retirement plan.",
-			"CtaTxt": "Learn More"
+			"Txt2": "Evolve the way you do business with digital strategies from<br>Agency Forward.",
+			"CtaTxt": "See how"
 		}
 	},
-	"NW_2021_Dyn_Brand_300x600": {
+	"NW_Dyn_IA_300x600": {
 		"width": 300, "height": 600,
 		"logo": { "id": "logoVert", "svg": "NW_logo_vert.svg"},
 		"ribbon":{
@@ -58,7 +57,7 @@
 			"CtaTxt": "Learn More"
 		}
 	},
-	"NW_2021_Dyn_Brand_728x90": {
+	"NW_Dyn_IA_728x90": {
 		"width": 728, "height": 90,
 		"logo": { "id": "logoHorz", "svg": "NW_logo_horz.svg"},
 		"pic":{
@@ -83,7 +82,7 @@
 			"CtaTxt": "Learn More"
 		}
 	},
-	"NW_2021_Dyn_Brand_970x90": {
+	"NW_Dyn_IA_970x90": {
 		"width": 970, "height": 90,
 		"logo": { "id": "logoHorz", "svg": "NW_logo_horz.svg"},
 		"pic":{

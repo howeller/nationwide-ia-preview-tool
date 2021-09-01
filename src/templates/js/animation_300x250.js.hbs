@@ -9,14 +9,36 @@ function nGraphicIntroTl() {
 		.fromTo(aniProps.t1, {clipPath: getPath('wipeInEnd') }, {clipPath: getPath('wipeOutToLeft'), duration:1 }, 'f2out');
 }
 
-function nWindowIntroTl() {
+function nCropIntroTl() {
 	cl('	+ nWindowIntroTl ','orange');
 	var _maskScale2 = 4.52, // From PSD
-			_maskX2 = -852, // Get number from PSD
+			_maskX1 = -852, // Get number from PSD
+			_maskY1 = -734, // Get number from PSD
 			_maskY2 = -809, // Get number from PSD
 			_zoomSpeed = 1{{!--,/*
 			_picsTweenFrom = _json.picTweenFrom || { y:23 };
 			_picsTweenTo = _json.picTweenTo || {y:0, duration:_zoomSpeed}*/--}};
+	aniOptions.NGraphic.t1.style.visibility = 'hidden';
+
+	return gsap.timeline({paused:false})
+		.set('.mask-path', {fill:colorNameToHex(theme.bgColor)})
+		.set('.fake-mask', {scale:_maskScale2, x:_maskX1, y:_maskY1, transformOrigin:'0% 0%'})
+		.set(aniProps.container, {visibility:'visible'})
+		.add(fadeInContainerTl())
+		.add('f2', '+=1')
+		.to('.fake-mask', { y:_maskY2, duration:_zoomSpeed, transformOrigin:'0% 0%'}, 'f2')
+		.fromTo('#nc-pic-back', { y:0 },{ y:-20, duration:_zoomSpeed/2, force3D:false }, 'f2')
+		.fromTo(aniProps.t1, {clipPath: getPath('wipeInFromLeftStart') }, {clipPath: getPath('wipeInEnd'), duration:1})
+		.from('#logo', {autoAlpha:0, duration:0.3})
+		.add('f2out', '+='+dc.Txt1_Pause)
+		.fromTo(end.container, {clipPath:getPath('fromBottomLeftStart')}, {clipPath:getPath('fromBottomLeftEnd'), duration:1 }, 'f2out')
+}
+{{!--function nWindowIntroTl() {
+	cl('	+ nWindowIntroTl ','orange');
+	var _maskScale2 = 4.52, // From PSD
+			_maskX2 = -852, // Get number from PSD
+			_maskY2 = -809, // Get number from PSD
+			_zoomSpeed = 1;
 	aniOptions.NGraphic.t1.style.visibility = 'hidden';
 
 	return gsap.timeline({paused:false})
@@ -30,7 +52,7 @@ function nWindowIntroTl() {
 		.from('#{{logo.id}}', {autoAlpha:0, duration:0.3})
 		.add('f2out', '+='+dc.Txt1_Pause)
 		.fromTo(end.container, {clipPath:getPath('fromBottomLeftStart')}, {clipPath:getPath('fromBottomLeftEnd'), duration:1 }, 'f2out')
-}
+}--}}
 
 function txtOnlyIntroTl() {
 	cl('	+ txtOnlyIntroTl ','red');

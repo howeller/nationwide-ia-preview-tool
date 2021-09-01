@@ -27,16 +27,16 @@ const dir = {
 	zips:'build/zips/'
 }
 const googleLib = {
-	js:'https://s0.2mdn.net/creatives/assets/4087879/',// Default to google asset library for js
-	root:'https://s0.2mdn.net/creatives/assets/4087743/',// Default to google asset library
+	js:'https://s0.2mdn.net/creatives/assets/4087879/', // Default to google asset library for js
+	root:'https://s0.2mdn.net/creatives/assets/4087743/', // Default to google asset library
 	fonts:'https://s0.2mdn.net/creatives/assets/2701989/'
 }
 const srcFolders = util.getFolders(dir.src);
-const useGoogleAssets = true; // Where to look for JS. Set true for final export. False for local testing.
+const useGoogleAssets = false; // Where to look for JS. Set true for final export. False for local testing.
 const isDebugMode = true; // For testing unminified JS.
 
 // Build JS names for each file
-const getJsFileName = (obj) => 'NWF_Brand_Animation_'+obj.width+'x'+obj.height;
+const getJsFileName = (obj) => 'NW_IA_Animation_'+obj.width+'x'+obj.height;
 
 const getJsUrl = (_isPreview) => (_isPreview) ? dir.previewJs : useGoogleAssets ? googleLib.js : dir.localJs;
 
@@ -66,16 +66,16 @@ function build(_isPreview=false){
 			ignorePartials:false,
 			batch:[_src, dir.templates+'css', dir.templates+'html', dir.templates+'js', dir.templates+'svg'],
 			helpers : {
-				bannerCss : 				function(){ return 'banner_'+this.width+'x'+this.height+'.css';},
-				bannerAnimateJs : 	function(){ return 'animation_'+this.width+'x'+this.height+'.js';},
-				getSvg : 						function(name){	return name+'_'+this.width+'x'+this.height+'.svg';},
+				bannerCss : 				function(){ return `banner_${this.width}x${this.height}.css`;},
+				bannerAnimateJs : 	function(){ return `animation_${this.width}x${this.height}.js`;},
+				getSvg : 						function(name){	return `${name}_${this.width}x${this.height}.svg`;},
 				jsAssetURL: 				function(){ return getJsUrl(_isPreview);},
 				imageAssetURL: 			function(){ return getImageUrl(_isPreview);},
 				fontPath: 					function(){ return googleLib.fonts; },
 				getStaticImagePath: function(){ return (_isPreview) ? './templates/'+this.name+'/images/' : 'images/';},
 				invocationJs: 			function(){ return (_isPreview) ? 'invocationPreview.js':'invocation.js';},
-				mainJs: 			  		function(){ return (_isPreview) ? getJsFileName(this)+'.js':getJsFileName(this)+'.min.js';},
-				// mainJs: 			  		function(){ return (_isPreview || isDebugMode ) ? getJsFileName(this)+'.js':getJsFileName(this)+'.min.js';},
+				mainJs: 			  		function(){ return (_isPreview) ? getJsFileName(this)+'.js':getJsFileName(this)+'.js';},//TESTING ONLY
+				// mainJs: 			  		function(){ return (_isPreview) ? getJsFileName(this)+'.js':getJsFileName(this)+'.min.js';},PUT THIS BACK
 				logoToUse: 					function(){ return this.logo.svg },
 				isPreview: 					function(){ return (_isPreview) },
 				getRibbonSlope: 		function(){ return getSlope(this.ribbon.x1, this.ribbon.x2, 0, this.ribbon.singleLineHeight)},
@@ -120,12 +120,12 @@ function getSlope(x1, x2, y1, y2){
 
 function minifyJs(){
 	let _js = [dir.assets+'js/*.js', '!'+dir.assets+'js/*.min.js'],
-			_dest = dir.assets+'js';
+		_dest = dir.assets+'js';
 
 	return gulp.src(_js)
-			.pipe(uglify())
-			.pipe(rename({suffix: '.min'}))
-			.pipe(gulp.dest(_dest))
+		.pipe(uglify())
+		.pipe(rename({suffix: '.min'}))
+		.pipe(gulp.dest(_dest))
 };
 
 function zipFiles() {
@@ -152,7 +152,7 @@ gulp.task('clean', gulp.parallel('clean:html', 'clean:zips'));
 gulp.task('build:main', () => { return build(false);});
 gulp.task('build:preview', () => { return build(true);});
 gulp.task('build:all', gulp.series('build:main','build:preview'));
-gulp.task('default', gulp.parallel('build:all'));
+gulp.task('default', gulp.parallel('build:main'));
 gulp.task('min', gulp.series('build:main', minifyJs));
-gulp.task('watch', () => {gulp.watch([dir.src+'**', dir.templates+'**/*', dir.assets+'/js/*.json', dir.config], gulp.series('build:all'))});
+gulp.task('watch', () => {gulp.watch([dir.src+'**/*', dir.templates+'*/**', dir.assets+'/js/*.json', dir.config], gulp.series('build:main'))});
 gulp.task('zip', gulp.series('build:main', minifyJs, zipFiles));

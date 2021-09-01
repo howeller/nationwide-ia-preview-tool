@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<meta name="ad.size" content="width={{width}},height={{height}}">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0{{!, maximum-scale=1.0, user-scalable=0}}">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
 	<title>{{#if (isPreview)}}[[$data.Banner_ID]]{{else}}{{name}}{{/if}}</title>
 	<link rel="stylesheet" href="https://use.typekit.net/lon1mtd.css"><!-- Adobe ProximaNova -->
 	<script src="https://s0.2mdn.net/ads/studio/Enabler.js" ></script>
@@ -23,13 +23,13 @@
 			 *
 			 * The following code initializes the following dynamic variables for
 			 * development testing and live serving of Fields associated to the above profile
-			 * "devDynamicContent" values are for local testing. 
+			 *"devDynamicContent" values are for local testing. 
 			*/
 			Enabler.setProfileId(10671564);
 			{{> (invocationJs) }}
 			Enabler.setDevDynamicContent(devDynamicContent);
 			
-			dc = dynamicContent.NWF_Feed_Brand_2021[0];
+			dc = dynamicContent.NW_Feed_Independent_Agent[0];
 		}
 		function clickOut(){
 			console.log('clickOut');
@@ -48,14 +48,15 @@
 			{{> Ngraphic.svg}}
 			<img id="ng-pic-front" class="pic-front" src="" alt="" aria-hidden="true"/>
 		</div>
-		<div id="nw-parent" class="full-size hide">
-			{{> (getSvg 'nWindow')}}
-			<div id="nw-t1-container" class="abs" aria-hidden="true">
-				<div id="nw-t1" class="nw-t1 t1 abs">*</div>
+		<div id="nc-parent" class="full-size hide">
+			{{> (getSvg 'nCrop')}}
+			<div id="nc-t1-container" class="abs" aria-hidden="true">
+				<div id="nc-t1" class="nc-t1 t1 abs">*</div>
 			</div>
 		</div>{{/unless}}
 		<div id="end-container" class="abs">{{#if (isSkyscraper)}}
 			{{> (getSvg 'nWindowEndStripe')}}{{/if}}
+			<div id="end-stripe-static" class="abs"></div>
 			<div id="end-stripe" class="abs"></div>
 			<div id="t1-container" class="txt-container abs" aria-hidden="true">
 				<div id="t1" class="ng-t1 t1 abs">*</div>
@@ -69,7 +70,7 @@
 			</div>
 		</div>
 		<div id="logo-container" class="full-size">
-			{{> (logoToUse)}}
+			<img id="logo" src="" alt="" aria-hidden="true"/>
 		</div>
 		<div id="ribbon">
 			<div id="ribbon-txt"{{#if (isLeader)}} class="ribbon-txt"{{/if}}>ribbon</div>

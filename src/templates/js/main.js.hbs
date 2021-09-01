@@ -4,7 +4,7 @@ var initBanner = (function(){
 
 	var _json, aniStyle, aniOptions, aniProps, initCompleted, /*isWinChrome,*/ isTextOnly, theme, useDefaultTheme,
 			cta, end, imgLoader, replay, ribbon, svg,{{#if (isSkyscraper)}} stripeSpeed,{{/if}}{{#if (isLeader)}}slope,{{/if}}
-			version={{#if (isLeader)}}'0.2.3'{{else}}'0.9.6'{{/if}};// Major.Minor.Bug Fix
+			version={{#if (isLeader)}}'0.0.0'{{else}}'0.0.0'{{/if}};// Major.Minor.Bug Fix
 
 	{{> colorList.js}}
 	{{> utilities.js}}
@@ -72,25 +72,27 @@ var initBanner = (function(){
 				imgFront: id('ng-pic-front'){{#if (isSkyscraper)}},
 				endStripeTl: defaultStripeTl,
 				newEndPos:false{{/if}}{{!/}}
-			},
-			'NWindow':{
-				frame1Tl: nWindowIntroTl,
-				container: id('nw-parent'),
-				t1: id('nw-t1'),
+			},{{/unless}}{{!/}}
+			'NCrop':{
+				frame1Tl: nCropIntroTl,
+				container: id('nc-parent'),{{#unless (isLeader)}}
+				t1: id('nc-t1'),
 				overlap: _json.overlap || '-=0.5',
-				imgBack: id('nw-pic-back'),
-				imgFront: id('nw-pic-front'),
-				replayClass:'replay-nw'{{#if (isSkyscraper)}},
+				imgBack: id('nc-pic-back'),{{else}}
+				t1: id('t1'),
+				overlap: _json.overlap || '-=0',
+				imgBack: id('nc-pic'){{/unless}}{{!/}}
+				replayClass:'replay-nc'{{#if (isSkyscraper)}},
 				endStripeTl: clippedStripeTl,
 				newEndPos:true{{/if}}{{!/}}
-			},{{else}}
-			'NCrop':{
+			},
+			{{!--/*'NCrop':{
 				frame1Tl: nCropIntroTl,
 				container: id('nc-parent'),
 				t1: id('t1'),
 				overlap: _json.overlap || '-=0',
 				imgBack: id('nc-pic')
-			},{{/unless}}{{!/}}
+			},*/--}}
 			'TextOnly':{
 				frame1Tl: txtOnlyIntroTl,
 				container: id('end-container'),
@@ -110,11 +112,11 @@ var initBanner = (function(){
 
 		// FIRE!
 		initImgs();
-		setLogoColor();//initLogo();
+		// setLogoColor();//initLogo();
 		initColors();
 		initTxt();
 		initADACompliance();
-		{{#if (isLeader)}}centerCtaBtn();{{else}}setRibbonSize();{{/if}}
+		{{#if (isLeader)}}centerCtaBtn();{{!--{{else}}setRibbonSize();--}}{{/if}}
 		initReplay();
 		if(isTextOnly){
 			animate();
@@ -167,7 +169,7 @@ var initBanner = (function(){
 		ribbon.container.style.clipPath = 'polygon(0% 0%, '+_x2+'px 0%, 100% 100%, 0% 100%)';
 	}{{/unless}}{{!/}}
 
-	function setLogoColor(){
+	/*function setLogoColor(){
 
 		switch(theme.logoColor){
 			case 'white':
@@ -181,13 +183,13 @@ var initBanner = (function(){
 			default:
 				break;
 		}
-	}
+	}*/
 
 	function initTxt(){
 		cl('initTxt ');
 
 		if(isTextOnly){
-			{{#if (isSkyscraper)}}gsap.set([end.container, id('nw-t1-container')], {top:'0px'});// Move copy up
+			{{#if (isSkyscraper)}}gsap.set([end.container, id('nc-t1-container')], {top:'0px'});// Move copy up
 			gsap.set(end.container, {height:'100%'});
 			gsap.set('.txt-container', {top:'{{textOnly.txtTop}}px', paddingTop:0 });
 			swapClasses(aniProps.t1, 'ng-t1', 'to-t1');
@@ -199,16 +201,20 @@ var initBanner = (function(){
 			swapClasses(id('t2-container'), 'txt-container', 'to-txt-container');{{/if}}{{!/}}
 		}
 
-		setTxt(ribbon.txt, dc.RibbonTxt, dc.RibbonTxt_css);
+		if(dc.RibbonTxt){
+			setTxt(ribbon.txt, dc.RibbonTxt, dc.RibbonTxt_css);
+			ribbon.container.style.visibility = 'visible';{{#unless (isLeader)}}
+			setRibbonSize();{{/unless}}{{!/}}
+		}
 		setTxt(cta.txt, dc.CtaTxt, dc.CtaTxt_css);
 		setTxt(aniProps.t1, dc.Txt1, dc.Txt1_css);
 		setTxt(end.t2, dc.Txt2, dc.Txt2_css);
 		applyFeedCss(cta.btn, dc.CtaBtn_css);
-
 	}
+
 	function initADACompliance(){
 		cl('initADACompliance');
-		var t1Container = (aniStyle === 'NWindow') ? id('nw-t1-container') : id('t1-container');
+		var t1Container = (aniStyle === 'NCrop') ? id('nc-t1-container') : id('t1-container');
 		t1Container.removeAttribute('aria-hidden');
 
 		aniProps.t1.setAttribute('role', "heading");
@@ -218,8 +224,9 @@ var initBanner = (function(){
 	function initImgs(){
 		if(isTextOnly){return};
 		cl('initImgs');
+		setImgStart(id('logo'), dc.Logo_img_css, dc.Logo_img.Url);// PASS CSS OR JSON ???
 		setImgStart(aniProps.imgBack, null, dc.Back_img.Url);
-		{{#unless (isLeader)}}setImgStart(aniProps.imgFront, null, dc.Front_img.Url);{{/unless}}{{!/}}
+		{{#unless (isLeader)}}if(aniStyle === 'NGraphic'){ setImgStart(aniProps.imgFront, null, dc.Front_img.Url);}{{/unless}}{{!/}}
 	}
 
 	function imgAsyncLoadCheck(){

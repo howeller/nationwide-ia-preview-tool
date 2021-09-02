@@ -331,7 +331,7 @@ var initBanner = (function(){
 		isRibbon = (dc.RibbonTxt.length > 0);//cl('isRibbon ? '+isRibbon, 'red');
 
 		isTextOnly = (aniStyle === 'TextOnly');
-		isLogoSlide = (aniStyle === 'NCrop' && dc.LogoSlideX > 0);
+		isLogoSlide = (dc.LogoSlideX > 0);
 
 		// cl('useDefaultTheme ? '+useDefaultTheme, 'red');
 
@@ -462,7 +462,7 @@ var initBanner = (function(){
 	}
 	function initLogo(){
 		cl('initLogo ','yellow');
-		if(isRibbon && isLogoSlide){
+		if(isRibbon){
 			cl(' BUMP UP LOGO','yellow');
 			swapClasses(id('logo'), 'logo-no-ribbon', 'logo-over-ribbon');
 		}

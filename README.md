@@ -18,7 +18,7 @@
 
 Google Studio | Internal
 -------------|-----------
-[Google Dynamic Profile ID&nbsp;10615014](https://www.google.com/doubleclick/studio/#ContentManagement/ProfileGuides:id=10024964&pr=10671564) | [Preview site](https://www.campaign.hogarthww.digital/ctus-nationwide/nw-h216652/preview/)
+[Google Dynamic Profile ID&nbsp;10615014](https://www.google.com/doubleclick/studio/#ContentManagement/ProfileGuides:id=10024964&pr=10671564) | [Preview site](https://www.campaign.hogarthww.digital/ctus-nationwide/nationwide-h216652/preview/)
 [Google Feed Sheet](https://docs.google.com/spreadsheets/d/19fokeHLH4s2s-O4h7hFQtM_xMMeHfnpYio12QXpGBco/edit?usp=sharing) | [NW Dynamic Portal](https://app.smartsheet.com/b/publish?EQBCT=70380f11c65145f0877331e26abd1ab4)
 [Google Creatives In&nbsp;Studio](https://www.google.com/doubleclick/studio/#campaign:campaignId=60276429&advertiserId=42896968&ownerId=300648) | [JIRA - Main Build](https://hogarthdigital.atlassian.net/browse/CTUS-423)
 [Google&nbsp;Asset&nbsp;Library](###) | 
@@ -28,7 +28,7 @@ Google Studio | Internal
 - Dynamic banners built for Google Studio and filtered by Dynamic Targeting Keys.
 - Each shell has 3 preprogrammed animation styles (___N-Graphic___, ___N-Window___, and ___Text Only___). The 2 Leader sizes only have 2 options (___N-Crop___ & ___Text Only___).
 - HTML, JS, & CSS assets are built with handlebars templates + helpers and compiled by gulp tasks.
-- Uses a custom [preview tool](https://www.campaign.hogarthww.digital/ctus-nationwide/nw-h216652/preview/) to list every dynamic banner version on a single page. It allows you to update your edits without having to retransform the feed or wait for the Google CDN to update assets.
+- Uses a custom [preview tool](https://www.campaign.hogarthww.digital/ctus-nationwide/nationwide-h216652/preview/) to list every dynamic banner version on a single page. It allows you to update your edits without having to retransform the feed or wait for the Google CDN to update assets.
 - Banners have been QA certified as ADA compliant.
 ---
 

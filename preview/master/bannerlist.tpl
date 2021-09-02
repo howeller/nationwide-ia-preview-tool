@@ -19,7 +19,7 @@
 <body>
 <div class="container">
 	<div class="header">
-		<h1>Nationwide Dynamic Banner&nbsp;Preview</h1>
+		<h1>Nationwide Independent Agent Dynamic Banner&nbsp;Previews</h1>
 		<img id="logo" src="http://nwemailhost.com/img/fays2018/logo_2x.png" alt="Nationwide&reg; Logo"/>
 	</div>
 		<p class="timestamp cool-gray8">

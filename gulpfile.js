@@ -26,13 +26,15 @@ const dir = {
 	previewJs:'../build/assets/js/',
 	localCss:'../../assets/css/',
 	localJs:'../../assets/js/',
+	localImages:'../../build/assets/images/',
 	zips:'build/zips/'
 }
 const googleLib = {
-	css:'https://s0.2mdn.net/creatives/assets/4087879/', // Default to google asset library for js
-	js:'https://s0.2mdn.net/creatives/assets/4087879/', // Default to google asset library for js
-	root:'https://s0.2mdn.net/creatives/assets/4087743/', // Default to google asset library
-	fonts:'https://s0.2mdn.net/creatives/assets/2701989/'
+	root:'https://s0.2mdn.net/creatives/assets/4087743/',
+	fonts:'https://s0.2mdn.net/creatives/assets/2701989/',
+	css:'',
+	js:'https://s0.2mdn.net/creatives/assets/4087879/',
+	logos:''
 }
 const srcFolders = util.getFolders(dir.src);
 const useGoogleAssets = false; // Where to look for JS. Set true for final export. False for local testing.
@@ -44,13 +46,16 @@ const getCssFileName = (obj) => `NW_IA_${obj.width}x${obj.height}.css`;
 
 const getJsUrl = (_isPreview) => (_isPreview) ? dir.previewJs : useGoogleAssets ? googleLib.js : dir.localJs;
 const getCssUrl = (_isPreview) => (_isPreview) ? dir.previewCss : useGoogleAssets ? googleLib.css : dir.localCss;
+// const getImageUrl = (_isPreview) => (useGoogleAssets) ? googleLib.root : dir.localImages;
+// const getLogoUrl = (_isPreview) => (useGoogleAssets) ? googleLib.logos : dir.localImages+'/logos/';
+
 
 // Select path to asset library. Either use the Google Asset Library or one of the local repos
-function getImageUrl(_isPreview){
+/*function getImageUrl(_isPreview){
 	let localPreview = '../../assets/images/',// Relative path from inside preview site
-			localSrc = '../../assets/images/';
+		localSrc = '../../assets/images/';
 	return (useGoogleAssets) ? googleLib.root : (_isPreview) ? localPreview : localSrc;
-}
+}*/
 
 
 function build(_isPreview=false){
@@ -76,7 +81,10 @@ function build(_isPreview=false){
 				getSvg : 						function(name){	return `${name}_${this.width}x${this.height}.svg`;},
 				cssAssetURL: 				function(){ return getCssUrl(_isPreview);},
 				jsAssetURL: 				function(){ return getJsUrl(_isPreview);},
-				imageAssetURL: 			function(){ return getImageUrl(_isPreview);},
+				imageAssetURL: 			function(){ return (useGoogleAssets) ? googleLib.root : dir.localImages;},
+				logoAssetURL: 			function(){ return (useGoogleAssets) ? googleLib.logos : dir.localImages+'/logos/';},
+				// imageAssetURL: 			function(){ return getImageUrl(_isPreview);},
+				// logoAssetURL: 			function(){ return getLogoUrl(_isPreview);},
 				fontPath: 					function(){ return googleLib.fonts; },
 				getStaticImagePath: function(){ return (_isPreview) ? './templates/'+this.name+'/images/' : 'images/';},
 				invocationJs: 			function(){ return (_isPreview) ? 'invocationPreview.js':'invocation.js';},

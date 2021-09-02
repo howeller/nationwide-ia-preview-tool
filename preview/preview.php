@@ -14,8 +14,8 @@ if( !isset( $csvData[$bannerID] ) ) {
 }
 
 $data = $csvData[$bannerID];
-$data['googleAssetPath'] = $GLOBALS['config']['googleAssetPath'];
-$data['googleJsPath'] = $GLOBALS['config']['googleJsPath'];
+// $data['googleAssetPath'] = $GLOBALS['config']['googleAssetPath'];
+// $data['googleJsPath'] = $GLOBALS['config']['googleJsPath'];
 $data['localAssetPath'] = $GLOBALS['config']['localAssetPath'];
 $data['localImagePath'] = $GLOBALS['config']['localImagePath'];
 

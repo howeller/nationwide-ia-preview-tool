@@ -2,9 +2,9 @@ var tl = gsap.timeline({ defaults:{ paused:false, duration:0.5, ease:'power3.out
 
 var initBanner = (function(){
 
-	var _json, aniStyle, aniOptions, aniProps, initCompleted, isRibbon, isTextOnly, theme, useDefaultTheme,
-			cta, end, imgLoader, replay, ribbon, svg,{{#if (isSkyscraper)}} stripeSpeed,{{/if}}{{#if (isLeader)}}slope,{{/if}}
-			version={{#if (isLeader)}}'0.0.0'{{else}}'0.0.0'{{/if}};// Major.Minor.Bug Fix
+	var _json, aniStyle, aniOptions, aniProps, initCompleted, isRibbon, isLogoSlide, isTextOnly, theme, useDefaultTheme,
+		cta, end, imgLoader, replay, ribbon, svg,{{#if (isSkyscraper)}} stripeSpeed,{{/if}}{{#if (isLeader)}}slope,{{/if}}
+		version={{#if (isLeader)}}'0.0.0'{{else}}'0.0.0'{{/if}};// Major.Minor.Bug Fix
 
 	{{> colorList.js}}
 	{{> utilities.js}}
@@ -28,8 +28,8 @@ var initBanner = (function(){
 		
 		theme = themeMap[_feedTheme]; //Get color choices
 
-		isRibbon = (dc.RibbonTxt.length > 0);cl('isRibbon ? '+isRibbon, 'red');
-
+		isRibbon = (dc.RibbonTxt.length > 0);//cl('isRibbon ? '+isRibbon, 'red');
+		isLogoSlide = (dc.LogoSlideX > 0);
 		isTextOnly = (aniStyle === 'TextOnly');
 
 		// cl('useDefaultTheme ? '+useDefaultTheme, 'red');
@@ -120,11 +120,10 @@ var initBanner = (function(){
 
 		// FIRE!
 		initImgs();
-		// setLogoColor();//initLogo();
 		initColors();
 		initTxt();
 		initADACompliance();
-		{{#if (isLeader)}}centerCtaBtn();{{!--{{else}}setRibbonSize();--}}{{/if}}
+		{{#if (isLeader)}}centerCtaBtn();{{else}}initLogo();//setRibbonSize();{{/if}}
 		initReplay();
 		if(isTextOnly){
 			animate();
@@ -164,9 +163,9 @@ var initBanner = (function(){
 		cl(Math.ceil(ribbon.container.offsetHeight / {{ribbon.singleLineHeight}})+' Lines of text', 'red');
 
 		var _slope = -1.0{{!getRibbonSlope}},//-1.03225806//-1.055555556
-				_height = ribbon.container.offsetHeight,
-				_xOffset = 5,
-				_newPaddingRight = Math.abs(_height / _slope) + _xOffset;
+			_height = ribbon.container.offsetHeight,
+			_xOffset = 5,
+			_newPaddingRight = Math.abs(_height / _slope) + _xOffset;
 		cl('	_height: '+_height+'\n	_startWidth: '+ribbon.container.scrollWidth+'\n	 NEW RIGHT PADDING: '+_newPaddingRight,'pink');
 		// cl('	.getBoundingClientRect(): '+ribbon.container.getBoundingClientRect().width+'\n	scrollWidth: '+ribbon.container.scrollWidth+'\n	 clientWidth: '+ribbon.container.clientWidth+'\n	 gsap width: '+gsap.getProperty(ribbon.container, 'width'),'pink');
 
@@ -176,8 +175,15 @@ var initBanner = (function(){
 		var _x2 = ((_height * _slope) + ribbon.container.scrollWidth).toString();
 
 		ribbon.container.style.clipPath = 'polygon(0% 0%, '+_x2+'px 0%, 100% 100%, 0% 100%)';
-	}{{/unless}}{{!/}}
+	}
 
+	function initLogo(){
+		cl('initLogo ','yellow');
+		if(isRibbon && isLogoSlide){
+			cl(' BUMP UP LOGO','yellow');
+			swapClasses(id('logo'), 'logo-no-ribbon', 'logo-over-ribbon');
+		}
+	}
 	/*function setLogoColor(){
 
 		switch(theme.logoColor){
@@ -192,7 +198,7 @@ var initBanner = (function(){
 			default:
 				break;
 		}
-	}*/
+	}*/{{/unless}}{{!/}}
 
 	function initTxt(){
 		cl('initTxt ');
@@ -213,8 +219,7 @@ var initBanner = (function(){
 		if(isRibbon){
 			setTxt(ribbon.txt, dc.RibbonTxt, dc.RibbonTxt_css);
 			ribbon.container.style.visibility = 'visible';{{#unless (isLeader)}}
-			setRibbonSize();
-			swapClasses(id('logo'), 'logo-no-ribbon', 'logo-over-ribbon');{{/unless}}{{!/}}
+			setRibbonSize();{{/unless}}{{!/}}
 		}
 		setTxt(cta.txt, dc.CtaTxt, dc.CtaTxt_css);
 		setTxt(aniProps.t1, dc.Txt1, dc.Txt1_css);

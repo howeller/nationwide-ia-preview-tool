@@ -2,9 +2,9 @@ var tl = gsap.timeline({ defaults:{ paused:false, duration:0.5, ease:'power3.out
 
 var initBanner = (function(){
 
-	var _json, aniStyle, aniOptions, aniProps, initCompleted, isRibbon, isTextOnly, theme, useDefaultTheme,
-			cta, end, imgLoader, replay, ribbon, svg,
-			version='0.0.0';// Major.Minor.Bug Fix
+	var _json, aniStyle, aniOptions, aniProps, initCompleted, isRibbon, isLogoSlide, isTextOnly, theme, useDefaultTheme,
+		cta, end, imgLoader, replay, ribbon, svg,
+		version='0.0.0';// Major.Minor.Bug Fix
 
 		/*
 		* List of NW campaign color names/values from style guide
@@ -286,7 +286,7 @@ var initBanner = (function(){
 	function animate() {
 		cl(':: animate :: 300x250');
 		var _introTl = aniProps.frame1Tl(),
-			_logoSlideTl = (dc.LogoSlideX > 0) ? gsap.timeline({paused:false}).from('#logo', { x:dc.LogoSlideX, duration:0.5}) : emptyTl(),
+			_logoSlideTl = isLogoSlide ? gsap.timeline({paused:false}).from('#logo', { x:dc.LogoSlideX, duration:0.5}) : emptyTl(),
 			_stripeSpeed = 1;
 		
 			// cl('_logoSlideTl ? '+(dc.LogoSlideX > 0));
@@ -297,8 +297,8 @@ var initBanner = (function(){
 			.add(_logoSlideTl,'end')
 			.set([cta.btn, cta.txt],{skewX:0.1}, 'end')
 			.fromTo(cta.btn, {clipPath: getPath('wipeInFromLeftStart')}, {clipPath: getPath('wipeInEnd'), duration:1 },'-=0.5')
-			.fromTo(end.stripe, {x:300}, {x:-(end.stripe.offsetWidth/3), duration:_stripeSpeed, ease:'power1.out'},'+=0.5')
-			.to(end.stripe, {x:-(end.stripe.offsetWidth), duration:_stripeSpeed, ease:'power1.in'})
+			.fromTo(end.stripe, {x:-(end.stripe.offsetWidth)}, {x:-(end.stripe.offsetWidth/3), duration:_stripeSpeed, ease:'power1.out'},'+=0.5')
+			.to(end.stripe, {x:300, duration:_stripeSpeed, ease:'power1.in'})
 			.add(ctaBounceTl(), "-="+_stripeSpeed)
 			.from(replay.container, { autoAlpha: 0 })
 			.add(initReplayAction)
@@ -328,8 +328,8 @@ var initBanner = (function(){
 		
 		theme = themeMap[_feedTheme]; //Get color choices
 
-		isRibbon = (dc.RibbonTxt.length > 0);cl('isRibbon ? '+isRibbon, 'red');
-
+		isRibbon = (dc.RibbonTxt.length > 0);//cl('isRibbon ? '+isRibbon, 'red');
+		isLogoSlide = (dc.LogoSlideX > 0);
 		isTextOnly = (aniStyle === 'TextOnly');
 
 		// cl('useDefaultTheme ? '+useDefaultTheme, 'red');
@@ -403,11 +403,10 @@ var initBanner = (function(){
 
 		// FIRE!
 		initImgs();
-		// setLogoColor();//initLogo();
 		initColors();
 		initTxt();
 		initADACompliance();
-		
+		initLogo();//setRibbonSize();
 		initReplay();
 		if(isTextOnly){
 			animate();
@@ -447,9 +446,9 @@ var initBanner = (function(){
 		cl(Math.ceil(ribbon.container.offsetHeight / 20)+' Lines of text', 'red');
 
 		var _slope = -1.0,//-1.03225806//-1.055555556
-				_height = ribbon.container.offsetHeight,
-				_xOffset = 5,
-				_newPaddingRight = Math.abs(_height / _slope) + _xOffset;
+			_height = ribbon.container.offsetHeight,
+			_xOffset = 5,
+			_newPaddingRight = Math.abs(_height / _slope) + _xOffset;
 		cl('	_height: '+_height+'\n	_startWidth: '+ribbon.container.scrollWidth+'\n	 NEW RIGHT PADDING: '+_newPaddingRight,'pink');
 		// cl('	.getBoundingClientRect(): '+ribbon.container.getBoundingClientRect().width+'\n	scrollWidth: '+ribbon.container.scrollWidth+'\n	 clientWidth: '+ribbon.container.clientWidth+'\n	 gsap width: '+gsap.getProperty(ribbon.container, 'width'),'pink');
 
@@ -461,6 +460,13 @@ var initBanner = (function(){
 		ribbon.container.style.clipPath = 'polygon(0% 0%, '+_x2+'px 0%, 100% 100%, 0% 100%)';
 	}
 
+	function initLogo(){
+		cl('initLogo ','yellow');
+		if(isRibbon && isLogoSlide){
+			cl(' BUMP UP LOGO','yellow');
+			swapClasses(id('logo'), 'logo-no-ribbon', 'logo-over-ribbon');
+		}
+	}
 	/*function setLogoColor(){
 
 		switch(theme.logoColor){
@@ -488,7 +494,6 @@ var initBanner = (function(){
 			setTxt(ribbon.txt, dc.RibbonTxt, dc.RibbonTxt_css);
 			ribbon.container.style.visibility = 'visible';
 			setRibbonSize();
-			swapClasses(id('logo'), 'logo-no-ribbon', 'logo-over-ribbon');
 		}
 		setTxt(cta.txt, dc.CtaTxt, dc.CtaTxt_css);
 		setTxt(aniProps.t1, dc.Txt1, dc.Txt1_css);

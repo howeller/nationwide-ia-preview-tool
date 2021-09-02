@@ -46,7 +46,7 @@ function txtOnlyIntroTl() {
 function animate() {
 	cl(':: animate :: {{width}}x{{height}}');
 	var _introTl = aniProps.frame1Tl(),
-		_logoSlideTl = (dc.LogoSlideX > 0) ? gsap.timeline({paused:false}).from('#logo', { x:dc.LogoSlideX, duration:0.5}) : emptyTl(),
+		_logoSlideTl = isLogoSlide ? gsap.timeline({paused:false}).from('#logo', { x:dc.LogoSlideX, duration:0.5}) : emptyTl(),
 		_stripeSpeed = 1;
 	
 		// cl('_logoSlideTl ? '+(dc.LogoSlideX > 0));
@@ -57,8 +57,8 @@ function animate() {
 		.add(_logoSlideTl,'end')
 		.set([cta.btn, cta.txt],{skewX:0.1}, 'end')
 		.fromTo(cta.btn, {clipPath: getPath('wipeInFromLeftStart')}, {clipPath: getPath('wipeInEnd'), duration:1 },'-=0.5')
-		.fromTo(end.stripe, {x:300}, {x:-(end.stripe.offsetWidth/3), duration:_stripeSpeed, ease:'power1.out'},'+=0.5')
-		.to(end.stripe, {x:-(end.stripe.offsetWidth), duration:_stripeSpeed, ease:'power1.in'})
+		.fromTo(end.stripe, {x:-(end.stripe.offsetWidth)}, {x:-(end.stripe.offsetWidth/3), duration:_stripeSpeed, ease:'power1.out'},'+=0.5')
+		.to(end.stripe, {x:300, duration:_stripeSpeed, ease:'power1.in'})
 		.add(ctaBounceTl(), "-="+_stripeSpeed)
 		.from(replay.container, { autoAlpha: 0 })
 		.add(initReplayAction)

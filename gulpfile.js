@@ -22,11 +22,14 @@ const dir = {
 	templates:'./src/templates/',
 	previewTemplates:'preview/templates/',
 	previewCache:'preview/templates_c/',
+	previewCss:'../build/assets/css/',
 	previewJs:'../build/assets/js/',
+	localCss:'../../assets/css/',
 	localJs:'../../assets/js/',
 	zips:'build/zips/'
 }
 const googleLib = {
+	css:'https://s0.2mdn.net/creatives/assets/4087879/', // Default to google asset library for js
 	js:'https://s0.2mdn.net/creatives/assets/4087879/', // Default to google asset library for js
 	root:'https://s0.2mdn.net/creatives/assets/4087743/', // Default to google asset library
 	fonts:'https://s0.2mdn.net/creatives/assets/2701989/'
@@ -35,10 +38,12 @@ const srcFolders = util.getFolders(dir.src);
 const useGoogleAssets = false; // Where to look for JS. Set true for final export. False for local testing.
 const isDebugMode = true; // For testing unminified JS.
 
-// Build JS names for each file
-const getJsFileName = (obj) => 'NW_IA_Animation_'+obj.width+'x'+obj.height;
+// Build names for each file
+const getJsFileName = (obj) => `NW_IA_Animation_${obj.width}x${obj.height}`;//'NW_IA_Animation_'+obj.width+'x'+obj.height;
+const getCssFileName = (obj) => `NW_IA_${obj.width}x${obj.height}.css`;
 
 const getJsUrl = (_isPreview) => (_isPreview) ? dir.previewJs : useGoogleAssets ? googleLib.js : dir.localJs;
+const getCssUrl = (_isPreview) => (_isPreview) ? dir.previewCss : useGoogleAssets ? googleLib.css : dir.localCss;
 
 // Select path to asset library. Either use the Google Asset Library or one of the local repos
 function getImageUrl(_isPreview){
@@ -66,16 +71,17 @@ function build(_isPreview=false){
 			ignorePartials:false,
 			batch:[_src, dir.templates+'css', dir.templates+'html', dir.templates+'js', dir.templates+'svg'],
 			helpers : {
-				bannerCss : 				function(){ return `banner_${this.width}x${this.height}.css`;},
+				bannerCss : 				function(){ return `${name}_${this.width}x${this.height}.css`;},
 				bannerAnimateJs : 	function(){ return `animation_${this.width}x${this.height}.js`;},
 				getSvg : 						function(name){	return `${name}_${this.width}x${this.height}.svg`;},
+				cssAssetURL: 				function(){ return getCssUrl(_isPreview);},
 				jsAssetURL: 				function(){ return getJsUrl(_isPreview);},
 				imageAssetURL: 			function(){ return getImageUrl(_isPreview);},
 				fontPath: 					function(){ return googleLib.fonts; },
 				getStaticImagePath: function(){ return (_isPreview) ? './templates/'+this.name+'/images/' : 'images/';},
 				invocationJs: 			function(){ return (_isPreview) ? 'invocationPreview.js':'invocation.js';},
-				mainJs: 			  		function(){ return (_isPreview) ? getJsFileName(this)+'.js':getJsFileName(this)+'.js';},//TESTING ONLY
-				// mainJs: 			  		function(){ return (_isPreview) ? getJsFileName(this)+'.js':getJsFileName(this)+'.min.js';},PUT THIS BACK
+				// mainJs: 			  		function(){ return (_isPreview) ? getJsFileName(this)+'.js':getJsFileName(this)+'.js';},//TESTING ONLY
+				mainJs: 			  		function(){ return (_isPreview) ? getJsFileName(this)+'.js':getJsFileName(this)+'.min.js';},//PUT THIS BACK
 				logoToUse: 					function(){ return this.logo.svg },
 				isPreview: 					function(){ return (_isPreview) },
 				getRibbonSlope: 		function(){ return getSlope(this.ribbon.x1, this.ribbon.x2, 0, this.ribbon.singleLineHeight)},
@@ -86,26 +92,31 @@ function build(_isPreview=false){
 		}
 
 		let _html = gulp.src(dir.templates+'/html/*.hbs')
-				.pipe(gch(_data, options))
-				.pipe(rename(_htmlName))
-				.pipe(gulp.dest(_dist));
-
-		let _images = gulp.src(_src+'/images/**',{base:_src})// pipe "images" and contents
-				.pipe(gulp.dest(_dist));
+			.pipe(gch(_data, options))
+			.pipe(rename(_htmlName))
+			.pipe(gulp.dest(_dist));
 
 		if(_isPreview){
 			let _clearCache = del(dir.previewCache+'**');
 
-			return merge(_html, _images);
-		} 
-		else{
-			// Create js file for each banner
-			let _js = gulp.src(dir.templates+'/js/main.js.hbs')
+			return _html;
+		}
+		else {
+			// let _cssName = 
+			let _css = gulp.src(`${dir.templates}css/${getCssFileName(_data)}.hbs`)
+				.pipe(gch(_data, options))
+				.pipe(rename(getCssFileName(_data)))
+				.pipe(gulp.dest(dir.assets+'css'));
+
+			let _images = gulp.src(_src+'/images/**',{base:_src})// pipe "images" and contents
+				.pipe(gulp.dest(_dist));
+
+			let _js = gulp.src(dir.templates+'js/main.js.hbs')
 				.pipe(gch(_data, options))
 				.pipe(rename(getJsFileName(_data)+'.js'))
 				.pipe(gulp.dest(dir.assets+'js'));
 
-			return merge(_html, _js, _images);
+			return merge(_html, _css, _js, _images);
 		}
 	});
 	let lastStream = task[task.length-1];
@@ -146,7 +157,7 @@ function zipFiles() {
 
 // Gulp Tasks
 
-gulp.task('clean:html', () => { return del([dir.dist+'/**/*', dir.assets+'js/*.js', dir.previewTemplates+'/**/*']); });
+gulp.task('clean:html', () => { return del([dir.dist+'/**/*', dir.assets+'js/*.js', dir.assets+'css/*.css', dir.previewTemplates+'/**/*']); });
 gulp.task('clean:zips', () => { return del(dir.zips+'/**/*'); });
 gulp.task('clean', gulp.parallel('clean:html', 'clean:zips'));
 gulp.task('build:main', () => { return build(false);});

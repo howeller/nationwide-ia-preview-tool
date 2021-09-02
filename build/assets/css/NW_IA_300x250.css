@@ -1,3 +1,101 @@
+/*
+	Tiempos font on asset library
+*/
+@font-face {
+	font-family: 'tiempos-headline';
+	font-weight: 600;
+	font-style: normal;
+	src: url("https://s0.2mdn.net/creatives/assets/2701989/tiempos-headline-web-semibold.woff2") format("woff2"), url("https://s0.2mdn.net/creatives/assets/2701989/tiempos-headline-web-semibold.woff") format("woff"), url("https://s0.2mdn.net/creatives/assets/2701989/tiempos-headline-web-semibold.eot") format("embedded-opentype")
+}
+@charset "UTF-8";
+:root {
+	--coolgray8: #87898b;
+	--darkblue: #141b4d;
+	--mediumblue: #1f74db;
+	--mintgreen: #6eceb2;
+	--nwblue: #1c57a5;
+	--vibrantblue: #0047bb;
+	--white: #ffffff;
+}
+
+body, html {
+	background-color: #D4D4D4;
+	border: 0 none;
+	overflow: hidden;
+	outline: 0;
+	margin: 0;
+	padding: 0;
+	position: absolute;
+}
+html {
+	font-family: proxima-nova, Arial, sans-serif;
+	font-weight: 400;
+	font-style: normal;
+}
+div, h1, p {
+	font-family: proxima-nova, Arial, sans-serif;
+	font-weight: 600;
+	font-style: normal;
+	/*letter-spacing: -0.4px;*/
+	/* Adjust font size */
+	font-size: 100%;
+	-webkit-text-size-adjust: 100%;	
+	/* Font varient */
+	font-variant-ligatures: none;
+	-webkit-font-variant-ligatures: none;
+	/* Smoothing */
+	font-smoothing: antialiased;
+	text-rendering: optimizeLegibility;
+	-moz-osx-font-smoothing: grayscale;
+	-webkit-font-smoothing: antialiased;
+	margin:0;
+}
+button.abs {
+	background-color: Transparent;
+	background-repeat: no-repeat;
+	border: none;
+	cursor: pointer;
+	overflow: hidden;
+	outline: none;
+}
+button.abs:focus, .fake-button:focus {
+	outline: 5px solid #e85b16;
+}
+sup{
+	font-size: 75%;
+	line-height: 50% !important;
+  vertical-align: baseline;
+  position: relative;
+  top: -0.4em;
+}
+.abs, img, svg {
+	position:absolute;
+	display:block;
+}
+.border {
+	border: 1px solid var(--coolgray8);
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	position: absolute;
+	pointer-events: none
+}
+.hide {visibility: hidden}
+.full-size {
+	display: block;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 300px;
+	height: 250px;
+}
+#banner {
+	background-color: var(--vibrantblue);
+	visibility: hidden;
+	position: relative;
+	overflow: hidden;
+}
+
 img#logo{
 	right: 16px;
 	height: 67px;
@@ -9,7 +107,7 @@ img.logo-over-ribbon{bottom: 36px}
 
 /* N-Crop Images */
 image{
-	width: {{width}}px;
+	width: 300px;
 	height: auto;
 	object-fit:contain;
 }
@@ -18,8 +116,8 @@ image{
 img.pic-front, img.pic-back{
 	top: 0; 
 	left: 0;
-	width: {{width}}px;
-	height: {{height}}px;
+	width: 300px;
+	height: 250px;
 }
 svg#n-graphic{
 	bottom: 43px;
@@ -50,8 +148,6 @@ svg#n-graphic{
 	background-color: var(--darkblue);
 	clip-path: polygon(33% 0%, 100% 1.2%, 66.00% 100%, 0% 100%); /* parallel shape */
 	-webkit-clip-path: polygon(33% 0%, 100% 1.2%, 66.00% 100%, 0% 100%); 
-	{{!--clip-path: polygon(0% 0%, 66% 0%, 100% 100%, 33% 100%); /* parallel shape */
-			-webkit-clip-path: polygon(0% 0%, 66% 0%, 100% 100%, 33% 100%); --}}
 	width: 300%;
 	height: 100%;
 }
@@ -73,7 +169,7 @@ svg#end-stripe-static{
 	display: block;
 	position: absolute;
 	width: auto;
-	clip-path: polygon(0% 0%, calc(100% - {{ribbon.singleLineHeight}}px) 0%, 100% 100%, 0% 100%);
+	clip-path: polygon(0% 0%, calc(100% - 20px) 0%, 100% 100%, 0% 100%);
 	height: auto;
 	visibility: hidden;
 }

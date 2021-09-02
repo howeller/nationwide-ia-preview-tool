@@ -329,8 +329,9 @@ var initBanner = (function(){
 		theme = themeMap[_feedTheme]; //Get color choices
 
 		isRibbon = (dc.RibbonTxt.length > 0);//cl('isRibbon ? '+isRibbon, 'red');
-		isLogoSlide = (dc.LogoSlideX > 0);
+
 		isTextOnly = (aniStyle === 'TextOnly');
+		isLogoSlide = (aniStyle === 'NCrop' && dc.LogoSlideX > 0);
 
 		// cl('useDefaultTheme ? '+useDefaultTheme, 'red');
 
@@ -459,7 +460,6 @@ var initBanner = (function(){
 
 		ribbon.container.style.clipPath = 'polygon(0% 0%, '+_x2+'px 0%, 100% 100%, 0% 100%)';
 	}
-
 	function initLogo(){
 		cl('initLogo ','yellow');
 		if(isRibbon && isLogoSlide){

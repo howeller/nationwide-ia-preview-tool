@@ -22,7 +22,7 @@
 	},
 	"NW_Dyn_IA_300x250": {
 		"width": 300, "height": 250,
-		"__logo": { "id": "logoVert", "svg": "NW_logo_vert.svg"},
+		"hasLogoSlide": true,
 		"ribbon":{
 			"maxWidth":300,
 			"singleLineHeight": 20,

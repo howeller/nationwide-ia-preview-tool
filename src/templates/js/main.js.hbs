@@ -29,8 +29,10 @@ var initBanner = (function(){
 		theme = themeMap[_feedTheme]; //Get color choices
 
 		isRibbon = (dc.RibbonTxt.length > 0);//cl('isRibbon ? '+isRibbon, 'red');
-		isLogoSlide = (dc.LogoSlideX > 0);
+
 		isTextOnly = (aniStyle === 'TextOnly');
+		{{#if (hasLogoSlide)}}
+		isLogoSlide = (aniStyle === 'NCrop' && dc.LogoSlideX > 0);{{/if}}{{!/}}
 
 		// cl('useDefaultTheme ? '+useDefaultTheme, 'red');
 
@@ -123,8 +125,9 @@ var initBanner = (function(){
 		initColors();
 		initTxt();
 		initADACompliance();
-		{{#if (isLeader)}}centerCtaBtn();{{else}}initLogo();//setRibbonSize();{{/if}}
-		initReplay();
+		{{#if (hasLogoSlide)}}initLogo();//setRibbonSize();
+		{{/if}}{{#if (isLeader)}}centerCtaBtn();
+		{{/if}}initReplay();
 		if(isTextOnly){
 			animate();
 		}
@@ -176,14 +179,14 @@ var initBanner = (function(){
 
 		ribbon.container.style.clipPath = 'polygon(0% 0%, '+_x2+'px 0%, 100% 100%, 0% 100%)';
 	}
-
+	{{#if (hasLogoSlide)}}
 	function initLogo(){
 		cl('initLogo ','yellow');
 		if(isRibbon && isLogoSlide){
 			cl(' BUMP UP LOGO','yellow');
 			swapClasses(id('logo'), 'logo-no-ribbon', 'logo-over-ribbon');
 		}
-	}
+	}{{/if}}{{!/}}
 	/*function setLogoColor(){
 
 		switch(theme.logoColor){

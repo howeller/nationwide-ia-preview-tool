@@ -435,7 +435,7 @@ var initBanner = (function(){
 
 	/*
 	* If Ribbon text is more lines than the height of a single line then redraw the polygon. 
-	* Need to manually caselulate the slope (M) = (y2 - y1) / (x2 - x1)
+	* Need to manually calculate the slope (M) = (y2 - y1) / (x2 - x1)
 	*/
 	function setRibbonSize(){
 		if(ribbon.container.offsetHeight <= 20){return;}

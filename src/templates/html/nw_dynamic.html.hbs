@@ -57,8 +57,8 @@
 		</div>{{/unless}}
 		<div id="end-container" class="abs">
 			{{> endStripeStatic.svg}}{{#if (isSkyscraper)}}
-			{{> (getSvg 'nWindowEndStripe')}}{{/if}}
-			<div id="end-stripe" class="abs"></div>
+			{{> (getSvg 'nWindowEndSwipe')}}{{/if}}
+			<div id="end-swipe" class="abs"></div>
 			<div id="t1-container" class="txt-container abs" aria-hidden="true">
 				<div id="t1" class="ng-t1 t1 abs">*</div>
 			</div>
@@ -74,7 +74,7 @@
 			<img id="logo" class="logo-no-ribbon" src="" alt="" aria-hidden="true"/>
 		</div>
 		<div id="ribbon">
-			<div id="ribbon-txt"{{#if (isLeader)}} class="ribbon-txt"{{/if}}>ribbon</div>
+			<div id="ribbon-txt"{{#if (isLeader)}} class="ribbon-txt"{{/if}}>Ribbon</div>
 		</div>{{#if (isLeader)}}
 		<div id="nc-parent" class="hide">
 			<img id="nc-pic" class="nc-pic" src="" alt="" aria-hidden="true"/>

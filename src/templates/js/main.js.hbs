@@ -3,7 +3,7 @@ var tl = gsap.timeline({ defaults:{ paused:false, duration:0.5, ease:'power3.out
 var initBanner = (function(){
 
 	var _json, aniStyle, aniOptions, aniProps, initCompleted, isRibbon, isLogoSlide, isTextOnly, theme, useDefaultTheme,
-		cta, end, imgLoader, replay, ribbon, svg,{{#if (isSkyscraper)}} stripeSpeed,{{/if}}{{#if (isLeader)}}slope,{{/if}}
+		cta, end, imgLoader, replay, ribbon, svg,{{#if (isSkyscraper)}} swipeSpeed,{{/if}}{{#if (isLeader)}}slope,{{/if}}
 		version={{#if (isLeader)}}'0.0.0'{{else}}'0.0.0'{{/if}};// Major.Minor.Bug Fix
 
 	{{> colorList.js}}
@@ -56,7 +56,7 @@ var initBanner = (function(){
 		end = {
 			container: id('end-container'),
 			t2: id('t2'),
-			stripe: id('end-stripe'),
+			swipe: id('end-swipe'),
 			stripeStatic: id('end-stripe-static'),
 			stripeStaticPath:id('endStripeStaticPath')
 		}
@@ -150,8 +150,8 @@ var initBanner = (function(){
 		cta.txt.style.color = theme.ctaTxtColor;
 		cta.btn.style.backgroundColor = theme.ctaBtnColor;
 		end.container.style.backgroundColor = id('banner').style.backgroundColor = colorNameToHex(theme.bgColor);
-		end.stripe.style.backgroundColor = colorNameToHex(theme.stripeColor);
-		end.stripeStaticPath.style.fill = colorNameToHex(theme.stripeColor);
+		end.swipe.style.backgroundColor = colorNameToHex(theme.swipeColor);
+		end.stripeStaticPath.style.fill = colorNameToHex(theme.swipeColor);
 	}
 
 	{{#unless (isLeader)}}/*
@@ -222,6 +222,7 @@ var initBanner = (function(){
 			ribbon.container.style.opacity = 1;{{#unless (isLeader)}}
 			setRibbonSize();{{/unless}}{{!/}}
 		}
+
 		setTxt(cta.txt, dc.CtaTxt, dc.CtaTxt_css);
 		setTxt(aniProps.t1, dc.Txt1, dc.Txt1_css);
 		setTxt(end.t2, dc.Txt2, dc.Txt2_css);

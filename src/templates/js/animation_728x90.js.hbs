@@ -48,7 +48,7 @@ function animate() {
 
 	slope = {{getSlope 87 0 0 90}};// cl({{getSlope 87 0 0 90}} , 'red');
 	var _introTl = aniProps.frame1Tl(),
-		_stripeSpeed = 1;
+		_swipeSpeed = 1;
 
 	tl
 		.add(_introTl)
@@ -56,9 +56,9 @@ function animate() {
 		.fromTo('#t2', {clipPath: wipeInFromLeftStart}, {clipPath: wipeInEnd, duration:1.5, ease:'power3.easein' }, 'end')
 		.set([cta.btn, cta.txt],{skewX:0.1}, 'end')
 		.fromTo(cta.btn, {clipPath: wipeInFromLeftStart}, {clipPath: wipeInEnd, duration:1.5 },'-=0.5')
-		.fromTo(end.stripe, {x:{{width}} }, {x:-{{slope.x1}}, duration:_stripeSpeed, ease:'power1.out'},'+=0.5')
-		.to(end.stripe, {x:-(end.stripe.offsetWidth), duration:_stripeSpeed, ease:'power1.in'})
-		.add(ctaBounceTl(), "-="+_stripeSpeed)
+		.fromTo(end.swipe, {x:{{width}} }, {x:-{{slope.x1}}, duration:_swipeSpeed, ease:'power1.out'},'+=0.5')
+		.to(end.swipe, {x:-(end.swipe.offsetWidth), duration:_swipeSpeed, ease:'power1.in'})
+		.add(ctaBounceTl(), "-="+_swipeSpeed)
 		.from(replay.container, { autoAlpha: 0 })
 		.add(initReplayAction)
 		.add('cta')

@@ -32,7 +32,7 @@ function nWindowIntroTl() {
 
 	return gsap.timeline({paused:false})
 		.set('.mask-path', {fill:colorNameToHex(theme.bgColor)})
-		.set('#svgStripePath', {fill:colorNameToHex(theme.stripeColor)})
+		.set('#svgStripePath', {fill:colorNameToHex(theme.swipeColor)})
 		.set(aniProps.container, {visibility:'visible'})
 		.set([aniProps.imgBack, aniProps.imgFront], {skewX:0.1, x: _picX1, y:_picY1})
 		.add(fadeInContainerTl())
@@ -56,30 +56,30 @@ function txtOnlyIntroTl() {
 
 function clippedStripeTl() {
 	// cl('	//	 clippedStripeTl ');
-	var _stripeWidth = svg.endStripe.getBBox().width;
+	var _swipeWidth = svg.endStripe.getBBox().width;
 
 	return _tl = gsap.timeline({paused:false})
-		.set('#nw-end-stripe', {visibility: 'visible', top:-93})
-		.fromTo(svg.endStripe, {x:{{width}} }, {x:-(_stripeWidth/3), duration:stripeSpeed, ease:'power1.out'})
-		.to(svg.endStripe, {x:-(_stripeWidth), duration:stripeSpeed, ease:'power1.in'});
+		.set('#nw-end-swipe', {visibility: 'visible', top:-93})
+		.fromTo(svg.endStripe, {x:{{width}} }, {x:-(_swipeWidth/3), duration:swipeSpeed, ease:'power1.out'})
+		.to(svg.endStripe, {x:-(_swipeWidth), duration:swipeSpeed, ease:'power1.in'});
 }
 
 function defaultStripeTl() {
 	// cl('	//	 defaultStripeTl ');
 
 	return _tl = gsap.timeline({paused:false})
-		.set('#end-stripe', {visibility: 'visible'})
-		.fromTo(end.stripe, {x:{{width}} }, {x:-(end.stripe.offsetWidth/3), duration:stripeSpeed, ease:'power1.out'})
-		.to(end.stripe, {x:-(end.stripe.offsetWidth), duration:stripeSpeed, ease:'power1.in'})
+		.set('#end-swipe', {visibility: 'visible'})
+		.fromTo(end.swipe, {x:{{width}} }, {x:-(end.swipe.offsetWidth/3), duration:swipeSpeed, ease:'power1.out'})
+		.to(end.swipe, {x:-(end.swipe.offsetWidth), duration:swipeSpeed, ease:'power1.in'})
 }
 
 function animate() {
 	cl(':: animate :: {{width}}x{{height}}');
 	
-	stripeSpeed = 1;
+	swipeSpeed = 1;
 
 	var _introTl = aniProps.frame1Tl(), // Get intro TL to use
-			_endStripeTl = aniProps.endStripeTl();// Choose standard vs masked SVG stripe 
+			_endStripeTl = aniProps.endStripeTl();// Choose standard vs masked SVG swipe 
 
 	tl
 		.add(_introTl)
@@ -88,7 +88,7 @@ function animate() {
 		.set([cta.btn, cta.txt],{skewX:0.1}, 'end')
 		.fromTo(cta.btn, {clipPath: getPath('wipeInFromLeftStart')}, {clipPath: getPath('wipeInEnd'), duration:1 },'-=0.5')
 		.add(_endStripeTl, '+=0.5')
-		.add(ctaBounceTl(), "-="+stripeSpeed)
+		.add(ctaBounceTl(), "-="+swipeSpeed)
 		.from(replay.container, { autoAlpha: 0 })
 		.add(initReplayAction)
 		.add('cta')

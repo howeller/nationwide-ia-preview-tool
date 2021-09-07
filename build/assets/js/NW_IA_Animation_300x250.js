@@ -409,9 +409,9 @@ var initBanner = (function(){
 		initADACompliance();
 		initLogo();//setRibbonSize();
 		initReplay();
-		if(isTextOnly){
+		/*if(isTextOnly){
 			animate();
-		}
+		}*/
 		initCompleted = true;
 		cl('* initCompleted *');	
 	}
@@ -511,11 +511,12 @@ var initBanner = (function(){
 	}
 
 	function initImgs(){
-		if(isTextOnly){return};
 		cl('initImgs');
 		setImgStart(id('logo'), dc.Logo_img_css, dc.Logo_img.Url);// PASS CSS OR JSON ???
-		setImgStart(aniProps.imgBack, null, dc.Back_img.Url);
-		if(aniStyle === 'NGraphic'){ setImgStart(aniProps.imgFront, null, dc.Front_img.Url);}
+		if(!isTextOnly){
+			setImgStart(aniProps.imgBack, null, dc.Back_img.Url);
+			if(aniStyle === 'NGraphic'){ setImgStart(aniProps.imgFront, null, dc.Front_img.Url);}
+		};
 	}
 
 	function imgAsyncLoadCheck(){

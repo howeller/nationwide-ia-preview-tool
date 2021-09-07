@@ -128,9 +128,7 @@ var initBanner = (function(){
 		{{#if (hasLogoSlide)}}initLogo();//setRibbonSize();
 		{{/if}}{{#if (isLeader)}}centerCtaBtn();
 		{{/if}}initReplay();
-		if(isTextOnly){
-			animate();
-		}
+		// if(isTextOnly){animate();}
 		initCompleted = true;
 		cl('* initCompleted *');	
 	}
@@ -240,11 +238,12 @@ var initBanner = (function(){
 	}
 
 	function initImgs(){
-		if(isTextOnly){return};
 		cl('initImgs');
 		setImgStart(id('logo'), dc.Logo_img_css, dc.Logo_img.Url);// PASS CSS OR JSON ???
-		setImgStart(aniProps.imgBack, null, dc.Back_img.Url);
-		{{#unless (isLeader)}}if(aniStyle === 'NGraphic'){ setImgStart(aniProps.imgFront, null, dc.Front_img.Url);}{{/unless}}{{!/}}
+		if(!isTextOnly){
+			setImgStart(aniProps.imgBack, null, dc.Back_img.Url);
+			{{#unless (isLeader)}}if(aniStyle === 'NGraphic'){ setImgStart(aniProps.imgFront, null, dc.Front_img.Url);}{{/unless}}{{!/}}
+		};
 	}
 
 	function imgAsyncLoadCheck(){

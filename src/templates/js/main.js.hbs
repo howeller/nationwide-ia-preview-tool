@@ -219,7 +219,7 @@ var initBanner = (function(){
 
 		if(isRibbon){
 			setTxt(ribbon.txt, dc.RibbonTxt, dc.RibbonTxt_css);
-			ribbon.container.style.visibility = 'visible';{{#unless (isLeader)}}
+			ribbon.container.style.opacity = 1;{{#unless (isLeader)}}
 			setRibbonSize();{{/unless}}{{!/}}
 		}
 		setTxt(cta.txt, dc.CtaTxt, dc.CtaTxt_css);

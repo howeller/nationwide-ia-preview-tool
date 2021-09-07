@@ -78,7 +78,7 @@ svg#end-stripe-static{
 	width: auto;
 	clip-path: polygon(0% 0%, calc(100% - {{ribbon.singleLineHeight}}px) 0%, 100% 100%, 0% 100%);
 	height: auto;
-	visibility: hidden;
+	opacity: 0; /*{{! visibility: hidden shows the ribbon before 'banner' animates in}}*/
 }
 
 /* Text Styles */

@@ -409,9 +409,7 @@ var initBanner = (function(){
 		initADACompliance();
 		initLogo();//setRibbonSize();
 		initReplay();
-		/*if(isTextOnly){
-			animate();
-		}*/
+		// if(isTextOnly){animate();}
 		initCompleted = true;
 		cl('* initCompleted *');	
 	}
@@ -492,7 +490,7 @@ var initBanner = (function(){
 
 		if(isRibbon){
 			setTxt(ribbon.txt, dc.RibbonTxt, dc.RibbonTxt_css);
-			ribbon.container.style.visibility = 'visible';
+			ribbon.container.style.opacity = 1;
 			setRibbonSize();
 		}
 		setTxt(cta.txt, dc.CtaTxt, dc.CtaTxt_css);

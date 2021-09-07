@@ -26,8 +26,6 @@ var initBanner = (function(){
 		* Preprogrammed Style Combos
 		*/
 		var themeMap = {
-			/*'DarkBlue-LightBlue': {},
-			'DarkBlue-MediumBlue': {},*/
 			'DarkBlue-White': {
 				bgColor: 'darkblue',
 				ctaBtnColor: 'mintgreen',
@@ -37,6 +35,7 @@ var initBanner = (function(){
 				ribbonTxtColor: 'darkblue',
 				replayColor: 'white',
 				txtColor: 'white',
+				stripeColor: 'vibrantblue',
 				swipeColor: 'vibrantblue'
 			},
 			'VibrantBlue-White':{
@@ -47,9 +46,9 @@ var initBanner = (function(){
 				ribbonTxtColor: 'white',
 				replayColor: 'white',
 				txtColor: 'white',
-				swipeColor: 'darkblue'
+				stripeColor: 'darkblue',
+				swipeColor: 'mediumblue'
 			},
-			// 'VibrantBlue-LightBlue': {},
 			'White-DarkBlue': {
 				bgColor: 'white',
 				ctaBtnColor: 'mintgreen',
@@ -59,10 +58,9 @@ var initBanner = (function(){
 				ribbonTxtColor: 'white',
 				replayColor: 'darkblue',
 				txtColor: 'darkblue',
+				stripeColor: 'lightblue',
 				swipeColor: 'lightblue'
-			}/*,
-			'White-MediumBlue': {},
-			'White-VibrantBlue': {}*/
+			}
 		};
 	/*
 	*	Utility / Helper Functions
@@ -432,7 +430,7 @@ var initBanner = (function(){
 		cta.btn.style.backgroundColor = theme.ctaBtnColor;
 		end.container.style.backgroundColor = id('banner').style.backgroundColor = colorNameToHex(theme.bgColor);
 		end.swipe.style.backgroundColor = colorNameToHex(theme.swipeColor);
-		end.stripeStaticPath.style.fill = colorNameToHex(theme.swipeColor);
+		end.stripeStaticPath.style.fill = colorNameToHex(theme.stripeColor);
 	}
 
 	/*

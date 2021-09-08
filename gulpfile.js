@@ -46,17 +46,6 @@ const getCssFileName = (obj) => `NW_IA_${obj.width}x${obj.height}.css`;
 
 const getJsUrl = (_isPreview) => (_isPreview) ? dir.previewJs : useGoogleAssets ? googleLib.js : dir.localJs;
 const getCssUrl = (_isPreview) => (_isPreview) ? dir.previewCss : useGoogleAssets ? googleLib.css : dir.localCss;
-// const getImageUrl = (_isPreview) => (useGoogleAssets) ? googleLib.root : dir.localImages;
-// const getLogoUrl = (_isPreview) => (useGoogleAssets) ? googleLib.logos : dir.localImages+'/logos/';
-
-
-// Select path to asset library. Either use the Google Asset Library or one of the local repos
-/*function getImageUrl(_isPreview){
-	let localPreview = '../../assets/images/',// Relative path from inside preview site
-		localSrc = '../../assets/images/';
-	return (useGoogleAssets) ? googleLib.root : (_isPreview) ? localPreview : localSrc;
-}*/
-
 
 function build(_isPreview=false){
 	console.log('*	BUILD-'+(_isPreview?' PREVIEW':'MAIN'));

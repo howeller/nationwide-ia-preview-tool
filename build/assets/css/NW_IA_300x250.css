@@ -146,8 +146,8 @@ svg#n-graphic{
 }
 #end-container #end-swipe{
 	background-color: var(--darkblue);
-	clip-path: polygon(33% 0%, 100% 1.2%, 66.00% 100%, 0% 100%); /* parallel shape */
-	-webkit-clip-path: polygon(33% 0%, 100% 1.2%, 66.00% 100%, 0% 100%); 
+	clip-path: polygon(33% 0%, 100% 0%, 66.00% 100%, 0% 100%); /* parallel shape */
+	-webkit-clip-path: polygon(33% 0%, 100% 0%, 66.00% 100%, 0% 100%); 
 	width: 300%;
 	height: 100%;
 }

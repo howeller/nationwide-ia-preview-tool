@@ -84,7 +84,7 @@ function build(_isPreview=false){
 				getRibbonSlope: 		function(){ return getSlope(this.ribbon.x1, this.ribbon.x2, 0, this.ribbon.singleLineHeight)},
 				getSlope: 					function(x1,y1,x2,y2){ return (y2 - y1) / (x2 - x1)},
 				hasLogoSlide: 			function(){ return this.hasLogoSlide },
-				isBox: 							function(){ return this.height === 250 },
+				isBox: 							function(){ return this.height === 250 /*Math.floor(this.width/this.height)===1*/},
 				isSkyscraper: 			function(){ return this.height === 600 },
 				isLeader: 					function(){ return this.width >= 728 }
 			}

@@ -3,21 +3,21 @@
 	},
 	"NW_Dyn_IA_160x600": {
 		"width": 160, "height": 600,
-		"logo": { "id": "logoVert", "svg": "NW_logo_vert.svg"},
+		"hasLogoSlide": true,
 		"ribbon":{
 			"singleLineHeight": 18,
 			"twoLineMaxWidth" : 122
 		},
 		"textOnly":{ "txtTop":98 },
 		"invocation":{
-			"Ani_Style": "N Graphic",
+			"Ani_Style": "N Crop",
 			"BgTheme": "Vibrant Blue - White",
-			"RibbonTxt": "Social Security Basics",
-			"_RibbonTxt": "Investing in a Highly Politicized Climate White Paper",
-			"Txt1": "Are your clients uncertain about the benefits of their Social Security?",
+			"RibbonTxt": "Agency Forward",
+			"Txt1": "Gain the digital marketing expertise agents need.",
 			"Txt1_Pause": 3,
-			"Txt2": "Help clients understand their foundation for a retirement plan.",
-			"CtaTxt": "Learn More"
+			"Txt2": "Attract new customers and transform your business with Agency Forward.",
+			"CtaTxt": "See how",
+			"logoSlideX":0
 		}
 	},
 	"NW_Dyn_IA_300x250": {
@@ -33,35 +33,35 @@
 			"_BgTheme": "White-DarkBlue",
 			"BgTheme": "Vibrant Blue - White",
 			"RibbonTxt": "Agency Forward",
-			"Txt1": "It’s a new world, and customers are online more than ever.",
+			"Txt1": "Gain the digital marketing expertise agents need.",
 			"Txt1_Pause": 3,
-			"Txt2": "Evolve the way you do business with digital strategies from<br>Agency Forward.",
+			"Txt2": "Attract new customers and transform your business with<br>Agency Forward.",
 			"CtaTxt": "See how",
 			"logoSlideX":141
 		}
 	},
 	"NW_Dyn_IA_300x600": {
 		"width": 300, "height": 600,
-		"logo": { "id": "logoVert", "svg": "NW_logo_vert.svg"},
+		"hasLogoSlide": true,
 		"ribbon":{
 			"singleLineHeight": 21,
 			"twoLineMaxWidth" : 160
 		},
 		"textOnly":{"txtTop":102 },
 		"invocation":{
-			"Ani_Style": "N Graphic",
+			"Ani_Style": "N Crop",
 			"BgTheme": "Vibrant Blue - White",
-			"RibbonTxt": "Social Security Basics",
-			"_RibbonTxt": "Investing in a Highly Politicized Climate White Paper",
-			"Txt1": "Are your clients uncertain about <br>the benefits of <br>their Social Security?",
+			"RibbonTxt": "Agency Forward",
+			"Txt1": "Gain the digital marketing expertise agents need.",
 			"Txt1_Pause": 3,
-			"Txt2": "Help clients understand <br>their foundation for <br>a retirement plan.",
-			"CtaTxt": "Learn More"
+			"Txt2": "Attract new customers and transform your business with Agency Forward.",
+			"CtaTxt": "See how",
+			"logoSlideX":0
 		}
 	},
 	"NW_Dyn_IA_728x90": {
 		"width": 728, "height": 90,
-		"logo": { "id": "logoHorz", "svg": "NW_logo_horz.svg"},
+		"hasLogoSlide": true,
 		"pic":{
 			"width":369,
 			"x2": 281
@@ -76,17 +76,17 @@
 		"invocation":{
 			"Ani_Style": "N Crop",
 			"BgTheme": "Vibrant Blue - White",
-			"RibbonTxt": "Social Security Basics",
-			"_RibbonTxt": "Investing in a Highly Politicized Climate White Paper",
-			"Txt1": "Are your clients uncertain about <br>the benefits of their Social Security?",
+			"RibbonTxt": "Agency Forward",
+			"Txt1": "Gain the digital marketing expertise agents need.",
 			"Txt1_Pause": 3.0,
-			"Txt2": "Help clients understand their <br>foundation for a retirement plan.",
-			"CtaTxt": "Learn More"
+			"Txt2": "Attract new customers and transform your business with Agency Forward.",
+			"CtaTxt": "See how",
+			"logoSlideX":0
 		}
 	},
 	"NW_Dyn_IA_970x90": {
 		"width": 970, "height": 90,
-		"logo": { "id": "logoHorz", "svg": "NW_logo_horz.svg"},
+		"hasLogoSlide": true,
 		"pic":{
 			"width":412,
 			"x2": 325
@@ -101,12 +101,12 @@
 		"invocation":{
 			"Ani_Style": "N Crop",
 			"BgTheme": "Vibrant Blue - White",
-			"RibbonTxt": "Social Security Basics",
-			"_RibbonTxt": "Investing in a Highly Politicized Climate White Paper",
-			"Txt1": "Are your clients uncertain about <br>the benefits of their Social Security?",
+			"RibbonTxt": "Agency Forward",
+			"Txt1": "Gain the digital marketing expertise agents need.",
 			"Txt1_Pause": 3.0,
-			"Txt2": "Help clients understand their <br>foundation for a retirement plan.",
-			"CtaTxt": "Learn More"
+			"Txt2": "Attract new customers and transform your business with Agency Forward.",
+			"CtaTxt": "See how",
+			"logoSlideX":0
 		}
 	}
 }	

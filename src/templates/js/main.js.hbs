@@ -56,9 +56,9 @@ var initBanner = (function(){
 		end = {
 			container: id('end-container'),
 			t2: id('t2'),
-			swipe: id('end-swipe'),
+			swipe: id('end-swipe'){{#if (isBox)}},
 			stripeStatic: id('end-stripe-static'),
-			stripeStaticPath:id('endStripeStaticPath')
+			stripeStaticPath:id('endStripeStaticPath'){{/if}}
 		}
 		replay = {
 			container: id('replay-container'),
@@ -150,8 +150,8 @@ var initBanner = (function(){
 		cta.txt.style.color = theme.ctaTxtColor;
 		cta.btn.style.backgroundColor = theme.ctaBtnColor;
 		end.container.style.backgroundColor = id('banner').style.backgroundColor = colorNameToHex(theme.bgColor);
-		end.swipe.style.backgroundColor = colorNameToHex(theme.swipeColor);
-		end.stripeStaticPath.style.fill = colorNameToHex(theme.stripeColor);
+		end.swipe.style.backgroundColor = colorNameToHex(theme.swipeColor);{{#if (isBox)}}
+		end.stripeStaticPath.style.fill = colorNameToHex(theme.stripeColor);{{/if}}{{!/}}
 	}
 
 	{{#unless (isLeader)}}/*

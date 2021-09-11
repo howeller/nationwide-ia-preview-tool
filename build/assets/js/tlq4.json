@@ -2,7 +2,7 @@
 	"data":{
 		"Name":"Thought Leadership Q4",
 		"160x600":{
-			"T1":{
+			"Opt1":{
 				"NCrop":{},
 				"NGraphic":{},
 				"TextOnly":{}
@@ -16,20 +16,20 @@
 			}
 		},
 		"300x600":{
-			"T1":{
+			"Opt1":{
 				"NCrop":{},
 				"NGraphic":{},
 				"TextOnly":{}
 			}
 		},
 		"728x90":{
-			"T1":{
+			"Opt1":{
 				"NCrop":{},
 				"TextOnly":{}
 			}
 		},
 		"970x90":{
-			"T1":{
+			"Opt1":{
 				"NCrop":{},
 				"TextOnly":{}
 			}

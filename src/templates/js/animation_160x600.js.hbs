@@ -10,7 +10,34 @@ function nGraphicIntroTl() {
 		.fromTo(aniProps.t1, {clipPath: getPath('wipeInEnd') }, {clipPath: getPath('wipeOutToLeft'), duration:1 }, 'f2out');
 }
 
-function nWindowIntroTl() {
+function nCropIntroTl() {
+	cl('	+ nCropIntroTl ','red');
+	var _maskScale2 = 4.73, // From PSD
+		_maskX1 = -474, // Get number from PSD
+		_maskY1 = -705, // Get number from PSD
+		_picScale2 = 1.48,
+		_zoomSpeed = 0.7;
+
+	end.container.style.top = id('nc-t1-container').style.top = '201px';// Move copy up
+	end.container.style.height = '399px'
+	end.t2.style.paddingTop = '33px';
+	aniOptions.NGraphic.t1.style.visibility = 'hidden';
+
+	return gsap.timeline({paused:false})
+		.set('.mask-path', {fill:colorNameToHex(theme.bgColor)})
+		.set('#svgStripePath', {fill:colorNameToHex(theme.swipeColor)})
+		.set('.fake-mask', {scale:_maskScale2, x:_maskX1, y:_maskY1, transformOrigin:'0% 0%'})
+		.set([aniProps.imgBack], {skewX:0.1})
+		.set(aniProps.container, {visibility:'visible'})
+		.add(fadeInContainerTl())
+		.add('f2', '+=1')
+		.to('#nc-pic-back', { scale: _picScale2, transformOrigin:'50% 50%', duration:_zoomSpeed, ease:'back.out(1.7)', force3D:true}, 'f2')
+		.fromTo(aniProps.t1, {clipPath: getPath('wipeInFromLeftStart') }, {clipPath: getPath('wipeInEnd'), duration:1})
+		.add('f2out', '+='+dc.Txt1_Pause)
+		.fromTo(end.container, {clipPath:getPath('fromBottomLeftStart')}, {clipPath:getPath('fromBottomLeftEnd'), duration:1 }, 'f2out')
+}
+{{!--
+/*function nWindowIntroTl() {
 	cl('	+ nWindowIntroTl ','red');
 	var _maskScale2 = 4.73, // From PSD
 		_maskX2 = -474, // Get number from PSD
@@ -44,7 +71,7 @@ function nWindowIntroTl() {
 		.fromTo(aniProps.t1, {clipPath: getPath('wipeInFromLeftStart') }, {clipPath: getPath('wipeInEnd'), duration:1})
 		.add('f2out', '+='+dc.Txt1_Pause)
 		.fromTo(end.container, {clipPath:getPath('fromBottomLeftStart')}, {clipPath:getPath('fromBottomLeftEnd'), duration:1 }, 'f2out')
-}
+}*/--}}
 
 function txtOnlyIntroTl() {
 	cl('	+ txtOnlyIntroTl ','red');
@@ -62,9 +89,9 @@ function clippedStripeTl() {
 	var _swipeWidth = svg.endStripe.getBBox().width;
 
 	return gsap.timeline({paused:false})
-		.set('#nw-end-swipe', {visibility: 'visible', top:-63})
-		.fromTo(svg.endStripe, {x:{{width}} }, {x:-(_swipeWidth/2.5), duration:swipeSpeed, ease:'power1.out'})
-		.to(svg.endStripe, {x:-(_swipeWidth), duration:swipeSpeed, ease:'power1.in'});
+		.set('#nc-end-swipe', {visibility: 'visible', top:-63})
+		.fromTo(svg.endStripe, {x:-(_swipeWidth) }, {x:-(_swipeWidth/2.5), duration:swipeSpeed, ease:'power1.out'})
+		.to(svg.endStripe, {x:{{width}}, duration:swipeSpeed, ease:'power1.in'});
 }
 
 function defaultStripeTl() {

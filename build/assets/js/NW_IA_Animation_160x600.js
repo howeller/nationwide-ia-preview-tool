@@ -3,7 +3,7 @@ var tl = gsap.timeline({ defaults:{ paused:false, duration:0.5, ease:'power3.out
 var initBanner = (function(){
 
 	var _json, aniStyle, aniOptions, aniProps, initCompleted, isRibbon, isLogoSlide, isTextOnly, theme, useDefaultTheme,
-		cta, end, imgLoader, replay, ribbon, svg,
+		cta, end, imgLoader, replay, ribbon, svg, swipeSpeed,
 		version='0.0.0';// Major.Minor.Bug Fix
 
 		/*
@@ -35,7 +35,6 @@ var initBanner = (function(){
 				ribbonTxtColor: 'darkblue',
 				replayColor: 'white',
 				txtColor: 'white',
-				stripeColor: 'vibrantblue',
 				swipeColor: 'lightblue'
 			},
 			'VibrantBlue-White':{
@@ -46,8 +45,7 @@ var initBanner = (function(){
 				ribbonTxtColor: 'white',
 				replayColor: 'white',
 				txtColor: 'white',
-				stripeColor: 'darkblue',
-				swipeColor: 'mediumblue'
+				swipeColor: 'darkblue'
 			},
 			'White-DarkBlue': {
 				bgColor: 'white',
@@ -58,7 +56,6 @@ var initBanner = (function(){
 				ribbonTxtColor: 'white',
 				replayColor: 'darkblue',
 				txtColor: 'darkblue',
-				stripeColor: 'mediumblue',
 				swipeColor: 'darkblue'
 			}
 		};
@@ -240,71 +237,96 @@ var initBanner = (function(){
 	function emptyTl(){return gsap.timeline({paused:true})}
 	function nGraphicIntroTl() {
 		cl('	+ nGraphicIntroTl ','red');
+	
 		return gsap.timeline({paused:false})
 			.set(aniProps.container, {visibility:'visible'})
 			.add(fadeInContainerTl())
 			.from(svg.nGraphic, { scale:0, duration:0.5, ease:'back.out(1.5)'},'+=1')
-			.fromTo([end.container,'#logo-container'], {clipPath:getPath('fromBottomLeftStart')}, {clipPath:getPath('fromBottomLeftEnd'), duration:1 }, '+=1')
+			.fromTo(end.container, {clipPath:getPath('fromBottomLeftStart')}, {clipPath:getPath('fromBottomLeftEnd'), duration:1 })
 			.add('f2out', '+='+dc.Txt1_Pause)
 			.fromTo(aniProps.t1, {clipPath: getPath('wipeInEnd') }, {clipPath: getPath('wipeOutToLeft'), duration:1 }, 'f2out');
 	}
 	
 	function nCropIntroTl() {
-		cl('	+ nCropIntroTl ','orange');
-		var _maskScale2 = 4.52, // From PSD
-			_maskX1 = -852, // Get number from PSD
-			_maskY1 = -734, // Get number from PSD
-			_maskY2 = -809, // Get number from PSD
-			_zoomSpeed = 1;
+		cl('	+ nCropIntroTl ','red');
+		var _maskScale2 = 4.73, // From PSD
+			_maskX1 = -474, // Get number from PSD
+			_maskY1 = -705, // Get number from PSD
+			_picScale2 = 1.48,
+			_zoomSpeed = 0.7;
+	
+		end.container.style.top = id('nc-t1-container').style.top = '201px';// Move copy up
+		end.container.style.height = '399px'
+		end.t2.style.paddingTop = '33px';
 		aniOptions.NGraphic.t1.style.visibility = 'hidden';
 	
 		return gsap.timeline({paused:false})
 			.set('.mask-path', {fill:colorNameToHex(theme.bgColor)})
+			.set('#svgStripePath', {fill:colorNameToHex(theme.swipeColor)})
 			.set('.fake-mask', {scale:_maskScale2, x:_maskX1, y:_maskY1, transformOrigin:'0% 0%'})
+			.set([aniProps.imgBack], {skewX:0.1})
 			.set(aniProps.container, {visibility:'visible'})
 			.add(fadeInContainerTl())
 			.add('f2', '+=1')
-			.to('.fake-mask', { y:_maskY2, duration:_zoomSpeed, transformOrigin:'0% 0%'}, 'f2')
-			.fromTo('#nc-pic-back', { y:0 },{ y:-20, duration:_zoomSpeed/2, force3D:false }, 'f2')
+			.to('#nc-pic-back', { scale: _picScale2, transformOrigin:'50% 50%', duration:_zoomSpeed, ease:'back.out(1.7)', force3D:true}, 'f2')
 			.fromTo(aniProps.t1, {clipPath: getPath('wipeInFromLeftStart') }, {clipPath: getPath('wipeInEnd'), duration:1})
-			.from('#logo', { autoAlpha:0, duration:0.3}, '-=.3')
 			.add('f2out', '+='+dc.Txt1_Pause)
 			.fromTo(end.container, {clipPath:getPath('fromBottomLeftStart')}, {clipPath:getPath('fromBottomLeftEnd'), duration:1 }, 'f2out')
 	}
 	
 	function txtOnlyIntroTl() {
 		cl('	+ txtOnlyIntroTl ','red');
+		swapClasses(replay.container, 'relay-n', 'replay-to');
+	
 		// wipe in t1 > pause > reverse wipe out
-		return _tl = gsap.timeline({paused:false})
+		return gsap.timeline({paused:false})
 			.set(aniProps.container, {visibility:'visible'})
 			.add(fadeInContainerTl())
 			.fromTo(aniProps.t1, {clipPath: getPath('wipeInFromLeftStart') }, {clipPath: getPath('wipeInEnd'), duration:1, repeat: 1, repeatDelay:dc.Txt1_Pause, yoyo: true })
 	}
 	
+	function clippedStripeTl() {
+		// cl('	//	 clippedStripeTl ');
+		var _swipeWidth = svg.endStripe.getBBox().width;
+	
+		return gsap.timeline({paused:false})
+			.set('#nc-end-swipe', {visibility: 'visible', top:-63})
+			.fromTo(svg.endStripe, {x:-(_swipeWidth) }, {x:-(_swipeWidth/2.5), duration:swipeSpeed, ease:'power1.out'})
+			.to(svg.endStripe, {x:160, duration:swipeSpeed, ease:'power1.in'});
+	}
+	
+	function defaultStripeTl() {
+		// cl('	//	 defaultStripeTl ');
+	
+		return gsap.timeline({paused:false})
+			.set('#end-swipe', {visibility: 'visible'})
+			.fromTo(end.swipe, {x:160 }, {x:-(end.swipe.offsetWidth/3), duration:swipeSpeed, ease:'power1.out'})
+			.to(end.swipe, {x:-(end.swipe.offsetWidth), duration:swipeSpeed, ease:'power1.in'})
+	}
+	
 	function animate() {
-		cl(':: animate :: 300x250');
-		var _introTl = aniProps.frame1Tl(),
-			_logoSlideTl = isLogoSlide ? gsap.timeline({paused:false}).from('#logo', { x:dc.LogoSlideX, duration:0.5}) : emptyTl(),
-			_swipeSpeed = 1;
+		cl(':: animate :: 160x600');
 		
-			// cl('_logoSlideTl ? '+(dc.LogoSlideX > 0));
+		swipeSpeed = 1;
+	
+		var _introTl = aniProps.frame1Tl(), // Get intro TL to use
+				_endStripeTl = aniProps.endStripeTl();// Choose standard vs masked SVG swipe 
+	
 		tl
 			.add(_introTl)
 			.add('end', aniProps.overlap)
 			.fromTo('#t2', {clipPath: getPath('wipeInFromLeftStart')}, {clipPath: getPath('wipeInEnd'), duration:1, ease:'power3.easein' }, 'end')
-			.add(_logoSlideTl,'end')
 			.set([cta.btn, cta.txt],{skewX:0.1}, 'end')
 			.fromTo(cta.btn, {clipPath: getPath('wipeInFromLeftStart')}, {clipPath: getPath('wipeInEnd'), duration:1 },'-=0.5')
-			.fromTo(end.swipe, {x:-(end.swipe.offsetWidth)}, {x:-(end.swipe.offsetWidth/3), duration:_swipeSpeed, ease:'power1.out'},'+=0.5')
-			.to(end.swipe, {x:300, duration:_swipeSpeed, ease:'power1.in'})
-			.add(ctaBounceTl(), "-="+_swipeSpeed)
+			.add(_endStripeTl, '+=0.5')
+			.add(ctaBounceTl(), "-="+swipeSpeed)
 			.from(replay.container, { autoAlpha: 0 })
 			.add(initReplayAction)
 			.add('cta')
 			.add(ctaBounceTl(), "+=1")
 			.add(initCtaAction)
 			// tl.pause("3");
-			// .seek('end-=.3');
+			// .seek('end')
 			// .seek(_introTl.labels[_introTl.previousLabel()]);
 			;
 		console.log('Animation Runtime is ' + tl.endTime());
@@ -333,11 +355,12 @@ var initBanner = (function(){
 
 		// cl('useDefaultTheme ? '+useDefaultTheme, 'red');
 
-		_json = (dc.Banner_json.Url) ? myJson.data['300x250'][dc.Color_Version][aniStyle] : {};
+		_json = (dc.Banner_json.Url) ? myJson.data['160x600'][dc.Color_Version][aniStyle] : {};
 
 		svg = {
 			nGraphic: id('n-graphic'),
-			nGraphicPath: id('n-graphic-path')
+			nGraphicPath: id('n-graphic-path'),
+			endStripe: id('svgStripePath')
 		}
 		imgLoader = {
 			total: 0,
@@ -352,9 +375,7 @@ var initBanner = (function(){
 		end = {
 			container: id('end-container'),
 			t2: id('t2'),
-			swipe: id('end-swipe'),
-			stripeStatic: id('end-stripe-static'),
-			stripeStaticPath:id('endStripeStaticPath')
+			swipe: id('end-swipe')
 		}
 		replay = {
 			container: id('replay-container'),
@@ -375,7 +396,9 @@ var initBanner = (function(){
 				t1: id('t1'),
 				overlap: _json.overlap || '-=0.3',
 				imgBack: id('ng-pic-back'),
-				imgFront: id('ng-pic-front')
+				imgFront: id('ng-pic-front'),
+				endStripeTl: defaultStripeTl,
+				newEndPos:false
 			},
 			'NCrop':{
 				frame1Tl: nCropIntroTl,
@@ -383,14 +406,18 @@ var initBanner = (function(){
 				t1: id('nc-t1'),
 				overlap: _json.overlap || '-=0.5',
 				imgBack: id('nc-pic-back'),
-				replayClass:'replay-nc'
+				replayClass:'replay-nc',
+				endStripeTl: clippedStripeTl,
+				newEndPos:true
 			},
 			'TextOnly':{
 				frame1Tl: txtOnlyIntroTl,
 				container: id('end-container'),
 				t1: id('t1'),
 				overlap: _json.overlap || '+=0.1',
-				replayClass:'replay-to'
+				replayClass:'replay-to',
+				endStripeTl: defaultStripeTl,
+				newEndPos:true
 			}
 		}
 
@@ -430,7 +457,6 @@ var initBanner = (function(){
 		cta.btn.style.backgroundColor = theme.ctaBtnColor;
 		end.container.style.backgroundColor = id('banner').style.backgroundColor = colorNameToHex(theme.bgColor);
 		end.swipe.style.backgroundColor = colorNameToHex(theme.swipeColor);
-		end.stripeStaticPath.style.fill = colorNameToHex(theme.stripeColor);
 	}
 
 	/*
@@ -438,9 +464,9 @@ var initBanner = (function(){
 	* Need to manually calculate the slope (M) = (y2 - y1) / (x2 - x1)
 	*/
 	function setRibbonSize(){
-		if(ribbon.container.offsetHeight <= 20){return;}
-		cl('setRibbonSize	NEW RIBBON HEIGHT '+ribbon.container.offsetHeight+' <= 20', 'red');
-		cl(Math.ceil(ribbon.container.offsetHeight / 20)+' Lines of text', 'red');
+		if(ribbon.container.offsetHeight <= 18){return;}
+		cl('setRibbonSize	NEW RIBBON HEIGHT '+ribbon.container.offsetHeight+' <= 18', 'red');
+		cl(Math.ceil(ribbon.container.offsetHeight / 18)+' Lines of text', 'red');
 
 		var _slope = -1.0,//-1.03225806//-1.055555556
 			_height = ribbon.container.offsetHeight,
@@ -483,7 +509,11 @@ var initBanner = (function(){
 		cl('initTxt ');
 
 		if(isTextOnly){
-			
+			gsap.set([end.container, id('nc-t1-container')], {top:'0px'});// Move copy up
+			gsap.set(end.container, {height:'100%'});
+			gsap.set('.txt-container', {top:'98px', paddingTop:0 });
+			swapClasses(aniProps.t1, 'ng-t1', 'to-t1');
+			swapClasses(end.t2, 'ng-t2', 'to-t2');
 		}
 
 		if(isRibbon){

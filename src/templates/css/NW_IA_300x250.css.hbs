@@ -50,23 +50,24 @@ svg#n-graphic{
 	background-color: var(--vibrantblue);
 }
 #end-container #end-swipe{
-	background-color: var(--darkblue);
-	clip-path: polygon(33% 0%, 100% 0%, 66.00% 100%, 0% 100%); /* parallel shape */
+	background-color: var(--mediumblue);
+	clip-path: polygon(33% 0%, 100% 0%, 66.00% 100%, 0% 100%); /* parallel shape */{{!--
 	-webkit-clip-path: polygon(33% 0%, 100% 0%, 66.00% 100%, 0% 100%); 
-	{{!--clip-path: polygon(0% 0%, 66% 0%, 100% 100%, 33% 100%); /* parallel shape */
-			-webkit-clip-path: polygon(0% 0%, 66% 0%, 100% 100%, 33% 100%); --}}
+	clip-path: polygon(0% 0%, 66% 0%, 100% 100%, 33% 100%); /* parallel shape */
+	-webkit-clip-path: polygon(0% 0%, 66% 0%, 100% 100%, 33% 100%); --}}
 	width: 300%;
 	height: 100%;
 }
-svg#end-stripe-static{
+#end-container #end-stripe{
+	background-color: var(--darkblue);
+	clip-path: polygon(77px 0%, 238px 0%, 0% 198px, 0% 64px); 
+	-webkit-clip-path: polygon(77px 0%, 238px 0%, 0% 198px, 0% 64px); 
+}
+svg#end-stripe{
 	height: 250px;
 	width: 461px;
 	left: -223px;
 	top: 0;
-	/*background-color: var(--darkblue);*/
-	/* slim parallel shape */
-	/*clip-path: polygon(0% 0%, 66% 0%, 100% 100%, 33% 100%); 
-	-webkit-clip-path: polygon(0% 0%, 66% 0%, 100% 100%, 33% 100%); */
 }
 
 #ribbon{

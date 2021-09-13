@@ -56,7 +56,7 @@
 			</div>
 		</div>{{/unless}}
 		<div id="end-container" class="abs">
-			{{#if (isBox)}}{{> endStripeStatic.svg}}{{/if}}{{#if (isSkyscraper)}}
+			{{#if (isBox)}}<div id="end-stripe" class="full-size"></div>{{!> endStripeStatic.svg}}{{/if}}{{#if (isSkyscraper)}}
 			{{> (getSvg 'nCropEndSwipe')}}{{/if}}
 			<div id="end-swipe" class="abs"></div>
 			<div id="t1-container" class="txt-container abs" aria-hidden="true">

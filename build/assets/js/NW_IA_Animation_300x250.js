@@ -353,8 +353,8 @@ var initBanner = (function(){
 			container: id('end-container'),
 			t2: id('t2'),
 			swipe: id('end-swipe'),
-			stripeStatic: id('end-stripe-static'),
-			stripeStaticPath:id('endStripeStaticPath')
+			stripe: id('end-stripe'),
+			// stripeStaticPath:id('endStripeStaticPath')
 		}
 		replay = {
 			container: id('replay-container'),
@@ -430,7 +430,8 @@ var initBanner = (function(){
 		cta.btn.style.backgroundColor = theme.ctaBtnColor;
 		end.container.style.backgroundColor = id('banner').style.backgroundColor = colorNameToHex(theme.bgColor);
 		end.swipe.style.backgroundColor = colorNameToHex(theme.swipeColor);
-		end.stripeStaticPath.style.fill = colorNameToHex(theme.stripeColor);
+		end.stripe.style.backgroundColor = colorNameToHex(theme.stripeColor);
+		
 	}
 
 	/*

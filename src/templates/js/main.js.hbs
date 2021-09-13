@@ -56,9 +56,8 @@ var initBanner = (function(){
 		end = {
 			container: id('end-container'),
 			t2: id('t2'),
-			swipe: id('end-swipe'){{#if (isBox)}},
-			stripe: id('end-stripe'),
-			// stripeStaticPath:id('endStripeStaticPath'){{/if}}
+			swipe: id('end-swipe'),
+			stripe: id('end-stripe') {{!// stripeStaticPath:id('endStripeStaticPath')}}
 		}
 		replay = {
 			container: id('replay-container'),
@@ -152,9 +151,10 @@ var initBanner = (function(){
 		end.container.style.backgroundColor = id('banner').style.backgroundColor = colorNameToHex(theme.bgColor);
 		end.swipe.style.backgroundColor = colorNameToHex(theme.swipeColor);
 		
-		if(theme.stripeColor) {
+		if(theme.stripeColor && !isRibbon) {
+			// Only show the ribbon
 			end.stripe.style.backgroundColor = colorNameToHex(theme.stripeColor);
- 			end.stripe.style.visibility = 'visible';
+ 			end.stripe.style.opacity = 1;
 		}
 	}
 
@@ -183,7 +183,7 @@ var initBanner = (function(){
 	}
 	{{#if (hasLogoSlide)}}
 	function initLogo(){
-		// cl('initLogo ','yellow');
+		cl('initLogo ','yellow');
 		if(isRibbon){
 			cl(' BUMP UP LOGO','yellow');
 			swapClasses(id('logo'), 'logo-no-ribbon', 'logo-over-ribbon');

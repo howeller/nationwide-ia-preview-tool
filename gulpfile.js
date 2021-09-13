@@ -67,7 +67,6 @@ function build(_isPreview=false){
 			helpers : {
 				bannerCss : 				function(){ return `${name}_${this.width}x${this.height}.css`;},
 				bannerAnimateJs : 	function(){ return `animation_${this.width}x${this.height}.js`;},
-				getSvg : 						function(name){	return `${name}_${this.width}x${this.height}.svg`;},
 				cssAssetURL: 				function(){ return getCssUrl(_isPreview);},
 				jsAssetURL: 				function(){ return getJsUrl(_isPreview);},
 				imageAssetURL: 			function(){ return (useGoogleAssets) ? googleLib.root : dir.localImages;},
@@ -75,7 +74,7 @@ function build(_isPreview=false){
 				// imageAssetURL: 			function(){ return getImageUrl(_isPreview);},
 				// logoAssetURL: 			function(){ return getLogoUrl(_isPreview);},
 				fontPath: 					function(){ return googleLib.fonts; },
-				getStaticImagePath: function(){ return (_isPreview) ? './templates/'+this.name+'/images/' : 'images/';},
+				// getStaticImagePath: function(){ return (_isPreview) ? './templates/'+this.name+'/images/' : 'images/';},
 				invocationJs: 			function(){ return (_isPreview) ? 'invocationPreview.js':'invocation.js';},
 				// mainJs: 			  		function(){ return (_isPreview) ? getJsFileName(this)+'.js':getJsFileName(this)+'.js';},//TESTING ONLY
 				mainJs: 			  		function(){ return (_isPreview) ? getJsFileName(this)+'.js':getJsFileName(this)+'.min.js';},//PUT THIS BACK
@@ -83,6 +82,7 @@ function build(_isPreview=false){
 				isPreview: 					function(){ return (_isPreview) },
 				getRibbonSlope: 		function(){ return getSlope(this.ribbon.x1, this.ribbon.x2, 0, this.ribbon.singleLineHeight)},
 				getSlope: 					function(x1,y1,x2,y2){ return (y2 - y1) / (x2 - x1)},
+				getSvg : 						function(name){	return `${name}_${this.width}x${this.height}.svg`;},
 				hasLogoSlide: 			function(){ return this.hasLogoSlide },
 				isBox: 							function(){ return this.height === 250 /*Math.floor(this.width/this.height)===1*/},
 				isSkyscraper: 			function(){ return this.height === 600 },

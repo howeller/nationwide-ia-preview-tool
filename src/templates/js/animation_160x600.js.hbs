@@ -89,9 +89,11 @@ function clippedStripeTl() {
 	var _swipeWidth = svg.endStripe.getBBox().width;
 
 	return gsap.timeline({paused:false})
-		.set('#nc-end-swipe', {visibility: 'visible', top:-63})
-		.fromTo(svg.endStripe, {x:-(_swipeWidth) }, {x:-(_swipeWidth/2.5), duration:swipeSpeed, ease:'power1.out'})
-		.to(svg.endStripe, {x:{{width}}, duration:swipeSpeed, ease:'power1.in'});
+		.set('#nc-end-swipe', {visibility: 'visible', top:-63})// Bump up to get to cover N Crop triangle wedge.
+		.fromTo(svg.endStripe, {x:-(_swipeWidth) }, {x:-466, duration:swipeSpeed, ease:'power1.out'})// Get SVG shape & number from AI file.
+		.to(svg.endStripe, {x:_swipeWidth, duration:swipeSpeed, ease:'power1.in'});{{!--
+		// .fromTo(svg.endStripe, {x:-(_swipeWidth) }, {x:-(_swipeWidth/2.5), duration:swipeSpeed, ease:'power1.out'})
+		// .to(svg.endStripe, {x:{{width}}, duration:swipeSpeed, ease:'power1.in'});--}}
 }
 
 function defaultStripeTl() {

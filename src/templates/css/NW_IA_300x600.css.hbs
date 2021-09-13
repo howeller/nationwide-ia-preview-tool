@@ -5,7 +5,7 @@ img#logo{
 	right: 18px;
 	height: 80px;
 	width: auto;
-	object-fit: contain;
+	/*object-fit: contain;*/
 }
 img.logo-no-ribbon{bottom: 18px}
 img.logo-over-ribbon{bottom: 40px}
@@ -24,6 +24,7 @@ img.pic-front, img.pic-back{
 	width: {{width}}px;
 	height: 300px;
 }
+
 svg#n-graphic{
 	top: 49px;
 	left: 31px;
@@ -48,19 +49,28 @@ svg#n-graphic{
 	left: 0;
 	overflow:visible;
 }
+
+#end-container #end-stripe{
+	background-color: var(--darkblue);
+	clip-path: polygon(91px 0%, 252px 0%, 0% 198px, 0% 64px); 
+	-webkit-clip-path: polygon(77px 0%, 238px 0%, 0% 198px, 0% 64px);
+	opacity: 0;
+}
+
 svg#nc-end-swipe, #end-swipe{
 	visibility: hidden;
 }
+#nc-end-swipe{
+	transform: translateY(1px);/* Fudge positioning a little */
+}
 #end-container #end-swipe{
-	background-color: var(--darkblue);
+	background-color: var(--mediumblue);
 	clip-path: polygon(0% 0%, 66% 0%, 100% 100%, 33% 100%);
 	-webkit-clip-path: polygon(0% 0%, 66% 0%, 100% 100%, 33% 100%); 
 	width: 300%;
 	height: 100%;
 }
-#nc-end-swipe{
-	transform: translateY(1px);/* Fudge positioning a little */
-}
+
 #ribbon{
 	background-color: var(--mediumblue);
 	bottom: 0px;
@@ -70,6 +80,7 @@ svg#nc-end-swipe, #end-swipe{
 	position: absolute;
 	width: auto;
 	height: auto;
+	opacity: 0;
 }
 
 #ribbon #ribbon-txt{

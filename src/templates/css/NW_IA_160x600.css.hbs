@@ -12,7 +12,8 @@ img.logo-over-ribbon{bottom: 35px}
 
 /* N-Crop Images */
 image{
-	top: 0; left: 0;
+	top: 0; 
+	left: 0;
 	width: {{width}}px;
 	height: auto;
 	/*object-fit:contain;*/
@@ -20,7 +21,8 @@ image{
 
 /* N-Graphic Imgs */
 img.pic-front, img.pic-back{
-	top: 0; left: 0;
+	top: 0; 
+	left: 0;
 	width: {{width}}px;
 	height: auto;
 }
@@ -36,7 +38,7 @@ svg#n-graphic{
 
 .txt-container{
 	top: 0;
-	left:0;
+	left: 0;
 	width: 100%;
 	height: 100%;
 }
@@ -45,22 +47,30 @@ svg#n-graphic{
 	background-color: var(--vibrantblue);
 	width: {{width}}px;
 	height: 355px;
-	top:245px;
-	left:0;
-	overflow:visible;
+	top: 245px;
+	left: 0;
+	overflow: visible;
 }
+
+#end-container #end-stripe{
+	background-color: var(--darkblue);
+	clip-path: polygon(77px 0%, 238px 0%, 0% 198px, 0% 64px); 
+	-webkit-clip-path: polygon(77px 0%, 238px 0%, 0% 198px, 0% 64px);
+	opacity: 0;
+}
+
 svg#nc-end-swipe, #end-swipe{
 	visibility: hidden;
 }
+#nc-end-swipe{
+	transform: translateY(1px);/* Fudge positioning a little */
+}
 #end-container #end-swipe{
-	background-color: var(--darkblue);
+	background-color: var(--mediumblue);
 	clip-path: polygon(0% 0%, 66% 0%, 100% 100%, 33% 100%); 
 	-webkit-clip-path: polygon(0% 0%, 66% 0%, 100% 100%, 33% 100%); 
 	width: 300%;
 	height: 100%;
-}
-#nc-end-swipe{
-	transform: translateY(1px);/* Fudge positioning a little */
 }
 
 #ribbon{

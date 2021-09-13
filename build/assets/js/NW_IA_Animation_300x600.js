@@ -249,7 +249,6 @@ var initBanner = (function(){
 	function emptyTl(){return gsap.timeline({paused:true})}
 	function nGraphicIntroTl() {
 		cl('	+ nGraphicIntroTl ','red');
-	
 		return gsap.timeline({paused:false})
 			.set(aniProps.container, {visibility:'visible'})
 			.add(fadeInContainerTl())
@@ -261,15 +260,15 @@ var initBanner = (function(){
 	
 	function nCropIntroTl() {
 		cl('	+ nCropIntroTl ','red');
-		var _maskScale2 = 4.73, // From PSD
-			_maskX1 = -474, // Get number from PSD
-			_maskY1 = -705, // Get number from PSD
-			_picScale2 = 1.48,
-			_zoomSpeed = 0.7;
+		var _maskScale2 = 3.51, // From PSD
+			_maskX1 = -645, // Get number from PSD
+			_maskY1 = -688, // Get number from PSD
+			_picScale2 = 1.21,
+			_zoomSpeed = 1;
 	
-		end.container.style.top = id('nc-t1-container').style.top = '201px';// Move copy up
-		end.container.style.height = '399px'
-		end.t2.style.paddingTop = '33px';
+		end.container.style.top = id('nc-t1-container').style.top = '275px';// Move copy up
+		end.container.style.height = '325px'
+		end.t2.style.paddingTop = '44px';
 		aniOptions.NGraphic.t1.style.visibility = 'hidden';
 	
 		return gsap.timeline({paused:false})
@@ -286,12 +285,12 @@ var initBanner = (function(){
 			.fromTo(end.container, {clipPath:getPath('fromBottomLeftStart')}, {clipPath:getPath('fromBottomLeftEnd'), duration:1 }, 'f2out')
 	}
 	
+	
 	function txtOnlyIntroTl() {
 		cl('	+ txtOnlyIntroTl ','red');
-		swapClasses(replay.container, 'relay-n', 'replay-to');
 	
 		// wipe in t1 > pause > reverse wipe out
-		return gsap.timeline({paused:false})
+		return _tl = gsap.timeline({paused:false})
 			.set(aniProps.container, {visibility:'visible'})
 			.add(fadeInContainerTl())
 			.fromTo(aniProps.t1, {clipPath: getPath('wipeInFromLeftStart') }, {clipPath: getPath('wipeInEnd'), duration:1, repeat: 1, repeatDelay:dc.Txt1_Pause, yoyo: true })
@@ -301,33 +300,36 @@ var initBanner = (function(){
 		// cl('	//	 clippedStripeTl ');
 		var _swipeWidth = svg.endStripe.getBBox().width;
 	
-		return gsap.timeline({paused:false})
-			.set('#nc-end-swipe', {visibility: 'visible', top:-63})// Bump up to get to cover N Crop triangle wedge.
-			.fromTo(svg.endStripe, {x:-(_swipeWidth) }, {x:-466, duration:swipeSpeed, ease:'power1.out'})// Get SVG shape & number from AI file.
+		return _tl = gsap.timeline({paused:false})
+			.set('#nc-end-swipe', {visibility: 'visible', top:-93})// Bump up to get to cover N Crop triangle wedge.
+			.fromTo(svg.endStripe, {x:-1150 }, {x:-424, duration:swipeSpeed, ease:'power1.out'})// Get SVG shape & number from AI file.
 			.to(svg.endStripe, {x:_swipeWidth, duration:swipeSpeed, ease:'power1.in'});
 	}
 	
 	function defaultStripeTl() {
-		// cl('	//	 defaultStripeTl ');
+		// cl('	 defaultStripeTl ');
 	
-		return gsap.timeline({paused:false})
+		return _tl = gsap.timeline({paused:false})
 			.set('#end-swipe', {visibility: 'visible'})
-			.fromTo(end.swipe, {x:160 }, {x:-(end.swipe.offsetWidth/3), duration:swipeSpeed, ease:'power1.out'})
-			.to(end.swipe, {x:-(end.swipe.offsetWidth), duration:swipeSpeed, ease:'power1.in'})
+			.fromTo(end.swipe, { x:-(end.swipe.offsetWidth)}, {x:-(end.swipe.offsetWidth/3), duration:swipeSpeed, ease:'power1.out'})
+			.to(end.swipe, { x:300, duration:swipeSpeed, ease:'power1.in'})
 	}
 	
 	function animate() {
-		cl(':: animate :: 160x600');
+		cl(':: animate :: 300x600 ');
+		cl('isLogoSlide? '+isLogoSlide, 'red');
 		
 		swipeSpeed = 1;
 	
 		var _introTl = aniProps.frame1Tl(), // Get intro TL to use
-				_endStripeTl = aniProps.endStripeTl();// Choose standard vs masked SVG swipe 
+			_logoSlideTl = isLogoSlide ? gsap.timeline({paused:false}).from('#logo', { x:dc.LogoSlideX, duration:0.5}) : emptyTl(),
+			_endStripeTl = aniProps.endStripeTl();// Choose standard vs masked SVG swipe 
 	
 		tl
 			.add(_introTl)
 			.add('end', aniProps.overlap)
 			.fromTo('#t2', {clipPath: getPath('wipeInFromLeftStart')}, {clipPath: getPath('wipeInEnd'), duration:1, ease:'power3.easein' }, 'end')
+			.add(_logoSlideTl,'end')
 			.set([cta.btn, cta.txt],{skewX:0.1}, 'end')
 			.fromTo(cta.btn, {clipPath: getPath('wipeInFromLeftStart')}, {clipPath: getPath('wipeInEnd'), duration:1 },'-=0.5')
 			.add(_endStripeTl, '+=0.5')
@@ -337,7 +339,7 @@ var initBanner = (function(){
 			.add('cta')
 			.add(ctaBounceTl(), "+=1")
 			.add(initCtaAction)
-			// tl.pause("3");
+			// tl.pause("1");
 			// .seek('end')
 			// .seek(_introTl.labels[_introTl.previousLabel()]);
 			;
@@ -367,7 +369,7 @@ var initBanner = (function(){
 
 		cl('useDefaultTheme ? '+useDefaultTheme, 'red');
 
-		_json = (dc.Banner_json.Url) ? myJson.data['160x600'][dc.Color_Version][aniStyle] : {};
+		_json = (dc.Banner_json.Url) ? myJson.data['300x600'][dc.Color_Version][aniStyle] : {};
 
 		svg = {
 			nGraphic: id('n-graphic'),
@@ -483,9 +485,9 @@ var initBanner = (function(){
 	* Need to manually calculate the slope (M) = (y2 - y1) / (x2 - x1)
 	*/
 	function setRibbonSize(){
-		if(ribbon.container.offsetHeight <= 18){return;}
-		cl('setRibbonSize	NEW RIBBON HEIGHT '+ribbon.container.offsetHeight+' <= 18', 'red');
-		cl(Math.ceil(ribbon.container.offsetHeight / 18)+' Lines of text', 'red');
+		if(ribbon.container.offsetHeight <= 21){return;}
+		cl('setRibbonSize	NEW RIBBON HEIGHT '+ribbon.container.offsetHeight+' <= 21', 'red');
+		cl(Math.ceil(ribbon.container.offsetHeight / 21)+' Lines of text', 'red');
 
 		var _slope = -1.0,//-1.03225806//-1.055555556
 			_height = ribbon.container.offsetHeight,
@@ -530,7 +532,7 @@ var initBanner = (function(){
 		if(isTextOnly){
 			gsap.set([end.container, id('nc-t1-container')], {top:'0px'});// Move copy up
 			gsap.set(end.container, {height:'100%'});
-			gsap.set('.txt-container', {top:'98px', paddingTop:0 });
+			gsap.set('.txt-container', {top:'102px', paddingTop:0 });
 			swapClasses(aniProps.t1, 'ng-t1', 'to-t1');
 			swapClasses(end.t2, 'ng-t2', 'to-t2');
 		}

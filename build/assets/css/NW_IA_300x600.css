@@ -86,7 +86,7 @@ sup{
 	position: absolute;
 	top: 0;
 	left: 0;
-	width: 160px;
+	width: 300px;
 	height: 600px;
 }
 #banner {
@@ -97,35 +97,33 @@ sup{
 }
 
 img#logo{
-	right: 15px;
-	height: 70px;
+	right: 18px;
+	height: 80px;
 	width: auto;
-	object-fit: contain;
+	/*object-fit: contain;*/
 }
-img.logo-no-ribbon{bottom: 15px}
-img.logo-over-ribbon{bottom: 35px}
+img.logo-no-ribbon{bottom: 18px}
+img.logo-over-ribbon{bottom: 40px}
 
 /* N-Crop Images */
 image{
-	top: 0; 
-	left: 0;
-	width: 160px;
+	top: 0; left: 0;
+	width: 300px;
 	height: auto;
 	/*object-fit:contain;*/
 }
 
 /* N-Graphic Imgs */
 img.pic-front, img.pic-back{
-	top: 0; 
-	left: 0;
-	width: 160px;
-	height: auto;
+	top: 0; left: 0;
+	width: 300px;
+	height: 300px;
 }
+
 svg#n-graphic{
-	top: 30px;
-	left: 50%;
-	transform: translateX(-50%);
-	width: 134px;
+	top: 49px;
+	left: 31px;
+	width: 238px;
 	height: auto;
 }
 
@@ -133,23 +131,23 @@ svg#n-graphic{
 
 .txt-container{
 	top: 0;
-	left: 0;
+	left:0;
 	width: 100%;
 	height: 100%;
 }
 
 #end-container, #nc-t1-container{
 	background-color: var(--vibrantblue);
-	width: 160px;
-	height: 355px;
-	top: 245px;
+	width: 300px;
+	height: 325px;
+	top: 300px;
 	left: 0;
-	overflow: visible;
+	overflow:visible;
 }
 
 #end-container #end-stripe{
 	background-color: var(--darkblue);
-	clip-path: polygon(77px 0%, 238px 0%, 0% 198px, 0% 64px); 
+	clip-path: polygon(91px 0%, 252px 0%, 0% 198px, 0% 64px); 
 	-webkit-clip-path: polygon(77px 0%, 238px 0%, 0% 198px, 0% 64px);
 	opacity: 0;
 }
@@ -162,7 +160,7 @@ svg#nc-end-swipe, #end-swipe{
 }
 #end-container #end-swipe{
 	background-color: var(--mediumblue);
-	clip-path: polygon(0% 0%, 66% 0%, 100% 100%, 33% 100%); 
+	clip-path: polygon(0% 0%, 66% 0%, 100% 100%, 33% 100%);
 	-webkit-clip-path: polygon(0% 0%, 66% 0%, 100% 100%, 33% 100%); 
 	width: 300%;
 	height: 100%;
@@ -171,7 +169,7 @@ svg#nc-end-swipe, #end-swipe{
 #ribbon{
 	background-color: var(--mediumblue);
 	bottom: 0px;
-	clip-path: polygon(0% 0%, calc(100% - 18px) 0%, 100% 100%, 0% 100%);
+	clip-path: polygon(0% 0%, calc(100% - 21px) 0%, 100% 100%, 0% 100%);
 	left: 0;
 	display: block;
 	position: absolute;
@@ -186,11 +184,8 @@ svg#nc-end-swipe, #end-swipe{
 	font-size: 12px;
 	line-height: 14px;
 	letter-spacing: 0px;
-	padding: 2px 23px 2px 6px;
-	white-space:pre-line;
+	padding: 3px 27px 4px 6px;
 }
-
-/* Text Styles */
 
 .t1{
 	color: white;
@@ -198,44 +193,52 @@ svg#nc-end-swipe, #end-swipe{
 	font-weight: 600;
 	letter-spacing:0;
 	text-align:left;
-	width: 126px;
+	width: 254px;
+	overflow: visible;
 }
 .ng-t1{
-	font-size: 22px;
-	line-height: 24px;
-	padding: 17px 0px 0px 18px;
+	font-size: 26px;
+	line-height: 28px;
+	padding: 19px 0px 0px 22px;
 }
 .nc-t1{
-	font-size: 19px;
-	line-height: 21px;
-	padding: 33px 0px 0px 18px;
+	font-size: 24px;
+	line-height: 26px;
+	padding: 48px 0px 0px 22px;
 }
 .to-t1{
-	font-size: 22px;
-	line-height: 24px;
-	padding: 0px 0px 0px 18px;
+	font-size: 33px;
+	line-height: 35px;
+	padding: 0px 0px 23px 23px;
 }
+
 /* end-txt */
 
 #t2{
 	color: white;
 	font-weight: 600;
-	font-size: 19px;
-	line-height: 21px;
 	letter-spacing:0;
-	width: 126px;
+	width: 255px;
 }
 .t2{
-	padding: 19px 0px 16px 21px;
+	font-size: 21px;
+	line-height: 23px;
+	padding: 19px 0px 23px 23px;
 }
+
+/* Text Only Class*/
+
 .to-t2{
-	padding: 0px 0px 16px 21px;
+	font-size: 31px;
+	line-height: 33px;
+	padding: 0px 0px 23px 23px;
 }
 
 /* CTA */
+
 #cta-container{
 	display: inline-block;
-	padding: 0px 19px;
+	padding: 0px 23px;
 }
 #cta {
 	background-color:var(--mintgreen);
@@ -261,17 +264,18 @@ svg#nc-end-swipe, #end-swipe{
 }
 
 /* Replay Btn */
-.replay{
-	top: 245px;
+
+.replay {
+	top: 300px;
 	left: 0;
+}
+.replay-nc{
+	top: 270px;
+	left: 18px;
 }
 .replay-to{
 	top: 0;
 	left: 0;
-}
-.replay-nc{
-	top: 196px;
-	left: 13px;
 }
 #replay-container {
 	width: 30px;

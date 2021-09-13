@@ -147,17 +147,19 @@ svg#n-graphic{
 #end-container{
 	background-color: var(--vibrantblue);
 }
+
+#end-container #end-stripe{
+	background-color: var(--darkblue);
+	clip-path: polygon(77px 0%, 238px 0%, 0% 198px, 0% 64px); 
+	-webkit-clip-path: polygon(77px 0%, 238px 0%, 0% 198px, 0% 64px);
+	opacity: 0;
+}
+
 #end-container #end-swipe{
 	background-color: var(--mediumblue);
 	clip-path: polygon(33% 0%, 100% 0%, 66.00% 100%, 0% 100%); /* parallel shape */
 	width: 300%;
 	height: 100%;
-}
-#end-container #end-stripe{
-	background-color: var(--darkblue);
-	clip-path: polygon(77px 0%, 238px 0%, 0% 198px, 0% 64px); 
-	-webkit-clip-path: polygon(77px 0%, 238px 0%, 0% 198px, 0% 64px);
-	visibility: hidden;
 }
 
 #ribbon{

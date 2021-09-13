@@ -14,7 +14,7 @@ function nCropIntroTl() {
 	var _maskScale2 = 3.51, // From PSD
 		_maskX1 = -645, // Get number from PSD
 		_maskY1 = -688, // Get number from PSD
-		_picScale2 = 1.48,
+		_picScale2 = 1.21,
 		_zoomSpeed = 1;
 
 	end.container.style.top = id('nc-t1-container').style.top = '275px';// Move copy up
@@ -87,9 +87,11 @@ function clippedStripeTl() {
 	var _swipeWidth = svg.endStripe.getBBox().width;
 
 	return _tl = gsap.timeline({paused:false})
-		.set('#nc-end-swipe', {visibility: 'visible', top:-93})
-		.fromTo(svg.endStripe, {x:-(_swipeWidth) }, {x:-(_swipeWidth/3), duration:swipeSpeed, ease:'power1.out'})
-		.to(svg.endStripe, {x:{{width}}, duration:swipeSpeed, ease:'power1.in'});
+		.set('#nc-end-swipe', {visibility: 'visible', top:-93})// Bump up to get to cover N Crop triangle wedge.
+		.fromTo(svg.endStripe, {x:-1150 }, {x:-424, duration:swipeSpeed, ease:'power1.out'})// Get SVG shape & number from AI file.
+		.to(svg.endStripe, {x:_swipeWidth, duration:swipeSpeed, ease:'power1.in'});{{!--
+		// .fromTo(svg.endStripe, {x:-(_swipeWidth) }, {x:-(_swipeWidth/3), duration:swipeSpeed, ease:'power1.out'})
+		// .to(svg.endStripe, {x:{{width}}, duration:swipeSpeed, ease:'power1.in'});--}}
 }
 
 function defaultStripeTl() {
@@ -97,12 +99,13 @@ function defaultStripeTl() {
 
 	return _tl = gsap.timeline({paused:false})
 		.set('#end-swipe', {visibility: 'visible'})
-		.fromTo(end.swipe, {x:{{width}} }, {x:-(end.swipe.offsetWidth/3), duration:swipeSpeed, ease:'power1.out'})
-		.to(end.swipe, {x:-(end.swipe.offsetWidth), duration:swipeSpeed, ease:'power1.in'})
+		.fromTo(end.swipe, { x:-(end.swipe.offsetWidth)}, {x:-(end.swipe.offsetWidth/3), duration:swipeSpeed, ease:'power1.out'})
+		.to(end.swipe, { x:{{width}}, duration:swipeSpeed, ease:'power1.in'})
 }
 
 function animate() {
-	cl(':: animate :: {{width}}x{{height}}');
+	cl(':: animate :: {{width}}x{{height}} ');
+	cl('isLogoSlide? '+isLogoSlide, 'red');
 	
 	swipeSpeed = 1;
 

@@ -96,6 +96,8 @@ sup{
 	overflow: hidden;
 }
 
+/* Logos */
+
 img#logo{
 	right: 16px;
 	height: 70px;
@@ -126,6 +128,7 @@ svg#n-graphic{
 	width: 209px;
 	height: auto;
 }
+
 /* Positioning */
 
 .txt-container{
@@ -153,13 +156,8 @@ svg#n-graphic{
 #end-container #end-stripe{
 	background-color: var(--darkblue);
 	clip-path: polygon(77px 0%, 238px 0%, 0% 198px, 0% 64px); 
-	-webkit-clip-path: polygon(77px 0%, 238px 0%, 0% 198px, 0% 64px); 
-}
-svg#end-stripe{
-	height: 250px;
-	width: 461px;
-	left: -223px;
-	top: 0;
+	-webkit-clip-path: polygon(77px 0%, 238px 0%, 0% 198px, 0% 64px);
+	visibility: hidden;
 }
 
 #ribbon{

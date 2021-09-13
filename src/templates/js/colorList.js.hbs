@@ -26,8 +26,7 @@
 			ribbonColor: 'lightblue',
 			ribbonTxtColor: 'darkblue',
 			replayColor: 'white',
-			txtColor: 'white',{{#if (isBox)}}
-			stripeColor: 'vibrantblue',{{/if}}
+			txtColor: 'white',
 			swipeColor: 'lightblue'
 		},
 		'VibrantBlue-White':{
@@ -37,9 +36,20 @@
 			ribbonColor: 'darkblue',
 			ribbonTxtColor: 'white',
 			replayColor: 'white',
-			txtColor: 'white',{{#if (isBox)}}
-			stripeColor: 'darkblue',{{/if}}
-			swipeColor: '{{#if (isBox)}}mediumblue{{else}}darkblue{{/if}}'
+			txtColor: 'white',
+			// stripeColor: false,
+			swipeColor: 'darkblue'
+		},
+		'VibrantBlue-White-EndStripe':{
+			bgColor: 'vibrantblue',
+			ctaTxtColor: 'darkblue',
+			logoColor: 'white',
+			ribbonColor: 'darkblue',
+			ribbonTxtColor: 'white',
+			replayColor: 'white',
+			txtColor: 'white',
+			stripeColor: 'darkblue',
+			swipeColor: 'mediumblue'
 		},
 		'White-DarkBlue': {
 			bgColor: 'white',
@@ -49,8 +59,7 @@
 			ribbonColor: 'darkblue',
 			ribbonTxtColor: 'white',
 			replayColor: 'darkblue',
-			txtColor: 'darkblue',{{#if (isBox)}}
-			stripeColor: 'mediumblue',{{/if}}
+			txtColor: 'darkblue',
 			swipeColor: 'darkblue'
 		}
 	};

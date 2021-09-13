@@ -24,7 +24,7 @@ var initBanner = (function(){
 		aniStyle = removeSpaces(dc.Ani_Style);
 		
 		// Do not modify colors if any customizations are entered in the feed.
-		useDefaultTheme = (_feedTheme === 'VibrantBlue-White' && !dc.TxtColor && !dc.RibbonColor && !dc.RibbonTxtColor && !dc.ReplayColor);
+		useDefaultTheme = (_feedTheme === 'VibrantBlue-White-EndStripe' && !dc.TxtColor && !dc.RibbonColor && !dc.RibbonTxtColor && !dc.ReplayColor);
 		
 		theme = themeMap[_feedTheme]; //Get color choices
 
@@ -34,7 +34,7 @@ var initBanner = (function(){
 		{{#if (hasLogoSlide)}}
 		isLogoSlide = (dc.LogoSlideX > 0);{{/if}}{{!/}}
 
-		// cl('useDefaultTheme ? '+useDefaultTheme, 'red');
+		cl('useDefaultTheme ? '+useDefaultTheme, 'red');
 
 		_json = (dc.Banner_json.Url) ? myJson.data['{{width}}x{{height}}'][dc.Color_Version][aniStyle] : {};
 
@@ -138,7 +138,7 @@ var initBanner = (function(){
 	*/
 	function initColors(){
 		if(useDefaultTheme) return;
-		cl('+initColors ');
+		cl('+initColors ','pink');
 
 		// Apply colors: Look at feed customizations 1st
 		aniProps.t1.style.color = end.t2.style.color = colorCheck(dc.TxtColor||theme.txtColor);
@@ -150,9 +150,12 @@ var initBanner = (function(){
 		cta.txt.style.color = theme.ctaTxtColor;
 		cta.btn.style.backgroundColor = theme.ctaBtnColor;
 		end.container.style.backgroundColor = id('banner').style.backgroundColor = colorNameToHex(theme.bgColor);
-		end.swipe.style.backgroundColor = colorNameToHex(theme.swipeColor);{{#if (isBox)}}
-		end.stripe.style.backgroundColor = colorNameToHex(theme.stripeColor);
-		{{!/*end.stripeStaticPath.style.fill = colorNameToHex(theme.stripeColor);*/}}{{/if}}{{!/}}
+		end.swipe.style.backgroundColor = colorNameToHex(theme.swipeColor);
+		
+		if(theme.stripeColor) {
+			end.stripe.style.backgroundColor = colorNameToHex(theme.stripeColor);
+ 			end.stripe.style.visibility = 'visible';
+		}
 	}
 
 	{{#unless (isLeader)}}/*
@@ -180,7 +183,7 @@ var initBanner = (function(){
 	}
 	{{#if (hasLogoSlide)}}
 	function initLogo(){
-		cl('initLogo ','yellow');
+		// cl('initLogo ','yellow');
 		if(isRibbon){
 			cl(' BUMP UP LOGO','yellow');
 			swapClasses(id('logo'), 'logo-no-ribbon', 'logo-over-ribbon');

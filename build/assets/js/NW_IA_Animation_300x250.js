@@ -35,10 +35,20 @@ var initBanner = (function(){
 				ribbonTxtColor: 'darkblue',
 				replayColor: 'white',
 				txtColor: 'white',
-				stripeColor: 'vibrantblue',
 				swipeColor: 'lightblue'
 			},
 			'VibrantBlue-White':{
+				bgColor: 'vibrantblue',
+				ctaTxtColor: 'darkblue',
+				logoColor: 'white',
+				ribbonColor: 'darkblue',
+				ribbonTxtColor: 'white',
+				replayColor: 'white',
+				txtColor: 'white',
+				// stripeColor: false,
+				swipeColor: 'darkblue'
+			},
+			'VibrantBlue-White-EndStripe':{
 				bgColor: 'vibrantblue',
 				ctaTxtColor: 'darkblue',
 				logoColor: 'white',
@@ -58,7 +68,6 @@ var initBanner = (function(){
 				ribbonTxtColor: 'white',
 				replayColor: 'darkblue',
 				txtColor: 'darkblue',
-				stripeColor: 'mediumblue',
 				swipeColor: 'darkblue'
 			}
 		};
@@ -322,7 +331,7 @@ var initBanner = (function(){
 		aniStyle = removeSpaces(dc.Ani_Style);
 		
 		// Do not modify colors if any customizations are entered in the feed.
-		useDefaultTheme = (_feedTheme === 'VibrantBlue-White' && !dc.TxtColor && !dc.RibbonColor && !dc.RibbonTxtColor && !dc.ReplayColor);
+		useDefaultTheme = (_feedTheme === 'VibrantBlue-White-EndStripe' && !dc.TxtColor && !dc.RibbonColor && !dc.RibbonTxtColor && !dc.ReplayColor);
 		
 		theme = themeMap[_feedTheme]; //Get color choices
 
@@ -331,7 +340,7 @@ var initBanner = (function(){
 		isTextOnly = (aniStyle === 'TextOnly');
 		isLogoSlide = (dc.LogoSlideX > 0);
 
-		// cl('useDefaultTheme ? '+useDefaultTheme, 'red');
+		cl('useDefaultTheme ? '+useDefaultTheme, 'red');
 
 		_json = (dc.Banner_json.Url) ? myJson.data['300x250'][dc.Color_Version][aniStyle] : {};
 
@@ -417,7 +426,7 @@ var initBanner = (function(){
 	*/
 	function initColors(){
 		if(useDefaultTheme) return;
-		cl('+initColors ');
+		cl('+initColors ','pink');
 
 		// Apply colors: Look at feed customizations 1st
 		aniProps.t1.style.color = end.t2.style.color = colorCheck(dc.TxtColor||theme.txtColor);
@@ -430,8 +439,11 @@ var initBanner = (function(){
 		cta.btn.style.backgroundColor = theme.ctaBtnColor;
 		end.container.style.backgroundColor = id('banner').style.backgroundColor = colorNameToHex(theme.bgColor);
 		end.swipe.style.backgroundColor = colorNameToHex(theme.swipeColor);
-		end.stripe.style.backgroundColor = colorNameToHex(theme.stripeColor);
 		
+		if(theme.stripeColor) {
+			end.stripe.style.backgroundColor = colorNameToHex(theme.stripeColor);
+ 			end.stripe.style.visibility = 'visible';
+		}
 	}
 
 	/*
@@ -458,7 +470,7 @@ var initBanner = (function(){
 		ribbon.container.style.clipPath = 'polygon(0% 0%, '+_x2+'px 0%, 100% 100%, 0% 100%)';
 	}
 	function initLogo(){
-		cl('initLogo ','yellow');
+		// cl('initLogo ','yellow');
 		if(isRibbon){
 			cl(' BUMP UP LOGO','yellow');
 			swapClasses(id('logo'), 'logo-no-ribbon', 'logo-over-ribbon');

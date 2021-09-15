@@ -90,7 +90,7 @@ var initBanner = (function(){
 				imgBack: id('nc-pic-back'),{{else}}
 				t1: id('t1'),
 				overlap: _json.overlap || '-=0',
-				imgBack: id('nc-pic'){{/unless}}{{!/}}
+				imgBack: id('nc-pic'),{{/unless}}{{!/}}
 				replayClass:'replay-nc'{{#if (isSkyscraper)}},
 				endStripeTl: clippedStripeTl,
 				newEndPos:true{{/if}}{{!/}}
@@ -235,9 +235,9 @@ var initBanner = (function(){
 	}
 
 	function initADACompliance(){
-		cl('initADACompliance');
+		cl('initADACompliance');{{#unless (isLeader)}}
 		var t1Container = (aniStyle === 'NCrop') ? id('nc-t1-container') : id('t1-container');
-		t1Container.removeAttribute('aria-hidden');
+		t1Container.removeAttribute('aria-hidden');{{/unless}}{{!/}}
 
 		aniProps.t1.setAttribute('role', "heading");
 		aniProps.t1.setAttribute('aria-level', 1);

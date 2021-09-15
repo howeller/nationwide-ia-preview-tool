@@ -43,16 +43,16 @@
 </head>
 <body>
 	<div style="visibility:hidden; font-family:proxima-nova; position: absolute;" aria-hidden="true" aria-wait="Loading">Loading</div>
-	<div id="banner" class="full-size" role="banner">
-		<div id="ng-parent" class="full-size hide">{{#unless (isLeader)}}
+	<div id="banner" class="full-size" role="banner">{{#unless (isLeader)}}
+		<div id="ng-parent" class="full-size hide">
 			<img id="ng-pic-back" class="pic-back" src="" alt="" aria-hidden="true"/>
 			{{> Ngraphic.svg}}
 			<img id="ng-pic-front" class="pic-front" src="" alt="" aria-hidden="true"/>
 		</div>
 		<div id="nc-parent" class="full-size hide">
 			{{> (getSvg 'nCrop')}}
-			<div id="nc-t1-container" class="abs" aria-hidden="true">
-				{{#if (isSkyscraper)}}<div id="nc-stripe" class="stripe"></div>{{/if}}
+			<div id="nc-t1-container" class="abs" aria-hidden="true">{{#if (isSkyscraper)}}
+				<div id="nc-stripe" class="stripe"></div>{{/if}}
 				<div id="nc-t1" class="nc-t1 t1 abs">*</div>
 			</div>
 		</div>{{/unless}}

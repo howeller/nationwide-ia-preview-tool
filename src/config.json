@@ -3,7 +3,7 @@
 	},
 	"NW_Dyn_IA_160x600": {
 		"width": 160, "height": 600,
-		"hasLogoSlide": true,
+		"hasLogoSlide": false,
 		"ribbon":{
 			"singleLineHeight": 18,
 			"twoLineMaxWidth" : 122
@@ -56,12 +56,12 @@
 			"Txt1_Pause": 3,
 			"Txt2": "Attract new customers and transform your business with Agency Forward.",
 			"CtaTxt": "See how",
-			"logoSlideX":0
+			"logoSlideX":159
 		}
 	},
 	"NW_Dyn_IA_728x90": {
 		"width": 728, "height": 90,
-		"hasLogoSlide": true,
+		"hasLogoSlide": false,
 		"pic":{
 			"width":369,
 			"x2": 281
@@ -77,16 +77,16 @@
 			"Ani_Style": "N Crop",
 			"BgTheme": "Vibrant Blue - White",
 			"RibbonTxt": "Agency Forward",
-			"Txt1": "Gain the digital marketing expertise agents need.",
+			"Txt1": "Gain the digital marketing <br>expertise agents need.",
 			"Txt1_Pause": 3.0,
-			"Txt2": "Attract new customers and transform your business with Agency Forward.",
+			"Txt2": "Attract new customers and <br>transform your business <br>with Agency Forward.",
 			"CtaTxt": "See how",
 			"logoSlideX":0
 		}
 	},
 	"NW_Dyn_IA_970x90": {
 		"width": 970, "height": 90,
-		"hasLogoSlide": true,
+		"hasLogoSlide": false,
 		"pic":{
 			"width":412,
 			"x2": 325
@@ -102,9 +102,9 @@
 			"Ani_Style": "N Crop",
 			"BgTheme": "Vibrant Blue - White",
 			"RibbonTxt": "Agency Forward",
-			"Txt1": "Gain the digital marketing expertise agents need.",
+			"Txt1": "Gain the digital marketing <br>expertise agents need.",
 			"Txt1_Pause": 3.0,
-			"Txt2": "Attract new customers and transform your business with Agency Forward.",
+			"Txt2": "Attract new customers and transform <br>your business with Agency Forward.",
 			"CtaTxt": "See how",
 			"logoSlideX":0
 		}

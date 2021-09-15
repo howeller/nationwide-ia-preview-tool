@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="ad.size" content="width=728,height=90">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+	<title>NW_Dyn_IA_728x90</title>
+	<link rel="stylesheet" href="https://use.typekit.net/lon1mtd.css"><!-- Adobe ProximaNova -->
+	<script src="https://s0.2mdn.net/ads/studio/Enabler.js" ></script>
+	<script src="https://s0.2mdn.net/ads/studio/cached_libs/gsap_3.5.1_min.js"></script><!-- GSAP 3.5.1 -->
+	<link rel="stylesheet" type="text/css" href="../../assets/css/NW_IA_728x90.css">
+	<script title="dynamic-invocation-code" type="text/javascript">
+		var dc;
+		function dynamicDataAvailable(){
+			console.log("* dynamicDataAvailable");
+			/*
+			 * Dynamic Content Enable code for Profile: 10671564
+			 *
+			 * The following code initializes the following dynamic variables for
+			 * development testing and live serving of Fields associated to the above profile
+			 *"devDynamicContent" values are for local testing. 
+			*/
+			Enabler.setProfileId(10671564);
+			var devDynamicContent = {};
+			
+			devDynamicContent.NW_Feed_Independent_Agent= [{}];
+			devDynamicContent.NW_Feed_Independent_Agent[0]._id = 0;
+			devDynamicContent.NW_Feed_Independent_Agent[0].Creative_Dimension = [];
+			devDynamicContent.NW_Feed_Independent_Agent[0].Creative_Dimension[0] = {"Width": 728, "Height": 90 };
+			devDynamicContent.NW_Feed_Independent_Agent[0].Exit_URL = {};
+			devDynamicContent.NW_Feed_Independent_Agent[0].Exit_URL.Url = "https://www.nationwide.com/";
+			devDynamicContent.NW_Feed_Independent_Agent[0].Concept = "Thought Leadership Q4";
+			devDynamicContent.NW_Feed_Independent_Agent[0].Color_Version = "Opt1";
+			devDynamicContent.NW_Feed_Independent_Agent[0].Ani_Style = "N Crop";
+			devDynamicContent.NW_Feed_Independent_Agent[0].BgTheme = "Vibrant Blue - White";
+			devDynamicContent.NW_Feed_Independent_Agent[0].TxtColor = "";
+			devDynamicContent.NW_Feed_Independent_Agent[0].RibbonTxtColor = "";
+			devDynamicContent.NW_Feed_Independent_Agent[0].RibbonColor = "";
+			devDynamicContent.NW_Feed_Independent_Agent[0].RibbonTxt = "Agency Forward";
+			devDynamicContent.NW_Feed_Independent_Agent[0].RibbonTxt_css = [];
+			devDynamicContent.NW_Feed_Independent_Agent[0].Txt1 = "Gain the digital marketing <br>expertise agents need.";
+			devDynamicContent.NW_Feed_Independent_Agent[0].Txt1_css = [];
+			devDynamicContent.NW_Feed_Independent_Agent[0].Txt1_Pause = 3;
+			devDynamicContent.NW_Feed_Independent_Agent[0].Txt2 = "Attract new customers and <br>transform your business <br>with Agency Forward.";
+			devDynamicContent.NW_Feed_Independent_Agent[0].Txt2_css = [];
+			devDynamicContent.NW_Feed_Independent_Agent[0].CtaTxt = "See how";
+			devDynamicContent.NW_Feed_Independent_Agent[0].CtaTxt_css = [];
+			devDynamicContent.NW_Feed_Independent_Agent[0].CtaBtn_css = [];
+			devDynamicContent.NW_Feed_Independent_Agent[0].Replay_css = [];
+			devDynamicContent.NW_Feed_Independent_Agent[0].LogoSlideX = 0;
+			devDynamicContent.NW_Feed_Independent_Agent[0].Logo_img = {};
+			devDynamicContent.NW_Feed_Independent_Agent[0].Logo_img.Type = "file";
+			devDynamicContent.NW_Feed_Independent_Agent[0].Logo_img.Url = "../../build/assets/images//logos/nw_ppi_logo_white_2x.png";
+			devDynamicContent.NW_Feed_Independent_Agent[0].Logo_img_css = [];
+			devDynamicContent.NW_Feed_Independent_Agent[0].Banner_json = {};
+			devDynamicContent.NW_Feed_Independent_Agent[0].Banner_json.Type = "file";
+			devDynamicContent.NW_Feed_Independent_Agent[0].Banner_json.Url = ""; // LOCAL TESTING ONLY
+			// devDynamicContent.NW_Feed_Independent_Agent[0].Banner_json.Url = "../../assets/js/tlq4.json";
+			devDynamicContent.NW_Feed_Independent_Agent[0].Back_img = {};
+			devDynamicContent.NW_Feed_Independent_Agent[0].Back_img.Type = "file";
+			devDynamicContent.NW_Feed_Independent_Agent[0].Back_img.Url = "../../build/assets/images/tl_back_opt1_728x90_2x.jpg";
+			devDynamicContent.NW_Feed_Independent_Agent[0].Front_img = {};
+			devDynamicContent.NW_Feed_Independent_Agent[0].Front_img.Type = "file";
+			devDynamicContent.NW_Feed_Independent_Agent[0].Front_img.Url = "../../build/assets/images/spacer.png";
+			Enabler.setDevDynamicContent(devDynamicContent);
+			
+			dc = dynamicContent.NW_Feed_Independent_Agent[0];
+		}
+		function clickOut(){
+			console.log('clickOut');
+			Enabler.exitOverride('Background Click', dc.Exit_URL.Url)
+		}
+	</script>
+	<script title="js-loading">
+		var myJson;
+		(function(){
+			var myUrl = '../../assets/js/NW_IA_Animation_728x90.min.js';
+		
+			function startBanner() {
+		
+				initBanner();
+			}
+			/*
+			* Called when Ad is visible. Loads JSON File listed in the dynamic feed and hosted in the DC Asset Library.
+			*/
+			function loadJSON(callback) {
+				console.log('loadJSON: '+dc.Banner_json.Url);
+				var xhr = new XMLHttpRequest();
+				xhr.overrideMimeType('application/json');
+				xhr.open('GET', dc.Banner_json.Url, true);
+				xhr.onreadystatechange = function() {
+					if (xhr.readyState == 4 && xhr.status == 200) {
+						callback(xhr.responseText);
+						// Load the main animation JS file from DC Asset Library and place callback to start animation.
+						Enabler.loadScript(Enabler.getUrl(myUrl), startBanner);
+					}
+				};
+				xhr.send(null);
+			}
+			function init() {
+				if (Enabler.isInitialized()) {
+					if (Enabler.isVisible()) {
+						enablerInitHandler();
+					} else {
+						Enabler.addEventListener(studio.events.StudioEvent.VISIBLE, enablerInitHandler);
+					}
+				} else {
+					Enabler.addEventListener(studio.events.StudioEvent.INIT, enablerInitHandler);
+				}
+			};
+			function enablerInitHandler() {
+				dynamicDataAvailable();
+				if (Enabler.isPageLoaded()) {
+					pageLoadedHandler();
+				} else {
+					Enabler.addEventListener(studio.events.StudioEvent.PAGE_LOADED, pageLoadedHandler);
+				}
+			}
+			function pageLoadedHandler() {
+				if (Enabler.isVisible()) {
+					adVisibilityHandler();
+				} else {
+					Enabler.addEventListener(studio.events.StudioEvent.VISIBLE, adVisibilityHandler);
+				}
+			}
+			function adVisibilityHandler() {
+				if(dc.Banner_json.Url){
+					loadJSON(function(response) {
+						myJson = JSON.parse(response);  // Parse JSON string into object
+					});			
+				}else{
+					Enabler.loadScript(Enabler.getUrl(myUrl), startBanner);
+				}
+			}
+			window.addEventListener('load', init);
+		})();
+	</script>
+</head>
+<body>
+	<div style="visibility:hidden; font-family:proxima-nova; position: absolute;" aria-hidden="true" aria-wait="Loading">Loading</div>
+	<div id="banner" class="full-size" role="banner">
+		<div id="end-container" class="abs">
+			<div id="end-stripe" class="stripe"></div>
+			<div id="end-swipe" class="abs"></div>
+			<div id="t1-container" class="txt-container abs" aria-hidden="true">
+				<div id="t1" class="ng-t1 t1 abs">*</div>
+			</div>
+			<div id="t2-container" class="txt-container abs">
+				<div id="t2" class="t2" role="heading" aria-level="1"></div><div id="cta-container">
+					<div id="cta" class="fake-button" role="button" tabindex="0">
+						<div id="cta-txt"></div>
+					</div>
+				</div> 
+			</div>
+		</div>
+		<div id="logo-container" class="full-size">
+			<img id="logo" class="logo-no-ribbon" src="" alt="" aria-hidden="true"/>
+		</div>
+		<div id="ribbon">
+			<div id="ribbon-txt" class="ribbon-txt">Ribbon</div>
+		</div>
+		<div id="nc-parent" class="hide">
+			<img id="nc-pic" class="nc-pic" src="" alt="" aria-hidden="true"/>
+		</div>
+		<div id="border" class="border full-size"></div>
+		<button id="clicker" class="abs full-size"></button>
+		<button id="replay-container" class="replay abs" aria-label="replay">
+			<svg id="replaySvg" viewBox="0 0 40.8 40.8" xml:space="preserve" enable-background="new 0 0 40.8 40.8" aria-hidden="true"><path id="replayPath" d="M32.8 28.4l8-8h-5.7c0-9-6.7-15.1-15-15.1 -8.1 0-15 6.8-15 14.9s6.9 14.9 15 14.9c2.4 0 4.6-0.6 6.5-1.6l-2.3-4.1c-1.2 0.7-2.6 1-4.3 1 -5.6 0-10.3-4.7-10.3-10.3 0-5.6 4.7-10.2 10.3-10.2 5.7 0 10.3 3.4 10.3 10.4h-5.7L32.8 28.4z" style="fill:#ffffff"/></svg>
+		</button>
+	</div>
+</body>
+</html>

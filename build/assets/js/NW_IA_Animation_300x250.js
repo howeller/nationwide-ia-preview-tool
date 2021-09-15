@@ -304,7 +304,7 @@ var initBanner = (function(){
 			.add(_logoSlideTl,'end')
 			.set([cta.btn, cta.txt],{skewX:0.1}, 'end')
 			.fromTo(cta.btn, {clipPath: getPath('wipeInFromLeftStart')}, {clipPath: getPath('wipeInEnd'), duration:1 },'-=0.5')
-			.fromTo(end.swipe, {x:-(end.swipe.offsetWidth)}, {x:-(end.swipe.offsetWidth/3), duration:_swipeSpeed, ease:'power1.out'},'+=0.5')
+			.fromTo(end.swipe, {x:-(end.swipe.offsetWidth)}, {x:-(end.swipe.offsetWidth/3), duration:_swipeSpeed, ease:'power1.out'},'+=1')
 			.to(end.swipe, {x:300, duration:_swipeSpeed, ease:'power1.in'})
 			.add(ctaBounceTl(), "-="+_swipeSpeed)
 			.from(replay.container, { autoAlpha: 0 })
@@ -362,7 +362,7 @@ var initBanner = (function(){
 			container: id('end-container'),
 			t2: id('t2'),
 			swipe: id('end-swipe'),
-			stripe: id('end-stripe') 
+			stripes: document.getElementsByClassName('stripe')//id('end-stripe') 
 		}
 		replay = {
 			container: id('replay-container'),
@@ -440,11 +440,12 @@ var initBanner = (function(){
 		end.swipe.style.backgroundColor = colorNameToHex(theme.swipeColor);
 		
 		if(theme.stripeColor && !isRibbon) {
-			// Only show the ribbon
-			end.stripe.style.backgroundColor = colorNameToHex(theme.stripeColor);
- 			end.stripe.style.opacity = 1;
+			gsap.set('.stripe',{backgroundColor:colorNameToHex(theme.stripeColor)/*, opacity:1*/})
+		}else{
+			gsap.set('.stripe',{visibility:'hidden'})
 		}
 	}
+
 
 	/*
 	* If Ribbon text is more lines than the height of a single line then redraw the polygon. 

@@ -34,30 +34,36 @@ svg#n-graphic{
 	height: auto;
 }
 
-/* Positioning */
+/* Stripe */
 
-.txt-container{
-	top: 0;
-	left: 0;
+.stripe{
+	background-color: var(--darkblue);
 	width: 100%;
 	height: 100%;
+	position: absolute;
 }
 
-#end-container, #nc-t1-container{
-	background-color: var(--vibrantblue);
-	width: {{width}}px;
-	height: 355px;
-	top: 245px;
-	left: 0;
-	overflow: visible;
+.nc-stripe{
+	clip-path: polygon(61px 0%, 221px 0%, 0% 228px, 0% 60px); 
+	-webkit-clip-path: polygon(61px 0%, 221px 0%, 0% 228px, 0% 60px);
 }
-
+.ng-stripe{
+	clip-path: polygon(33px 0%, 100% 0%, 0% 100%, 0% 73px); 
+	-webkit-clip-path: polygon(33px 0%, 100% 0%, 0% 100%, 0% 73px);
+}
+.to-stripe{
+	clip-path: polygon(42px 0%, 100% 0%, 0% 100%, 0% 152px); 
+	-webkit-clip-path: polygon(42px 0%, 100% 0%, 0% 100%, 0% 152px);
+}
+/*
 #end-container #end-stripe{
 	background-color: var(--darkblue);
 	clip-path: polygon(77px 0%, 238px 0%, 0% 198px, 0% 64px); 
 	-webkit-clip-path: polygon(77px 0%, 238px 0%, 0% 198px, 0% 64px);
 	opacity: 0;
-}
+}*/
+
+/* Swipe(s) */
 
 svg#nc-end-swipe, #end-swipe{
 	visibility: hidden;
@@ -67,10 +73,28 @@ svg#nc-end-swipe, #end-swipe{
 }
 #end-container #end-swipe{
 	background-color: var(--mediumblue);
-	clip-path: polygon(0% 0%, 66% 0%, 100% 100%, 33% 100%); 
-	-webkit-clip-path: polygon(0% 0%, 66% 0%, 100% 100%, 33% 100%); 
+	clip-path: polygon(33% 0%, 100% 0%, 66.00% 100%, 0% 100%); /* Left to right - shape */
+	-webkit-clip-path: polygon(33% 0%, 100% 0%, 66.00% 100%, 0% 100%); {{!-- /*Right to left*/
+	clip-path: polygon(0% 0%, 66% 0%, 100% 100%, 33% 100%);
+	-webkit-clip-path: polygon(0% 0%, 66% 0%, 100% 100%, 33% 100%); --}}
 	width: 300%;
 	height: 100%;
+}
+
+.txt-container{
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+
+#end-container, #nc-t1-container{
+	/*background-color: var(--vibrantblue);*/
+	width: {{width}}px;
+	height: 355px;
+	top: 245px;
+	left: 0;
+	overflow: visible;
 }
 
 #ribbon{
@@ -96,7 +120,9 @@ svg#nc-end-swipe, #end-swipe{
 }
 
 /* Text Styles */
-
+#t1{
+	visibility: hidden;
+}
 .t1{
 	color: white;
 	font-family: 'tiempos-headline', Georgia, Garamond, serif;

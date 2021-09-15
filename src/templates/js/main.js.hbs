@@ -57,7 +57,7 @@ var initBanner = (function(){
 			container: id('end-container'),
 			t2: id('t2'),
 			swipe: id('end-swipe'),
-			stripe: id('end-stripe') {{!// stripeStaticPath:id('endStripeStaticPath')}}
+			stripes: document.getElementsByClassName('stripe')//id('end-stripe') {{!// stripeStaticPath:id('endStripeStaticPath')}}
 		}
 		replay = {
 			container: id('replay-container'),
@@ -152,11 +152,12 @@ var initBanner = (function(){
 		end.swipe.style.backgroundColor = colorNameToHex(theme.swipeColor);
 		
 		if(theme.stripeColor && !isRibbon) {
-			// Only show the ribbon
-			end.stripe.style.backgroundColor = colorNameToHex(theme.stripeColor);
- 			end.stripe.style.opacity = 1;
+			gsap.set('.stripe',{backgroundColor:colorNameToHex(theme.stripeColor)/*, opacity:1*/})
+		}else{
+			gsap.set('.stripe',{visibility:'hidden'})
 		}
 	}
+
 
 	{{#unless (isLeader)}}/*
 	* If Ribbon text is more lines than the height of a single line then redraw the polygon. 

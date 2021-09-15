@@ -247,14 +247,23 @@ var initBanner = (function(){
 	function fadeInContainerTl(){return gsap.timeline({paused:false}).to('#banner', { autoAlpha:1, duration:0.4 }); }
 	
 	function emptyTl(){return gsap.timeline({paused:true})}
+	function updateStripeClass(className) {
+		id('nc-stripe').classList.add(className);
+		id('end-stripe').classList.add(className);
+	}
+	
 	function nGraphicIntroTl() {
 		cl('	+ nGraphicIntroTl ','red');
+		// end.container.style.overflow = 'hidden';
+		updateStripeClass('ng-stripe');
 	
 		return gsap.timeline({paused:false})
 			.set(aniProps.container, {visibility:'visible'})
 			.add(fadeInContainerTl())
 			.from(svg.nGraphic, { scale:0, duration:0.5, ease:'back.out(1.5)'},'+=1')
-			.fromTo(end.container, {clipPath:getPath('fromBottomLeftStart')}, {clipPath:getPath('fromBottomLeftEnd'), duration:1 })
+			.set(aniProps.t1, {visibility:'visible'})
+			.fromTo(aniProps.t1, {clipPath: getPath('wipeInFromLeftStart')}, {clipPath: getPath('wipeInEnd'), duration:1})
+			// .fromTo(end.container, {clipPath:getPath('fromBottomLeftStart')}, {clipPath:getPath('fromBottomLeftEnd'), duration:1 })
 			.add('f2out', '+='+dc.Txt1_Pause)
 			.fromTo(aniProps.t1, {clipPath: getPath('wipeInEnd') }, {clipPath: getPath('wipeOutToLeft'), duration:1 }, 'f2out');
 	}
@@ -271,6 +280,7 @@ var initBanner = (function(){
 		end.container.style.height = '399px'
 		end.t2.style.paddingTop = '33px';
 		aniOptions.NGraphic.t1.style.visibility = 'hidden';
+		updateStripeClass('nc-stripe');
 	
 		return gsap.timeline({paused:false})
 			.set('.mask-path', {fill:colorNameToHex(theme.bgColor)})
@@ -289,10 +299,11 @@ var initBanner = (function(){
 	function txtOnlyIntroTl() {
 		cl('	+ txtOnlyIntroTl ','red');
 		swapClasses(replay.container, 'relay-n', 'replay-to');
+		updateStripeClass('to-stripe');
 	
-		// wipe in t1 > pause > reverse wipe out
+		// Wipe in t1 > Pause > Reverse wipe out
 		return gsap.timeline({paused:false})
-			.set(aniProps.container, {visibility:'visible'})
+			.set([aniProps.container,aniProps.t1], {visibility:'visible'})
 			.add(fadeInContainerTl())
 			.fromTo(aniProps.t1, {clipPath: getPath('wipeInFromLeftStart') }, {clipPath: getPath('wipeInEnd'), duration:1, repeat: 1, repeatDelay:dc.Txt1_Pause, yoyo: true })
 	}
@@ -312,8 +323,8 @@ var initBanner = (function(){
 	
 		return gsap.timeline({paused:false})
 			.set('#end-swipe', {visibility: 'visible'})
-			.fromTo(end.swipe, {x:160 }, {x:-(end.swipe.offsetWidth/3), duration:swipeSpeed, ease:'power1.out'})
-			.to(end.swipe, {x:-(end.swipe.offsetWidth), duration:swipeSpeed, ease:'power1.in'})
+			.fromTo(end.swipe, {x:-(end.swipe.offsetWidth)}, {x:-(end.swipe.offsetWidth/3), duration:swipeSpeed, ease:'power1.out'})
+			.to(end.swipe, {x:160, duration:swipeSpeed, ease:'power1.in'})
 	}
 	
 	function animate() {
@@ -388,7 +399,7 @@ var initBanner = (function(){
 			container: id('end-container'),
 			t2: id('t2'),
 			swipe: id('end-swipe'),
-			stripe: id('end-stripe') 
+			stripes: document.getElementsByClassName('stripe')//id('end-stripe') 
 		}
 		replay = {
 			container: id('replay-container'),
@@ -472,11 +483,12 @@ var initBanner = (function(){
 		end.swipe.style.backgroundColor = colorNameToHex(theme.swipeColor);
 		
 		if(theme.stripeColor && !isRibbon) {
-			// Only show the ribbon
-			end.stripe.style.backgroundColor = colorNameToHex(theme.stripeColor);
- 			end.stripe.style.opacity = 1;
+			gsap.set('.stripe',{backgroundColor:colorNameToHex(theme.stripeColor)/*, opacity:1*/})
+		}else{
+			gsap.set('.stripe',{visibility:'hidden'})
 		}
 	}
+
 
 	/*
 	* If Ribbon text is more lines than the height of a single line then redraw the polygon. 

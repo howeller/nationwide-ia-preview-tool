@@ -247,13 +247,26 @@ var initBanner = (function(){
 	function fadeInContainerTl(){return gsap.timeline({paused:false}).to('#banner', { autoAlpha:1, duration:0.4 }); }
 	
 	function emptyTl(){return gsap.timeline({paused:true})}
+	function updateStripeClass(className) {
+		// document.querySelectorAll('stripe').forEach(function(elem) {
+		// 	elem.classList.add(className);
+		// });
+		// end.container.getElementsByClassName('stripe')[0].classList.add(className);
+		id('nc-stripe').classList.add(className);
+		id('end-stripe').classList.add(className);
+	}
+	
 	function nGraphicIntroTl() {
-		cl('	+ nGraphicIntroTl ','red');
+		cl('	+ nGraphicIntroTl ');
+		// end.container.style.overflow = 'hidden';
+		updateStripeClass('ng-stripe');
+	
 		return gsap.timeline({paused:false})
 			.set(aniProps.container, {visibility:'visible'})
 			.add(fadeInContainerTl())
 			.from(svg.nGraphic, { scale:0, duration:0.5, ease:'back.out(1.5)'},'+=1')
-			.fromTo(end.container, {clipPath:getPath('fromBottomLeftStart')}, {clipPath:getPath('fromBottomLeftEnd'), duration:1 })
+			.set(aniProps.t1, {visibility:'visible'})
+			.fromTo(aniProps.t1, {clipPath: getPath('wipeInFromLeftStart')}, {clipPath: getPath('wipeInEnd'), duration:1})
 			.add('f2out', '+='+dc.Txt1_Pause)
 			.fromTo(aniProps.t1, {clipPath: getPath('wipeInEnd') }, {clipPath: getPath('wipeOutToLeft'), duration:1 }, 'f2out');
 	}
@@ -270,6 +283,7 @@ var initBanner = (function(){
 		end.container.style.height = '325px'
 		end.t2.style.paddingTop = '44px';
 		aniOptions.NGraphic.t1.style.visibility = 'hidden';
+		updateStripeClass('nc-stripe');
 	
 		return gsap.timeline({paused:false})
 			.set('.mask-path', {fill:colorNameToHex(theme.bgColor)})
@@ -285,13 +299,13 @@ var initBanner = (function(){
 			.fromTo(end.container, {clipPath:getPath('fromBottomLeftStart')}, {clipPath:getPath('fromBottomLeftEnd'), duration:1 }, 'f2out')
 	}
 	
-	
 	function txtOnlyIntroTl() {
 		cl('	+ txtOnlyIntroTl ','red');
+		updateStripeClass('to-stripe');
 	
 		// wipe in t1 > pause > reverse wipe out
 		return _tl = gsap.timeline({paused:false})
-			.set(aniProps.container, {visibility:'visible'})
+			.set([aniProps.container,aniProps.t1], {visibility:'visible'})
 			.add(fadeInContainerTl())
 			.fromTo(aniProps.t1, {clipPath: getPath('wipeInFromLeftStart') }, {clipPath: getPath('wipeInEnd'), duration:1, repeat: 1, repeatDelay:dc.Txt1_Pause, yoyo: true })
 	}
@@ -339,7 +353,7 @@ var initBanner = (function(){
 			.add('cta')
 			.add(ctaBounceTl(), "+=1")
 			.add(initCtaAction)
-			// tl.pause("1");
+			// tl.pause("3");
 			// .seek('end')
 			// .seek(_introTl.labels[_introTl.previousLabel()]);
 			;
@@ -390,7 +404,7 @@ var initBanner = (function(){
 			container: id('end-container'),
 			t2: id('t2'),
 			swipe: id('end-swipe'),
-			stripe: id('end-stripe') 
+			stripes: document.getElementsByClassName('stripe')//id('end-stripe') 
 		}
 		replay = {
 			container: id('replay-container'),
@@ -474,11 +488,12 @@ var initBanner = (function(){
 		end.swipe.style.backgroundColor = colorNameToHex(theme.swipeColor);
 		
 		if(theme.stripeColor && !isRibbon) {
-			// Only show the ribbon
-			end.stripe.style.backgroundColor = colorNameToHex(theme.stripeColor);
- 			end.stripe.style.opacity = 1;
+			gsap.set('.stripe',{backgroundColor:colorNameToHex(theme.stripeColor)/*, opacity:1*/})
+		}else{
+			gsap.set('.stripe',{visibility:'hidden'})
 		}
 	}
+
 
 	/*
 	* If Ribbon text is more lines than the height of a single line then redraw the polygon. 

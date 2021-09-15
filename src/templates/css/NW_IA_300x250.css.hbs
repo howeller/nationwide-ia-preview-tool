@@ -36,6 +36,15 @@ svg#n-graphic{
 
 /* Positioning */
 
+.stripe{
+	background-color: var(--darkblue);
+	clip-path: polygon(77px 0%, 238px 0%, 0% 198px, 0% 64px); 
+	-webkit-clip-path: polygon(77px 0%, 238px 0%, 0% 198px, 0% 64px);
+	width: 100%;
+	height: 100%;
+	position: absolute;
+}
+
 .txt-container{
 	top: 0;
 	left:0;
@@ -53,13 +62,13 @@ svg#n-graphic{
 	background-color: var(--vibrantblue);
 }
 
-#end-container #end-stripe{
+{{!--#end-container #end-stripe{
 	background-color: var(--darkblue);
 	clip-path: polygon(77px 0%, 238px 0%, 0% 198px, 0% 64px); 
 	-webkit-clip-path: polygon(77px 0%, 238px 0%, 0% 198px, 0% 64px);
 	opacity: 0;
 }
-{{!--#end-container svg#end-stripe{
+#end-container svg#end-stripe{
 	height: 250px;
 	width: 461px;
 	left: -223px;
@@ -68,8 +77,8 @@ svg#n-graphic{
 
 #end-container #end-swipe{
 	background-color: var(--mediumblue);
-	clip-path: polygon(33% 0%, 100% 0%, 66.00% 100%, 0% 100%); /* parallel shape */{{!--
-	-webkit-clip-path: polygon(33% 0%, 100% 0%, 66.00% 100%, 0% 100%); 
+	clip-path: polygon(33% 0%, 100% 0%, 66.00% 100%, 0% 100%); /* parallel shape */
+	-webkit-clip-path: polygon(33% 0%, 100% 0%, 66.00% 100%, 0% 100%); {{!--
 	clip-path: polygon(0% 0%, 66% 0%, 100% 100%, 33% 100%); /* parallel shape */
 	-webkit-clip-path: polygon(0% 0%, 66% 0%, 100% 100%, 33% 100%); --}}
 	width: 300%;

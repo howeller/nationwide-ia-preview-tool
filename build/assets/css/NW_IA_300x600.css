@@ -127,30 +127,26 @@ svg#n-graphic{
 	height: auto;
 }
 
-/* Positioning */
+/* Stripe */
 
-.txt-container{
-	top: 0;
-	left:0;
+.stripe{
+	background-color: var(--darkblue);
 	width: 100%;
 	height: 100%;
+	position: absolute;
 }
 
-#end-container, #nc-t1-container{
-	background-color: var(--vibrantblue);
-	width: 300px;
-	height: 325px;
-	top: 300px;
-	left: 0;
-	overflow:visible;
+.nc-stripe{
+	clip-path: polygon(93px 0%, 241px 0%, 0% 241px, 0% 93px); 
+	-webkit-clip-path: polygon(93px 0%, 241px 0%, 0% 241px, 0% 93px);
+}
+.ng-stripe, .to-stripe{
+	clip-path: polygon(50% 0%, 100% 0%, 0% 100%, 0% 50%); 
+	-webkit-clip-path: polygon(50% 0%, 100% 0%, 0% 100%, 0% 50%);
 }
 
-#end-container #end-stripe{
-	background-color: var(--darkblue);
-	clip-path: polygon(91px 0%, 252px 0%, 0% 198px, 0% 64px); 
-	-webkit-clip-path: polygon(77px 0%, 238px 0%, 0% 198px, 0% 64px);
-	opacity: 0;
-}
+
+/* Swipe(s) */
 
 svg#nc-end-swipe, #end-swipe{
 	visibility: hidden;
@@ -160,10 +156,26 @@ svg#nc-end-swipe, #end-swipe{
 }
 #end-container #end-swipe{
 	background-color: var(--mediumblue);
-	clip-path: polygon(0% 0%, 66% 0%, 100% 100%, 33% 100%);
-	-webkit-clip-path: polygon(0% 0%, 66% 0%, 100% 100%, 33% 100%); 
+	clip-path: polygon(33% 0%, 100% 0%, 66.00% 100%, 0% 100%); /* Left to right - shape */
+	-webkit-clip-path: polygon(33% 0%, 100% 0%, 66.00% 100%, 0% 100%); 
 	width: 300%;
 	height: 100%;
+}
+
+.txt-container{
+	top: 0;
+	left:0;
+	width: 100%;
+	height: 100%;
+}
+
+#end-container, #nc-t1-container{
+	/*background-color: var(--vibrantblue);*/
+	width: 300px;
+	height: 300px;
+	top: 300px;
+	left: 0;
+	overflow:visible;
 }
 
 #ribbon{
@@ -187,6 +199,9 @@ svg#nc-end-swipe, #end-swipe{
 	padding: 3px 27px 4px 6px;
 }
 
+#t1{
+	visibility: hidden;
+}
 .t1{
 	color: white;
 	font-family: 'tiempos-headline', Georgia, Garamond, serif;
@@ -196,6 +211,7 @@ svg#nc-end-swipe, #end-swipe{
 	width: 254px;
 	overflow: visible;
 }
+
 .ng-t1{
 	font-size: 26px;
 	line-height: 28px;

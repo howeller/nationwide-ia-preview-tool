@@ -267,6 +267,7 @@ var initBanner = (function(){
 			.from(svg.nGraphic, { scale:0, duration:0.5, ease:'back.out(1.5)'},'+=1')
 			.set(aniProps.t1, {visibility:'visible'})
 			.fromTo(aniProps.t1, {clipPath: getPath('wipeInFromLeftStart')}, {clipPath: getPath('wipeInEnd'), duration:1})
+			// .fromTo(end.container, {clipPath:getPath('fromBottomLeftStart')}, {clipPath:getPath('fromBottomLeftEnd'), duration:1 })
 			.add('f2out', '+='+dc.Txt1_Pause)
 			.fromTo(aniProps.t1, {clipPath: getPath('wipeInEnd') }, {clipPath: getPath('wipeOutToLeft'), duration:1 }, 'f2out');
 	}

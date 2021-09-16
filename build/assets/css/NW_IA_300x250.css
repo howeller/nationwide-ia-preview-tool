@@ -62,11 +62,11 @@ button.abs:focus, .fake-button:focus {
 	outline: 5px solid #e85b16;
 }
 sup{
-	font-size: 75%;
+	font-size: 50%;/*75%;*/
 	line-height: 50% !important;
   vertical-align: baseline;
   position: relative;
-  top: -0.4em;
+  top: -0.6em;/* -0.4em;*/
 }
 .abs, img, svg {
 	position:absolute;

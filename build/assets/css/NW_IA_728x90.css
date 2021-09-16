@@ -62,11 +62,11 @@ button.abs:focus, .fake-button:focus {
 	outline: 5px solid #e85b16;
 }
 sup{
-	font-size: 75%;
+	font-size: 50%;/*75%;*/
 	line-height: 50% !important;
   vertical-align: baseline;
   position: relative;
-  top: -0.4em;
+  top: -0.6em;/* -0.4em;*/
 }
 .abs, img, svg {
 	position:absolute;
@@ -114,6 +114,7 @@ img.nc-pic{
 	height: auto;
 }
 #nc-parent{
+	-webkitclip-path: polygon(0% 0%, 281px 0%, 100% 100%, 0% 100%);
 	clip-path: polygon(0% 0%, 281px 0%, 100% 100%, 0% 100%);
 	height: 90px;
 }
@@ -151,12 +152,13 @@ img.nc-pic{
 #ribbon{
 	background-color: var(--mediumblue);
 	bottom: 1px;
-	clip-path: polygon(0% 0%, calc(100% - 20px) 0%, 100% 100%, 0% 100%);
 	height: auto;
 	display: flex;
 	align-items: center;
 	position: absolute;
 	opacity: 0;
+	-webkit-clip-path: polygon(0% 0%, calc(100% - 20px) 0%, 100% 100%, 0% 100%);
+	clip-path: polygon(0% 0%, calc(100% - 20px) 0%, 100% 100%, 0% 100%);
 }
 
 /* Text Styles */

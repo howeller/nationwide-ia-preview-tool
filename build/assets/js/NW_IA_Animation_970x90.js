@@ -248,7 +248,7 @@ var initBanner = (function(){
 			_h = element.offsetHeight+3,
 			_x1 = _h /slope,
 			_x2 = _w,
-			_x3 = -_h / slope + _w
+			_x3 = -_h / slope + _w,
 			_x4 = 0;
 		return 'polygon('+_x1+'px 0px, '+_x2+'px 0px, '+_x3+'px '+_h+'px, '+_x4+'px '+_h+'px)';
 	}
@@ -257,7 +257,7 @@ var initBanner = (function(){
 		cl('	+ nCropIntroTl ','red');
 	
 		var _pic = id('nc-parent'),
-			_endX = _json.endX || -212;
+			_endX = _json.endX || -129;
 	
 		return gsap.timeline({paused:false})
 			.set(aniProps.container, {visibility:'visible'})
@@ -280,19 +280,19 @@ var initBanner = (function(){
 	}
 	
 	function animate() {
-		cl(':: animate :: 728x90');
+		cl(':: animate :: 970x90');
 	
 		slope = -1.0344827586206897;// cl(-1.0344827586206897 , 'red');
 		var _introTl = aniProps.frame1Tl(),
-			_swipeSpeed = 1;
+			_swipeSpeed = 1.25;
 	
 		tl
 			.add(_introTl)
 			.add('end', aniProps.overlap)
-			.fromTo('#t2', {clipPath: wipeInFromLeftStart}, {clipPath: wipeInEnd, duration:1.5, ease:'power3.easein' }, 'end')
+			.fromTo('#t2', {clipPath: wipeInFromLeftStart}, {clipPath: wipeInEnd, duration:1.0, ease:'power3.easein' }, 'end')
 			.set([cta.btn, cta.txt],{skewX:0.1}, 'end')
-			.fromTo(cta.btn, {clipPath: wipeInFromLeftStart}, {clipPath: wipeInEnd, duration:1.5 },'-=0.5')
-			.fromTo(end.swipe, {x:728 }, {x:-87, duration:_swipeSpeed, ease:'power1.out'},'+=0.5')
+			.fromTo(cta.btn, {clipPath: wipeInFromLeftStart}, {clipPath: wipeInEnd, duration:1.0 },'-=0.5')
+			.fromTo(end.swipe, {x:970 }, {x:-87, duration:_swipeSpeed, ease:'power1.out'},'+=0.5')
 			.to(end.swipe, {x:-(end.swipe.offsetWidth), duration:_swipeSpeed, ease:'power1.in'})
 			.add(ctaBounceTl(), "-="+_swipeSpeed)
 			.from(replay.container, { autoAlpha: 0 })
@@ -300,7 +300,7 @@ var initBanner = (function(){
 			.add('cta')
 			.add(ctaBounceTl(), "+=1")
 			.add(initCtaAction)
-			// tl.pause("5");
+			// tl.pause("2");
 			// .seek('end')
 			;
 		console.log('Animation Runtime is ' + tl.endTime());
@@ -329,7 +329,7 @@ var initBanner = (function(){
 
 		cl('useDefaultTheme ? '+useDefaultTheme, 'red');
 
-		_json = (dc.Banner_json.Url) ? myJson.data['728x90'][dc.Color_Version][aniStyle] : {};
+		_json = (dc.Banner_json.Url) ? myJson.data['970x90'][dc.Color_Version][aniStyle] : {};
 
 		svg = {
 			nGraphic: id('n-graphic'),

@@ -1,5 +1,100 @@
-{{> fonts.css }}
-{{> global.css }}
+/*
+	Tiempos font on asset library
+*/
+@font-face {
+	font-family: 'tiempos-headline';
+	font-weight: 600;
+	font-style: normal;
+	src: url("https://s0.2mdn.net/creatives/assets/2701989/tiempos-headline-web-semibold.woff2") format("woff2"), url("https://s0.2mdn.net/creatives/assets/2701989/tiempos-headline-web-semibold.woff") format("woff"), url("https://s0.2mdn.net/creatives/assets/2701989/tiempos-headline-web-semibold.eot") format("embedded-opentype")
+}
+@charset "UTF-8";
+:root {
+	--coolgray8: #87898b;
+	--darkblue: #141b4d;
+	--mediumblue: #1f74db;
+	--mintgreen: #6eceb2;
+	--nwblue: #1c57a5;
+	--vibrantblue: #0047bb;
+	--white: #ffffff;
+}
+
+body, html {
+	background-color: #D4D4D4;
+	border: 0 none;
+	overflow: hidden;
+	outline: 0;
+	margin: 0;
+	padding: 0;
+	position: absolute;
+}
+html {
+	font-family: proxima-nova, Arial, sans-serif;
+	font-weight: 400;
+	font-style: normal;
+}
+div, h1, p {
+	font-family: proxima-nova, Arial, sans-serif;
+	font-weight: 600;
+	font-style: normal;
+	/*letter-spacing: -0.4px;*/
+	/* Adjust font size */
+	font-size: 100%;
+	-webkit-text-size-adjust: 100%;	
+	/* Font varient */
+	font-variant-ligatures: none;
+	-webkit-font-variant-ligatures: none;
+	/* Smoothing */
+	font-smoothing: antialiased;
+	text-rendering: optimizeLegibility;
+	-moz-osx-font-smoothing: grayscale;
+	-webkit-font-smoothing: antialiased;
+	margin:0;
+}
+button.abs {
+	background-color: Transparent;
+	background-repeat: no-repeat;
+	border: none;
+	cursor: pointer;
+	overflow: hidden;
+	outline: none;
+}
+button.abs:focus, .fake-button:focus {
+	outline: 5px solid #e85b16;
+}
+sup{
+	font-size: 50%;/*75%;*/
+	line-height: 50% !important;
+  vertical-align: baseline;
+  position: relative;
+  top: -0.6em;/* -0.4em;*/
+}
+.abs, img, svg {
+	position:absolute;
+	display:block;
+}
+.border {
+	border: 1px solid var(--coolgray8);
+	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	position: absolute;
+	pointer-events: none
+}
+.hide {visibility: hidden}
+.full-size {
+	display: block;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 970px;
+	height: 90px;
+}
+#banner {
+	background-color: var(--vibrantblue);
+	visibility: hidden;
+	position: relative;
+	overflow: hidden;
+}
 
 img#logo{
 	right: 27px;
@@ -13,15 +108,15 @@ img#logo{
 div#nc-parent, img.nc-pic{
 	top: 0; 
 	left: 0;
-	width: {{pic.width}}px;
+	width: 412px;
 }
 img.nc-pic{
 	height: auto;
 }
 #nc-parent{
-	-webkit-clip-path: polygon(0% 0%, {{pic.x2}}px 0%, 100% 100%, 0% 100%);
-	clip-path: polygon(0% 0%, {{pic.x2}}px 0%, 100% 100%, 0% 100%);
-	height: {{height}}px;
+	-webkit-clip-path: polygon(0% 0%, 325px 0%, 100% 100%, 0% 100%);
+	clip-path: polygon(0% 0%, 325px 0%, 100% 100%, 0% 100%);
+	height: 90px;
 }
 
 /* Stripe */
@@ -42,8 +137,8 @@ img.nc-pic{
 	background-color: var(--darkblue);
 	width: 1144px;
 	height: 100%;
-	-webkit-clip-path: polygon(0% 0%, 1057px 0%, 100% 100%, {{slope.x1}}px 100%);
-	clip-path: polygon(0% 0%, 1057px 0%, 100% 100%, {{slope.x1}}px 100%);
+	-webkit-clip-path: polygon(0% 0%, 1057px 0%, 100% 100%, 87px 100%);
+	clip-path: polygon(0% 0%, 1057px 0%, 100% 100%, 87px 100%);
 }
 
 /* Positioning */
@@ -52,8 +147,8 @@ img.nc-pic{
 	background-color: var(--vibrantblue);
 	top: 0;
 	left: 0;
-	width: {{width}}px;
-	height: {{height}}px;
+	width: 970px;
+	height: 90px;
 	overflow: visible;
 }
 

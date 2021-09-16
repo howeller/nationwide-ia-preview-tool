@@ -4,6 +4,7 @@ function wipeInFromLeftStart(index, element){
 		_x1 = _h /slope - _w,
 		_x2 = _h /slope,
 		_x4 = -_w;
+
 	return 'polygon('+_x1+'px 0px, '+_x2+'px 0px, 0px '+_h+'px, '+_x4+'px '+_h+'px)';
 }
 
@@ -11,7 +12,7 @@ function wipeInEnd(index, element){
 	var _w = element.offsetWidth,
 		_h = element.offsetHeight+3,
 		_x1 = _h /slope,
-		_x2 = _w,//,
+		_x2 = _w,
 		_x3 = -_h / slope + _w
 		_x4 = 0;
 	return 'polygon('+_x1+'px 0px, '+_x2+'px 0px, '+_x3+'px '+_h+'px, '+_x4+'px '+_h+'px)';

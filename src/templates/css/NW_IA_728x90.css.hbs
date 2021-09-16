@@ -19,6 +19,7 @@ img.nc-pic{
 	height: auto;
 }
 #nc-parent{
+	-webkitclip-path: polygon(0% 0%, {{pic.x2}}px 0%, 100% 100%, 0% 100%);
 	clip-path: polygon(0% 0%, {{pic.x2}}px 0%, 100% 100%, 0% 100%);
 	height: {{height}}px;
 }
@@ -56,12 +57,13 @@ img.nc-pic{
 #ribbon{
 	background-color: var(--mediumblue);
 	bottom: 1px;
-	clip-path: polygon(0% 0%, calc(100% - 20px) 0%, 100% 100%, 0% 100%);
 	height: auto;
 	display: flex;
 	align-items: center;
 	position: absolute;
 	opacity: 0;
+	-webkit-clip-path: polygon(0% 0%, calc(100% - 20px) 0%, 100% 100%, 0% 100%);
+	clip-path: polygon(0% 0%, calc(100% - 20px) 0%, 100% 100%, 0% 100%);
 }
 
 /* Text Styles */

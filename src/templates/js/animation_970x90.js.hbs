@@ -1,21 +1,20 @@
-
 function wipeInFromLeftStart(index, element){
 	var _w = element.offsetWidth,
-			_h = element.offsetHeight+3,
-			_x1 = _h /slope - _w,
-			_x2 = _h /slope,
-			_x4 = -_w;
+		_h = element.offsetHeight+3,
+		_x1 = _h /slope - _w,
+		_x2 = _h /slope,
+		_x4 = -_w;
 
 	return 'polygon('+_x1+'px 0px, '+_x2+'px 0px, 0px '+_h+'px, '+_x4+'px '+_h+'px)';
 }
 
 function wipeInEnd(index, element){
 	var _w = element.offsetWidth,
-			_h = element.offsetHeight+3,
-			_x1 = _h /slope,
-			_x2 = _w,//,
-			_x3 = -_h / slope + _w
-			_x4 = 0;
+		_h = element.offsetHeight+3,
+		_x1 = _h /slope,
+		_x2 = _w,
+		_x3 = -_h / slope + _w,
+		_x4 = 0;
 	return 'polygon('+_x1+'px 0px, '+_x2+'px 0px, '+_x3+'px '+_h+'px, '+_x4+'px '+_h+'px)';
 }
 
@@ -23,7 +22,7 @@ function nCropIntroTl() {
 	cl('	+ nCropIntroTl ','red');
 
 	var _pic = id('nc-parent'),
-			_endX = _json.endX || -129;
+		_endX = _json.endX || -129;
 
 	return gsap.timeline({paused:false})
 		.set(aniProps.container, {visibility:'visible'})
@@ -50,7 +49,7 @@ function animate() {
 
 	slope = {{getSlope 87 0 0 90}};// cl({{getSlope 87 0 0 90}} , 'red');
 	var _introTl = aniProps.frame1Tl(),
-			_swipeSpeed = 1.25;
+		_swipeSpeed = 1.25;
 
 	tl
 		.add(_introTl)

@@ -361,8 +361,8 @@ var initBanner = (function(){
 		end = {
 			container: id('end-container'),
 			t2: id('t2'),
-			swipe: id('end-swipe'),
-			stripes: document.getElementsByClassName('stripe')//id('end-stripe') 
+			//stripes: document.getElementsByClassName('stripe')//id('end-stripe'), 
+			swipe: id('end-swipe')
 		}
 		replay = {
 			container: id('replay-container'),

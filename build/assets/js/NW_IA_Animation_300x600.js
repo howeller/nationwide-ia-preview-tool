@@ -311,17 +311,6 @@ var initBanner = (function(){
 			.fromTo(aniProps.t1, {clipPath: getPath('wipeInFromLeftStart') }, {clipPath: getPath('wipeInEnd'), duration:1, repeat: 1, repeatDelay:dc.Txt1_Pause, yoyo: true })
 	}
 	
-	function clippedSwipeTl() {
-		// cl('	//	 clippedSwipeTl ');
-		var _swipeWidth = aniProps.swipePath.getBBox().width,
-			_centerX = 160 - (_swipeWidth/2);
-	
-		return _tl = gsap.timeline({paused:false})
-			.set(aniProps.swipe, {visibility: 'visible', top:-93})// Bump up to get to cover N Crop triangle wedge.
-			.fromTo(aniProps.swipePath, {x:-_swipeWidth }, {x:_centerX, duration:swipeSpeed, ease:'power1.out'})// Get SVG shape & number from AI file.
-			.to(aniProps.swipePath, {x:_swipeWidth, duration:swipeSpeed, ease:'power1.in'});
-	}
-	
 	function defaultSwipeTl() {
 		// cl('	 defaultSwipeTl ');
 		var _swipeWidth = aniProps.swipe.getBBox().width,

@@ -258,7 +258,7 @@ var initBanner = (function(){
 	
 	function nGraphicIntroTl() {
 		cl('	+ nGraphicIntroTl ');
-		// end.container.style.overflow = 'hidden';
+		end.container.style.overflow = 'hidden';
 		updateStripeClass('ng-stripe');
 	
 		return gsap.timeline({paused:false})
@@ -311,23 +311,26 @@ var initBanner = (function(){
 			.fromTo(aniProps.t1, {clipPath: getPath('wipeInFromLeftStart') }, {clipPath: getPath('wipeInEnd'), duration:1, repeat: 1, repeatDelay:dc.Txt1_Pause, yoyo: true })
 	}
 	
-	function clippedStripeTl() {
-		// cl('	//	 clippedStripeTl ');
-		var _swipeWidth = svg.endStripe.getBBox().width;
+	function clippedSwipeTl() {
+		// cl('	//	 clippedSwipeTl ');
+		var _swipeWidth = aniProps.swipePath.getBBox().width,
+			_centerX = 160 - (_swipeWidth/2);
 	
 		return _tl = gsap.timeline({paused:false})
-			.set('#nc-end-swipe', {visibility: 'visible', top:-93})// Bump up to get to cover N Crop triangle wedge.
-			.fromTo(svg.endStripe, {x:-1150 }, {x:-424, duration:swipeSpeed, ease:'power1.out'})// Get SVG shape & number from AI file.
-			.to(svg.endStripe, {x:_swipeWidth, duration:swipeSpeed, ease:'power1.in'});
+			.set(aniProps.swipe, {visibility: 'visible', top:-93})// Bump up to get to cover N Crop triangle wedge.
+			.fromTo(aniProps.swipePath, {x:-_swipeWidth }, {x:_centerX, duration:swipeSpeed, ease:'power1.out'})// Get SVG shape & number from AI file.
+			.to(aniProps.swipePath, {x:_swipeWidth, duration:swipeSpeed, ease:'power1.in'});
 	}
 	
-	function defaultStripeTl() {
-		// cl('	 defaultStripeTl ');
+	function defaultSwipeTl() {
+		// cl('	 defaultSwipeTl ');
+		var _swipeWidth = aniProps.swipe.getBBox().width,
+			_centerX = 160 - (_swipeWidth/2);
 	
 		return _tl = gsap.timeline({paused:false})
-			.set('#end-swipe', {visibility: 'visible'})
-			.fromTo(end.swipe, { x:-(end.swipe.offsetWidth)}, {x:-(end.swipe.offsetWidth/3), duration:swipeSpeed, ease:'power1.out'})
-			.to(end.swipe, { x:300, duration:swipeSpeed, ease:'power1.in'})
+			.set(aniProps.swipe, {visibility: 'visible'})
+			.fromTo(aniProps.swipePath, { x:-_swipeWidth }, { x:_centerX, duration:swipeSpeed, ease:'power1.out'})
+			.to(aniProps.swipePath, { x:300, duration:swipeSpeed, ease:'power1.in'})
 	}
 	
 	function animate() {
@@ -338,7 +341,7 @@ var initBanner = (function(){
 	
 		var _introTl = aniProps.frame1Tl(), // Get intro TL to use
 			_logoSlideTl = isLogoSlide ? gsap.timeline({paused:false}).from('#logo', { x:dc.LogoSlideX, duration:0.5}) : emptyTl(),
-			_endStripeTl = aniProps.endStripeTl();// Choose standard vs masked SVG swipe 
+			_endSwipeTl = defaultSwipeTl();//aniProps.endSwipeTl();// Choose standard vs masked SVG swipe 
 	
 		tl
 			.add(_introTl)
@@ -347,7 +350,7 @@ var initBanner = (function(){
 			.add(_logoSlideTl,'end')
 			.set([cta.btn, cta.txt],{skewX:0.1}, 'end')
 			.fromTo(cta.btn, {clipPath: getPath('wipeInFromLeftStart')}, {clipPath: getPath('wipeInEnd'), duration:1 },'-=0.5')
-			.add(_endStripeTl, '+=0.5')
+			.add(_endSwipeTl, '+=0.5')
 			.add(ctaBounceTl(), "-="+swipeSpeed)
 			.from(replay.container, { autoAlpha: 0 })
 			.add(initReplayAction)
@@ -388,8 +391,7 @@ var initBanner = (function(){
 
 		svg = {
 			nGraphic: id('n-graphic'),
-			nGraphicPath: id('n-graphic-path'),
-			endStripe: id('svgStripePath')
+			nGraphicPath: id('n-graphic-path')
 		}
 		imgLoader = {
 			total: 0,
@@ -403,9 +405,7 @@ var initBanner = (function(){
 		}
 		end = {
 			container: id('end-container'),
-			t2: id('t2'),
-			swipe: id('end-swipe'),
-			stripes: document.getElementsByClassName('stripe')//id('end-stripe') 
+			t2: id('t2')
 		}
 		replay = {
 			container: id('replay-container'),
@@ -427,7 +427,9 @@ var initBanner = (function(){
 				overlap: _json.overlap || '-=0.3',
 				imgBack: id('ng-pic-back'),
 				imgFront: id('ng-pic-front'),
-				endStripeTl: defaultStripeTl,
+				swipe: id('ng-end-swipe'),
+				swipePath: id('ng-swipe-path'),
+				// endSwipeTl: defaultSwipeTl,
 				newEndPos:false
 			},
 			'NCrop':{
@@ -437,7 +439,9 @@ var initBanner = (function(){
 				overlap: _json.overlap || '-=0.5',
 				imgBack: id('nc-pic-back'),
 				replayClass:'replay-nc',
-				endStripeTl: clippedStripeTl,
+				swipe: id('nc-end-swipe'),
+				swipePath: id('nc-swipe-path'),
+				// endSwipeTl: clippedSwipeTl,
 				newEndPos:true
 			},
 			'TextOnly':{
@@ -446,7 +450,10 @@ var initBanner = (function(){
 				t1: id('t1'),
 				overlap: _json.overlap || '+=0.1',
 				replayClass:'replay-to',
-				endStripeTl: defaultStripeTl,
+				swipe: id('to-end-swipe'),
+				swipePath: id('to-swipe-path'),
+				// swipePath: document.querySelector('svg#to-end-swipe polygon.swipe-class'),
+				// endSwipeTl: defaultSwipeTl,
 				newEndPos:true
 			}
 		}
@@ -486,7 +493,8 @@ var initBanner = (function(){
 		cta.txt.style.color = theme.ctaTxtColor;
 		cta.btn.style.backgroundColor = theme.ctaBtnColor;
 		end.container.style.backgroundColor = id('banner').style.backgroundColor = colorNameToHex(theme.bgColor);
-		end.swipe.style.backgroundColor = colorNameToHex(theme.swipeColor);
+
+		gsap.set('.swipe-path', {fill:colorNameToHex(theme.swipeColor)})
 		
 		if(theme.stripeColor && !isRibbon) {
 			gsap.set('.stripe',{backgroundColor:colorNameToHex(theme.stripeColor)/*, opacity:1*/})

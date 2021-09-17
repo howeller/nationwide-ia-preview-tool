@@ -40,8 +40,8 @@ var initBanner = (function(){
 
 		svg = {
 			nGraphic: id('n-graphic'),
-			nGraphicPath: id('n-graphic-path'){{#if (isSkyscraper)}},
-			endStripe: id('svgStripePath'){{/if}}
+			nGraphicPath: id('n-graphic-path'){{!--#if (isSkyscraper)}},
+			endStripePath: id('nc-swipe-path'){{/if--}}
 		}
 		imgLoader = {
 			total: 0,
@@ -55,9 +55,9 @@ var initBanner = (function(){
 		}
 		end = {
 			container: id('end-container'),
-			t2: id('t2'),
-			swipe: id('end-swipe'),
-			stripes: document.getElementsByClassName('stripe')//id('end-stripe') {{!// stripeStaticPath:id('endStripeStaticPath')}}
+			t2: id('t2'){{#unless (isSkyscraper)}},
+			//stripes: document.getElementsByClassName('stripe')//id('end-stripe'), {{!// stripeStaticPath:id('endStripeStaticPath')}}
+			swipe: id('end-swipe'){{/unless}}{{!/}}
 		}
 		replay = {
 			container: id('replay-container'),
@@ -79,7 +79,9 @@ var initBanner = (function(){
 				overlap: _json.overlap || '-=0.3',
 				imgBack: id('ng-pic-back'),
 				imgFront: id('ng-pic-front'){{#if (isSkyscraper)}},
-				endStripeTl: defaultStripeTl,
+				swipe: id('ng-end-swipe'),
+				swipePath: id('ng-swipe-path'),
+				// endSwipeTl: defaultSwipeTl,
 				newEndPos:false{{/if}}{{!/}}
 			},{{/unless}}{{!/}}
 			'NCrop':{
@@ -92,23 +94,21 @@ var initBanner = (function(){
 				overlap: _json.overlap || '-=0',
 				imgBack: id('nc-pic'),{{/unless}}{{!/}}
 				replayClass:'replay-nc'{{#if (isSkyscraper)}},
-				endStripeTl: clippedStripeTl,
+				swipe: id('nc-end-swipe'),
+				swipePath: id('nc-swipe-path'),
+				// endSwipeTl: clippedSwipeTl,
 				newEndPos:true{{/if}}{{!/}}
 			},
-			{{!--/*'NCrop':{
-				frame1Tl: nCropIntroTl,
-				container: id('nc-parent'),
-				t1: id('t1'),
-				overlap: _json.overlap || '-=0',
-				imgBack: id('nc-pic')
-			},*/--}}
 			'TextOnly':{
 				frame1Tl: txtOnlyIntroTl,
 				container: id('end-container'),
 				t1: id('t1'),
 				overlap: _json.overlap || '+=0.1',
 				replayClass:'replay-to'{{#if (isSkyscraper)}},
-				endStripeTl: defaultStripeTl,
+				swipe: id('to-end-swipe'),
+				swipePath: id('to-swipe-path'),
+				// swipePath: document.querySelector('svg#to-end-swipe polygon.swipe-class'),
+				// endSwipeTl: defaultSwipeTl,
 				newEndPos:true{{/if}}{{!/}}
 			}
 		}
@@ -149,7 +149,9 @@ var initBanner = (function(){
 		cta.txt.style.color = theme.ctaTxtColor;
 		cta.btn.style.backgroundColor = theme.ctaBtnColor;
 		end.container.style.backgroundColor = id('banner').style.backgroundColor = colorNameToHex(theme.bgColor);
-		end.swipe.style.backgroundColor = colorNameToHex(theme.swipeColor);
+		{{#unless (isSkyscraper)}}
+		aniProps.swipe.style.backgroundColor = colorNameToHex(theme.swipeColor);{{else}}
+		gsap.set('.swipe-path', {fill:colorNameToHex(theme.swipeColor)}){{/unless}}{{!/}}
 		
 		if(theme.stripeColor && !isRibbon) {
 			gsap.set('.stripe',{backgroundColor:colorNameToHex(theme.stripeColor)/*, opacity:1*/})

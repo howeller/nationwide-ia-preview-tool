@@ -9,13 +9,17 @@
 			"twoLineMaxWidth" : 122
 		},
 		"textOnly":{ "txtTop":98 },
+		"swipe":{
+			"nGraphicPolygonPoints":"0,355 545.8,355 905,0 359.2,0",
+			"textOnlyPolygonPoints":"0,600 767.1,600 1374.2,0 607.1,0"
+		},
 		"invocation":{
 			"Ani_Style": "N Crop",
 			"BgTheme": "Vibrant Blue - White",
 			"RibbonTxt": "Agency Forward",
 			"Txt1": "Gain the digital marketing expertise agents need.",
 			"Txt1_Pause": 3,
-			"Txt2": "Attract new customers <br>and transform your business with Agency Forward.",
+			"Txt2": "Attract new clients <br>and transform your business with Agency Forward.℠",
 			"CtaTxt": "See how",
 			"logoSlideX":0
 		}
@@ -35,7 +39,7 @@
 			"RibbonTxt": "Agency Forward",
 			"Txt1": "Gain the digital marketing expertise agents need.",
 			"Txt1_Pause": 3,
-			"Txt2": "Attract new customers and transform your business with<br>Agency Forward.",
+			"Txt2": "Attract new clients and transform your business with<br>Agency Forward.℠",
 			"CtaTxt": "See how",
 			"logoSlideX":141
 		}
@@ -48,13 +52,17 @@
 			"twoLineMaxWidth" : 160
 		},
 		"textOnly":{"txtTop":102 },
+		"swipe":{
+			"nGraphicPolygonPoints":"0,300 603.2,300 906.8,0 303.6,0",
+			"textOnlyPolygonPoints":"0,600 910.4,600 1517.5,0 607.1,0"
+		},
 		"invocation":{
 			"Ani_Style": "N Crop",
 			"BgTheme": "Vibrant Blue - White",
 			"RibbonTxt": "Agency Forward",
 			"Txt1": "Gain the digital marketing expertise agents need.",
 			"Txt1_Pause": 3,
-			"Txt2": "Attract new customers and transform your business with Agency Forward.",
+			"Txt2": "Attract new clients and transform your business with Agency Forward.℠",
 			"CtaTxt": "See how",
 			"logoSlideX":159
 		}
@@ -79,7 +87,7 @@
 			"RibbonTxt": "Agency Forward",
 			"Txt1": "Gain the digital marketing <br>expertise agents need.",
 			"Txt1_Pause": 3.0,
-			"Txt2": "Attract new customers and <br>transform your business <br>with Agency Forward.",
+			"Txt2": "Attract new clients and <br>transform your business <br>with Agency Forward.℠",
 			"CtaTxt": "See how",
 			"logoSlideX":0
 		}
@@ -104,7 +112,7 @@
 			"RibbonTxt": "Agency Forward",
 			"Txt1": "Gain the digital marketing <br>expertise agents need.",
 			"Txt1_Pause": 3.0,
-			"Txt2": "Attract new customers and transform <br>your business with Agency Forward.",
+			"Txt2": "Attract new clients and transform <br>your business with Agency Forward.℠",
 			"CtaTxt": "See how",
 			"logoSlideX":0
 		}

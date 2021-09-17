@@ -5,7 +5,7 @@ function updateStripeClass(className) {
 
 function nGraphicIntroTl() {
 	cl('	+ nGraphicIntroTl ','red');
-	// end.container.style.overflow = 'hidden';
+	end.container.style.overflow = 'hidden';
 	updateStripeClass('ng-stripe');
 
 	return gsap.timeline({paused:false})
@@ -59,26 +59,34 @@ function txtOnlyIntroTl() {
 		.fromTo(aniProps.t1, {clipPath: getPath('wipeInFromLeftStart') }, {clipPath: getPath('wipeInEnd'), duration:1, repeat: 1, repeatDelay:dc.Txt1_Pause, yoyo: true })
 }
 
-function clippedStripeTl() {
-	// cl('	//	 clippedStripeTl ');
+function defaultSwipeTl() {
+	// cl('	 defaultSwipeTl ');
+	var _swipeWidth = aniProps.swipe.getBBox().width,
+		_centerX = 80 - (_swipeWidth/2);
+
+	return _tl = gsap.timeline({paused:false})
+		.set(aniProps.swipe, {visibility: 'visible'})
+		.fromTo(aniProps.swipePath, { x:-_swipeWidth }, { x:_centerX, duration:swipeSpeed, ease:'power1.out'})
+		.to(aniProps.swipePath, { x:{{width}}, duration:swipeSpeed, ease:'power1.in'});
+}
+{{!--function clippedSwipeTl() {
+	// cl('	//	 clippedSwipeTl ');
 	var _swipeWidth = svg.endStripe.getBBox().width;
 
 	return gsap.timeline({paused:false})
 		.set('#nc-end-swipe', {visibility: 'visible', top:-63})// Bump up to get to cover N Crop triangle wedge.
 		.fromTo(svg.endStripe, {x:-(_swipeWidth) }, {x:-466, duration:swipeSpeed, ease:'power1.out'})// Get SVG shape & number from AI file.
-		.to(svg.endStripe, {x:_swipeWidth, duration:swipeSpeed, ease:'power1.in'});{{!--
-		// .fromTo(svg.endStripe, {x:-(_swipeWidth) }, {x:-(_swipeWidth/2.5), duration:swipeSpeed, ease:'power1.out'})
-		// .to(svg.endStripe, {x:{{width}}, duration:swipeSpeed, ease:'power1.in'});--}}
+		.to(svg.endStripe, {x:_swipeWidth, duration:swipeSpeed, ease:'power1.in'});
+		
 }
-
-function defaultStripeTl() {
-	// cl('	//	 defaultStripeTl ');
+function defaultSwipeTl() {
+	// cl('	//	 defaultSwipeTl ');
 
 	return gsap.timeline({paused:false})
 		.set('#end-swipe', {visibility: 'visible'})
 		.fromTo(end.swipe, {x:-(end.swipe.offsetWidth)}, {x:-(end.swipe.offsetWidth/3), duration:swipeSpeed, ease:'power1.out'})
 		.to(end.swipe, {x:{{width}}, duration:swipeSpeed, ease:'power1.in'})
-}
+}--}}
 
 function animate() {
 	cl(':: animate :: {{width}}x{{height}}');
@@ -86,7 +94,7 @@ function animate() {
 	swipeSpeed = 1;
 
 	var _introTl = aniProps.frame1Tl(), // Get intro TL to use
-			_endStripeTl = aniProps.endStripeTl();// Choose standard vs masked SVG swipe 
+			_endSwipeTl = defaultSwipeTl();//aniProps.endSwipeTl();// Choose standard vs masked SVG swipe 
 
 	tl
 		.add(_introTl)
@@ -94,7 +102,7 @@ function animate() {
 		.fromTo('#t2', {clipPath: getPath('wipeInFromLeftStart')}, {clipPath: getPath('wipeInEnd'), duration:1, ease:'power3.easein' }, 'end')
 		.set([cta.btn, cta.txt],{skewX:0.1}, 'end')
 		.fromTo(cta.btn, {clipPath: getPath('wipeInFromLeftStart')}, {clipPath: getPath('wipeInEnd'), duration:1 },'-=0.5')
-		.add(_endStripeTl, '+=0.5')
+		.add(_endSwipeTl, '+=0.5')
 		.add(ctaBounceTl(), "-="+swipeSpeed)
 		.from(replay.container, { autoAlpha: 0 })
 		.add(initReplayAction)

@@ -3,7 +3,7 @@
 
 img#logo{
 	right: 18px;
-	height: 80px;
+	height: 79px;
 	width: auto;
 	/*object-fit: contain;*/
 }
@@ -36,11 +36,25 @@ svg#n-graphic{
 
 .stripe{
 	background-color: var(--darkblue);
-	width: 100%;
-	height: 100%;
 	position: absolute;
+	width: 100%;
 }
 
+.nc-stripe{
+	-webkit-clip-path: polygon(92px 0%, 239px 0%, 0% 240px, 0% 94px);
+	clip-path: polygon(92px 0%, 239px 0%, 0% 240px, 0% 94px);
+	height: 100%;
+}
+.ng-stripe, .to-stripe{
+	-webkit-clip-path: polygon(100% 70px, 100% 216px, 0% 515px, 0% 369px);
+	clip-path: polygon(100% 70px, 100% 216px, 0% 515px, 0% 369px); 
+	height: {{height}}px;
+}
+.ng-stripe{
+	top: -300px;
+}
+
+/*{{!-- VERSION 1 : Angle follows corner to corner formula
 .nc-stripe{
 	clip-path: polygon(93px 0%, 241px 0%, 0% 241px, 0% 93px); 
 	-webkit-clip-path: polygon(93px 0%, 241px 0%, 0% 241px, 0% 93px);
@@ -48,35 +62,23 @@ svg#n-graphic{
 .ng-stripe, .to-stripe{
 	clip-path: polygon(50% 0%, 100% 0%, 0% 100%, 0% 50%); 
 	-webkit-clip-path: polygon(50% 0%, 100% 0%, 0% 100%, 0% 50%);
-}
-
-{{!-- VERSION 1
-.nc-stripe{
-	clip-path: polygon(92px 0%, 253px 0%, 0% 198px, 0% 64px); 
-	-webkit-clip-path: polygon(92px 0%, 253px 0%, 0% 198px, 0% 64px);
-}
-.ng-stripe, .to-stripe{
-	clip-path: polygon(100% 103px, 100% 237px, 0% 486px, 0% 352px); 
-	-webkit-clip-path: polygon(100% 103px, 100% 237px, 0% 486px, 0% 352px);
-}
-.ng-stripe{
-	top: -300px;
-}--}}
+}--}}*/
 
 /* Swipe(s) */
 
-svg#nc-end-swipe, #end-swipe{
+svg.end-swipe, #end-swipe {
 	visibility: hidden;
 }
 #nc-end-swipe{
+	top: -93px; /*Bump up to get to cover N Crop triangle wedge.*/
 	transform: translateY(1px);/* Fudge positioning a little */
 }
 #end-container #end-swipe{
 	background-color: var(--mediumblue);
-	clip-path: polygon(33% 0%, 100% 0%, 66.00% 100%, 0% 100%); /* Left to right - shape */
-	-webkit-clip-path: polygon(33% 0%, 100% 0%, 66.00% 100%, 0% 100%); {{!-- /*Right to left*/
-	clip-path: polygon(0% 0%, 66% 0%, 100% 100%, 33% 100%);
-	-webkit-clip-path: polygon(0% 0%, 66% 0%, 100% 100%, 33% 100%); --}}
+	-webkit-clip-path: polygon(33% 0%, 100% 0%, 66.00% 100%, 0% 100%); 
+	clip-path: polygon(33% 0%, 100% 0%, 66.00% 100%, 0% 100%); /* Left to right - shape */{{!--
+ /*Right to left*/	-webkit-clip-path: polygon(0% 0%, 66% 0%, 100% 100%, 33% 100%); 
+ 	clip-path: polygon(0% 0%, 66% 0%, 100% 100%, 33% 100%);--}}
 	width: 300%;
 	height: 100%;
 }
@@ -100,13 +102,14 @@ svg#nc-end-swipe, #end-swipe{
 #ribbon{
 	background-color: var(--mediumblue);
 	bottom: 0px;
-	clip-path: polygon(0% 0%, calc(100% - {{ribbon.singleLineHeight}}px) 0%, 100% 100%, 0% 100%);
 	left: 0;
 	display: block;
 	position: absolute;
 	width: auto;
 	height: auto;
 	opacity: 0;
+	-webkit-clip-path: polygon(0% 0%, calc(100% - {{ribbon.singleLineHeight}}px) 0%, 100% 100%, 0% 100%);
+	clip-path: polygon(0% 0%, calc(100% - {{ribbon.singleLineHeight}}px) 0%, 100% 100%, 0% 100%);
 }
 
 #ribbon #ribbon-txt{

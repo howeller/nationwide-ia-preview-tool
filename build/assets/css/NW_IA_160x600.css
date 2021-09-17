@@ -135,30 +135,32 @@ svg#n-graphic{
 .stripe{
 	background-color: var(--darkblue);
 	width: 100%;
-	height: 100%;
 	position: absolute;
 }
 
 .nc-stripe{
-	-webkit-clip-path: polygon(61px 0%, 221px 0%, 0% 228px, 0% 60px);
-	clip-path: polygon(61px 0%, 221px 0%, 0% 228px, 0% 60px);
+	-webkit-clip-path: polygon(62px 0%, 222px 0%, 0% 229px, 0% 65px);
+	clip-path: polygon(62px 0%, 222px 0%, 0% 229px, 0% 65px);
+	height: 100%;
+}
+.ng-stripe, .to-stripe{
+	-webkit-clip-path: polygon(100% 101px, 100% 266px, 0% 429px, 0% 266px);
+	clip-path: polygon(100% 101px, 100% 266px, 0% 429px, 0% 266px); 
+	height: 600px;
 }
 .ng-stripe{
-	-webkit-clip-path: polygon(33px 0%, 100% 0%, 0% 100%, 0% 73px);
-	clip-path: polygon(33px 0%, 100% 0%, 0% 100%, 0% 73px);
+	top: -245px;
 }
-.to-stripe{
-	-webkit-clip-path: polygon(42px 0%, 100% 0%, 0% 100%, 0% 152px);
-	clip-path: polygon(42px 0%, 100% 0%, 0% 100%, 0% 152px);
-}
+/**/
 
 
 /* Swipe(s) */
 
-svg#nc-end-swipe, #end-swipe{
+svg.end-swipe, #end-swipe {
 	visibility: hidden;
 }
 #nc-end-swipe{
+	top:-63px; /*Bump up to get to cover N Crop triangle wedge.*/
 	transform: translateY(1px);/* Fudge positioning a little */
 }
 #end-container #end-swipe{

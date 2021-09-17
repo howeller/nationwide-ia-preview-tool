@@ -150,7 +150,7 @@ var initBanner = (function(){
 		cta.btn.style.backgroundColor = theme.ctaBtnColor;
 		end.container.style.backgroundColor = id('banner').style.backgroundColor = colorNameToHex(theme.bgColor);
 		{{#unless (isSkyscraper)}}
-		aniProps.swipe.style.backgroundColor = colorNameToHex(theme.swipeColor);{{else}}
+		end.swipe.style.backgroundColor = colorNameToHex(theme.swipeColor);{{else}}
 		gsap.set('.swipe-path', {fill:colorNameToHex(theme.swipeColor)}){{/unless}}{{!/}}
 		
 		if(theme.stripeColor && !isRibbon) {

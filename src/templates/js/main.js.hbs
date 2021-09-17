@@ -124,10 +124,10 @@ var initBanner = (function(){
 		initColors();
 		initTxt();
 		initADACompliance();
-		{{#if (hasLogoSlide)}}initLogo();//setRibbonSize();
-		{{/if}}{{#if (isLeader)}}centerCtaBtn();
-		{{/if}}initReplay();
-		// if(isTextOnly){animate();}
+		{{#unless (isLeader)}}initLogo();//setRibbonSize();
+		{{else}}centerCtaBtn();
+		{{/unless}}initReplay();
+		{{!// if(isTextOnly){animate();} // use this for versions that do not load images}}
 		initCompleted = true;
 		cl('* initCompleted *');	
 	}
@@ -184,14 +184,13 @@ var initBanner = (function(){
 
 		ribbon.container.style.clipPath = 'polygon(0% 0%, '+_x2+'px 0%, 100% 100%, 0% 100%)';
 	}
-	{{#if (hasLogoSlide)}}
 	function initLogo(){
 		cl('initLogo ','yellow');
 		if(isRibbon){
-			cl(' BUMP UP LOGO','yellow');
+			// cl(' BUMP UP LOGO','yellow');
 			swapClasses(id('logo'), 'logo-no-ribbon', 'logo-over-ribbon');
 		}
-	}{{/if}}{{!/}}
+	}
 	/*function setLogoColor(){
 
 		switch(theme.logoColor){

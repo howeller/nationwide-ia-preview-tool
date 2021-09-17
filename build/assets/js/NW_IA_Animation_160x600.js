@@ -46,7 +46,7 @@ var initBanner = (function(){
 				replayColor: 'white',
 				txtColor: 'white',
 				// stripeColor: false,
-				swipeColor: 'darkblue'
+				swipeColor: 'mediumblue'
 			},
 			'VibrantBlue-White-EndStripe':{
 				bgColor: 'vibrantblue',
@@ -452,8 +452,8 @@ var initBanner = (function(){
 		initColors();
 		initTxt();
 		initADACompliance();
+		initLogo();//setRibbonSize();
 		initReplay();
-		// if(isTextOnly){animate();}
 		initCompleted = true;
 		cl('* initCompleted *');	
 	}
@@ -509,7 +509,13 @@ var initBanner = (function(){
 
 		ribbon.container.style.clipPath = 'polygon(0% 0%, '+_x2+'px 0%, 100% 100%, 0% 100%)';
 	}
-
+	function initLogo(){
+		cl('initLogo ','yellow');
+		if(isRibbon){
+			// cl(' BUMP UP LOGO','yellow');
+			swapClasses(id('logo'), 'logo-no-ribbon', 'logo-over-ribbon');
+		}
+	}
 	/*function setLogoColor(){
 
 		switch(theme.logoColor){

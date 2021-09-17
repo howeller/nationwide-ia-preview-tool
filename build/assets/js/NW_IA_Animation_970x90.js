@@ -46,7 +46,7 @@ var initBanner = (function(){
 				replayColor: 'white',
 				txtColor: 'white',
 				// stripeColor: false,
-				swipeColor: 'darkblue'
+				swipeColor: 'mediumblue'
 			},
 			'VibrantBlue-White-EndStripe':{
 				bgColor: 'vibrantblue',
@@ -394,7 +394,6 @@ var initBanner = (function(){
 		initADACompliance();
 		centerCtaBtn();
 		initReplay();
-		// if(isTextOnly){animate();}
 		initCompleted = true;
 		cl('* initCompleted *');	
 	}

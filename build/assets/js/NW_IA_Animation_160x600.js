@@ -4,7 +4,7 @@ var initBanner = (function(){
 
 	var _json, aniStyle, aniOptions, aniProps, initCompleted, isRibbon, isLogoSlide, isTextOnly, theme, useDefaultTheme,
 		cta, end, imgLoader, replay, ribbon, svg, swipeSpeed,
-		version='0.0.0';// Major.Minor.Bug Fix
+		version='1.0.0';// Major.Minor.Bug Fix
 
 		/*
 		* List of NW campaign color names/values from style guide
@@ -273,7 +273,7 @@ var initBanner = (function(){
 		var _maskScale2 = 4.73, // From PSD
 			_maskX1 = -474, // Get number from PSD
 			_maskY1 = -705, // Get number from PSD
-			_picScale2 = 1.48,
+			_picScale2 = 1.15,//1.48,
 			_zoomSpeed = 0.7;
 	
 		end.container.style.top = id('nc-t1-container').style.top = '201px';// Move copy up

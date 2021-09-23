@@ -154,26 +154,26 @@ tr td a.button-preview:hover{
 	background-color: var(--darkmint);
 }
 
-tr:nth-child(6n+2) td a.button-preview,
+/*tr:nth-child(6n+2) td a.button-preview,
 tr:nth-child(6n+3) td a.button-preview,
-tr:nth-child(6n+4) td a.button-preview
-/*tr:nth-child(10n+2) td a.button-preview,
+tr:nth-child(6n+4) td a.button-preview*/
+tr:nth-child(10n+2) td a.button-preview,
 tr:nth-child(10n+3) td a.button-preview,
 tr:nth-child(10n+4) td a.button-preview,
 tr:nth-child(10n+5) td a.button-preview,
-tr:nth-child(10n+6) td a.button-preview */
+tr:nth-child(10n+6) td a.button-preview 
 {
 	color: white;
 	background-color: var(--vibrantblue);
 }
-tr:nth-child(6n+2) td a.button-preview:hover,
+/*tr:nth-child(6n+2) td a.button-preview:hover,
 tr:nth-child(6n+3) td a.button-preview:hover,
-tr:nth-child(6n+4) td a.button-preview:hover
-/*tr:nth-child(10n+2) td a.button-preview:hover,
+tr:nth-child(6n+4) td a.button-preview:hover*/
+tr:nth-child(10n+2) td a.button-preview:hover,
 tr:nth-child(10n+3) td a.button-preview:hover,
 tr:nth-child(10n+4) td a.button-preview:hover,
 tr:nth-child(10n+5) td a.button-preview:hover,
-tr:nth-child(10n+6) td a.button-preview:hover*/
+tr:nth-child(10n+6) td a.button-preview:hover
 {
 	color: var(--darkblue);
 	background-color: var(--lightblue);

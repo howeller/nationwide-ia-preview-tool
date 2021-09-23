@@ -36,7 +36,6 @@ div, h1, p {
 	font-family: proxima-nova, Arial, sans-serif;
 	font-weight: 600;
 	font-style: normal;
-	/*letter-spacing: -0.4px;*/
 	/* Adjust font size */
 	font-size: 100%;
 	-webkit-text-size-adjust: 100%;	
@@ -62,12 +61,13 @@ button.abs:focus, .fake-button:focus {
 	outline: 5px solid #e85b16;
 }
 sup{
-	font-size: 50%;/*75%;*/
+	font-size: 8px;
 	line-height: 50% !important;
-  vertical-align: baseline;
-  position: relative;
-  top: -0.6em;/* -0.4em;*/
+	vertical-align: baseline;
+	position: relative;
+	top: -0.9em;
 }
+
 .abs, img, svg {
 	position:absolute;
 	display:block;
@@ -95,6 +95,8 @@ sup{
 	position: relative;
 	overflow: hidden;
 }
+
+/* Logos */
 
 img#logo{
 	right: 18px;

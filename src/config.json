@@ -15,12 +15,14 @@
 		},
 		"invocation":{
 			"Ani_Style": "N Crop",
-			"BgTheme": "Vibrant Blue - White",
-			"RibbonTxt": "Agency Forward",
+			"BgTheme": "Vibrant Blue - White - End Stripe",
+			"RibbonTxt": "",
+			"RibbonTxt_css":"fontSize: 12px\",\"lineHeight: 14px\",\"letterSpacing:0px",
 			"Txt1": "Gain the digital marketing expertise agents need.",
 			"Txt1_Pause": 3,
 			"Txt2": "Attract new clients <br>and transform your business with Agency Forward.℠",
 			"CtaTxt": "See how",
+			"logo":"nw_logo_vert_white.svg",
 			"logoSlideX":0
 		}
 	},
@@ -35,12 +37,16 @@
 		"invocation":{
 			"Ani_Style": "N Crop",
 			"_BgTheme": "White-DarkBlue",
-			"BgTheme": "Vibrant Blue - White",
-			"RibbonTxt": "Agency Forward",
+			"BgTheme": "Vibrant Blue - White - End Stripe",
+			"RibbonTxt": "",
+			"RibbonTxt_css":"fontSize: 12px\",\"lineHeight: 14px\",\"letterSpacing:0px",
 			"Txt1": "Gain the digital marketing expertise agents need.",
+			"Txt1_css":"fontSize: 18px\", \"lineHeight: 20px\", \"letterSpacing: 0px",
 			"Txt1_Pause": 3,
 			"Txt2": "Attract new clients and transform your business with<br>Agency Forward.℠",
+			"Txt2_css":"fontSize: 20px\", \"lineHeight: 22px\", \"letterSpacing: 0px",
 			"CtaTxt": "See how",
+			"logo":"nw_ppi_logo_white_2x.png",
 			"logoSlideX":141
 		}
 	},
@@ -58,12 +64,14 @@
 		},
 		"invocation":{
 			"Ani_Style": "N Crop",
-			"BgTheme": "Vibrant Blue - White",
-			"RibbonTxt": "Agency Forward",
+			"BgTheme": "Vibrant Blue - White - End Stripe",
+			"RibbonTxt": "",
+			"RibbonTxt_css":"fontSize: 12px\",\"lineHeight: 14px\",\"letterSpacing:0px",
 			"Txt1": "Gain the digital marketing expertise agents need.",
 			"Txt1_Pause": 3,
 			"Txt2": "Attract new clients and transform your business with Agency Forward.℠",
 			"CtaTxt": "See how",
+			"logo":"nw_ppi_logo_white_2x.png",
 			"logoSlideX":159
 		}
 	},
@@ -83,12 +91,14 @@
 		},
 		"invocation":{
 			"Ani_Style": "N Crop",
-			"BgTheme": "Vibrant Blue - White",
-			"RibbonTxt": "Agency Forward",
+			"BgTheme": "Vibrant Blue - White - End Stripe",
+			"RibbonTxt": "",
+			"RibbonTxt_css":"fontSize: 12px\",\"lineHeight: 14px\",\"letterSpacing:0px",
 			"Txt1": "Gain the digital marketing <br>expertise agents need.",
 			"Txt1_Pause": 3.0,
 			"Txt2": "Attract new clients and <br>transform your business <br>with Agency Forward.℠",
 			"CtaTxt": "See how",
+			"logo":"nw_logo_horz_white.png",
 			"logoSlideX":0
 		}
 	},
@@ -108,12 +118,14 @@
 		},
 		"invocation":{
 			"Ani_Style": "N Crop",
-			"BgTheme": "Vibrant Blue - White",
-			"RibbonTxt": "Agency Forward",
+			"BgTheme": "Vibrant Blue - White - End Stripe",
+			"RibbonTxt": "",
+			"RibbonTxt_css":"fontSize: 12px\",\"lineHeight: 14px\",\"letterSpacing:0px",
 			"Txt1": "Gain the digital marketing <br>expertise agents need.",
 			"Txt1_Pause": 3.0,
 			"Txt2": "Attract new clients and transform <br>your business with Agency Forward.℠",
 			"CtaTxt": "See how",
+			"logo":"nw_logo_horz_white.png",
 			"logoSlideX":0
 		}
 	}

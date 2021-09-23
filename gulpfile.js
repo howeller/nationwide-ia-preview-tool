@@ -30,15 +30,14 @@ const dir = {
 	zips:'build/zips/'
 }
 const googleLib = {
-	root:'https://s0.2mdn.net/creatives/assets/4087743/',
-	fonts:'https://s0.2mdn.net/creatives/assets/2701989/',
-	css:'',
-	js:'https://s0.2mdn.net/creatives/assets/4087879/',
-	logos:''
+	root:'https://s0.2mdn.net/creatives/assets/4306432/',
+	fonts:'https://s0.2mdn.net/creatives/assets/4288277/',
+	css:'https://s0.2mdn.net/creatives/assets/4307763/',
+	js:'https://s0.2mdn.net/creatives/assets/4306294/',
+	logos:'https://s0.2mdn.net/creatives/assets/4306324/'
 }
 const srcFolders = util.getFolders(dir.src);
-const useGoogleAssets = false; // Where to look for JS. Set true for final export. False for local testing.
-const isDebugMode = true; // For testing unminified JS.
+const useGoogleAssets = true; // Where to look for JS. Set true for final export. False for local testing.
 
 // Build names for each file
 const getJsFileName = (obj) => `NW_IA_Animation_${obj.width}x${obj.height}`;//'NW_IA_Animation_'+obj.width+'x'+obj.height;
@@ -76,8 +75,7 @@ function build(_isPreview=false){
 				fontPath: 					function(){ return googleLib.fonts; },
 				// getStaticImagePath: function(){ return (_isPreview) ? './templates/'+this.name+'/images/' : 'images/';},
 				invocationJs: 			function(){ return (_isPreview) ? 'invocationPreview.js':'invocation.js';},
-				// mainJs: 			  		function(){ return (_isPreview) ? getJsFileName(this)+'.js':getJsFileName(this)+'.js';},//TESTING ONLY
-				mainJs: 			  		function(){ return (_isPreview) ? getJsFileName(this)+'.js':getJsFileName(this)+'.min.js';},//PUT THIS BACK
+				mainJs: 			  		function(){ return (_isPreview) ? getJsFileName(this)+'.js':getJsFileName(this)+'.min.js';},
 				logoToUse: 					function(){ return this.logo.svg },
 				isPreview: 					function(){ return (_isPreview) },
 				getRibbonSlope: 		function(){ return getSlope(this.ribbon.x1, this.ribbon.x2, 0, this.ribbon.singleLineHeight)},

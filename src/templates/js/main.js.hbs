@@ -4,7 +4,7 @@ var initBanner = (function(){
 
 	var _json, aniStyle, aniOptions, aniProps, initCompleted, isRibbon, isLogoSlide, isTextOnly, theme, useDefaultTheme,
 		cta, end, imgLoader, replay, ribbon, svg,{{#if (isSkyscraper)}} swipeSpeed,{{/if}}{{#if (isLeader)}}slope,{{/if}}
-		version={{#if (isLeader)}}'1.0.0'{{else}}'1.0.0'{{/if}};// Major.Minor.Bug Fix
+		version={{#if (isLeader)}}'1.1.0'{{else}}'1.1.0'{{/if}};// Major.Minor.Bug Fix
 
 	{{> colorList.js}}
 	{{> utilities.js}}
@@ -36,7 +36,14 @@ var initBanner = (function(){
 
 		cl('useDefaultTheme ? '+useDefaultTheme, 'red');
 
-		_json = (dc.Banner_json.Url) ? myJson.data['{{width}}x{{height}}'][dc.Color_Version][aniStyle] : {};
+		if(dc.Banner_json.Url){
+			_json = myJson.data['{{width}}x{{height}}'][dc.Color_Version][aniStyle];
+			_json.global = myJson.data['global'];
+		}else{
+			_json = {};
+		}
+		// _json = (dc.Banner_json.Url) ? myJson.data['{{width}}x{{height}}'][dc.Color_Version][aniStyle] : {};
+		// _json.global = (dc.Banner_json.Url) ? myJson.data['global'] : false;
 
 		svg = {
 			nGraphic: id('n-graphic'),
@@ -154,7 +161,7 @@ var initBanner = (function(){
 		gsap.set('.swipe-path', {fill:colorNameToHex(theme.swipeColor)}){{/unless}}{{!/}}
 		
 		if(theme.stripeColor && !isRibbon) {
-			gsap.set('.stripe',{backgroundColor:colorNameToHex(theme.stripeColor)/*, opacity:1*/})
+			gsap.set('.stripe',{backgroundColor:colorNameToHex(theme.stripeColor)})
 		}else{
 			gsap.set('.stripe',{visibility:'hidden'})
 		}
@@ -186,10 +193,11 @@ var initBanner = (function(){
 	}
 	function initLogo(){
 		cl('initLogo ','yellow');
-		if(isRibbon){
+		isRibbon && swapClasses(id('logo'), 'logo-no-ribbon', 'logo-over-ribbon'); // short circuit over if statement
+		// if(isRibbon){
 			// cl(' BUMP UP LOGO','yellow');
-			swapClasses(id('logo'), 'logo-no-ribbon', 'logo-over-ribbon');
-		}
+		// 	swapClasses(id('logo'), 'logo-no-ribbon', 'logo-over-ribbon');
+		// }
 	}
 	/*function setLogoColor(){
 
@@ -244,13 +252,22 @@ var initBanner = (function(){
 		var t1Container = (aniStyle === 'NCrop') ? id('nc-t1-container') : id('t1-container');
 		t1Container.removeAttribute('aria-hidden');{{/unless}}{{!/}}
 
+		id('logo').removeAttribute('aria-hidden');// REMOVE IN MARKUP (& THIS) IF WE EVER RETRAFFICK SHELLS.
 		aniProps.t1.setAttribute('role', "heading");
 		aniProps.t1.setAttribute('aria-level', 1);
+		if(!isRibbon){
+			ribbon.txt.setAttribute('aria-hidden','true');
+		}
 	}
 
 	function initImgs(){
 		cl('initImgs');
-		setImgStart(id('logo'), dc.Logo_img_css, dc.Logo_img.Url);// PASS CSS OR JSON ???
+		var _logo = id('logo');
+		setImgStart(_logo, dc.Logo_img_css, dc.Logo_img.Url);
+		_logo.alt = _json.global ? _json.global.logoAlt : "Nationwide&reg;";//Set Alt txt from json if needed.
+		// _logo.alt = _json.global && _json.global.logoAlt || "Nationwide&reg;";
+		// _logo.alt = _json.global?.logoAlt || "Nationwide&reg;"; // Use when there's support for Optional Chaining.
+
 		if(!isTextOnly){
 			setImgStart(aniProps.imgBack, null, dc.Back_img.Url);
 			{{#unless (isLeader)}}if(aniStyle === 'NGraphic'){ setImgStart(aniProps.imgFront, null, dc.Front_img.Url);}{{/unless}}{{!/}}

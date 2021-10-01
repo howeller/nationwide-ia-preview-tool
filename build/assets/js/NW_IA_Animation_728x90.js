@@ -4,7 +4,7 @@ var initBanner = (function(){
 
 	var _json, aniStyle, aniOptions, aniProps, initCompleted, isRibbon, isLogoSlide, isTextOnly, theme, useDefaultTheme,
 		cta, end, imgLoader, replay, ribbon, svg,slope,
-		version='1.0.0';// Major.Minor.Bug Fix
+		version='1.1.0';// Major.Minor.Bug Fix
 
 		/*
 		* List of NW campaign color names/values from style guide
@@ -329,7 +329,14 @@ var initBanner = (function(){
 
 		cl('useDefaultTheme ? '+useDefaultTheme, 'red');
 
-		_json = (dc.Banner_json.Url) ? myJson.data['728x90'][dc.Color_Version][aniStyle] : {};
+		if(dc.Banner_json.Url){
+			_json = myJson.data['728x90'][dc.Color_Version][aniStyle];
+			_json.global = myJson.data['global'];
+		}else{
+			_json = {};
+		}
+		// _json = (dc.Banner_json.Url) ? myJson.data['728x90'][dc.Color_Version][aniStyle] : {};
+		// _json.global = (dc.Banner_json.Url) ? myJson.data['global'] : false;
 
 		svg = {
 			nGraphic: id('n-graphic'),
@@ -418,7 +425,7 @@ var initBanner = (function(){
 		end.swipe.style.backgroundColor = colorNameToHex(theme.swipeColor);
 		
 		if(theme.stripeColor && !isRibbon) {
-			gsap.set('.stripe',{backgroundColor:colorNameToHex(theme.stripeColor)/*, opacity:1*/})
+			gsap.set('.stripe',{backgroundColor:colorNameToHex(theme.stripeColor)})
 		}else{
 			gsap.set('.stripe',{visibility:'hidden'})
 		}
@@ -456,13 +463,22 @@ var initBanner = (function(){
 	function initADACompliance(){
 		cl('initADACompliance');
 
+		id('logo').removeAttribute('aria-hidden');// REMOVE IN MARKUP (& THIS) IF WE EVER RETRAFFICK SHELLS.
 		aniProps.t1.setAttribute('role', "heading");
 		aniProps.t1.setAttribute('aria-level', 1);
+		if(!isRibbon){
+			ribbon.txt.setAttribute('aria-hidden','true');
+		}
 	}
 
 	function initImgs(){
 		cl('initImgs');
-		setImgStart(id('logo'), dc.Logo_img_css, dc.Logo_img.Url);// PASS CSS OR JSON ???
+		var _logo = id('logo');
+		setImgStart(_logo, dc.Logo_img_css, dc.Logo_img.Url);
+		_logo.alt = _json.global ? _json.global.logoAlt : "Nationwide&reg;";//Set Alt txt from json if needed.
+		// _logo.alt = _json.global && _json.global.logoAlt || "Nationwide&reg;";
+		// _logo.alt = _json.global?.logoAlt || "Nationwide&reg;"; // Use when there's support for Optional Chaining.
+
 		if(!isTextOnly){
 			setImgStart(aniProps.imgBack, null, dc.Back_img.Url);
 			

@@ -1,14 +1,9 @@
 {
 	"data":{
 		"Name":"Thought Leadership Q4",
-		"160x600":{
-			"Opt1":{
-				"NCrop":{},
-				"NGraphic":{},
-				"TextOnly":{}
-			}
-		},
+		"global":{"logoAlt":"Nationwide&reg; PROUD PARTNER OF INDEPENDENTS"},
 		"300x250":{
+			"global":{"logoAlt":"Nationwide&reg; PROUD PARTNER OF INDEPENDENTS"},
 			"Opt1":{
 				"NCrop":{},
 				"NGraphic":{},
@@ -16,21 +11,10 @@
 			}
 		},
 		"300x600":{
+			"global":{"logoAlt":"Nationwide&reg; PROUD PARTNER OF INDEPENDENTS"},
 			"Opt1":{
 				"NCrop":{},
 				"NGraphic":{},
-				"TextOnly":{}
-			}
-		},
-		"728x90":{
-			"Opt1":{
-				"NCrop":{},
-				"TextOnly":{}
-			}
-		},
-		"970x90":{
-			"Opt1":{
-				"NCrop":{},
 				"TextOnly":{}
 			}
 		}

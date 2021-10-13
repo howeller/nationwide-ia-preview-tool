@@ -1,21 +1,45 @@
 {
 	"data":{
-		"Name":"Thought Leadership Q4",
+		"Name":"Default",
 		"global":{"logoAlt":"Nationwide® PROUD PARTNER OF INDEPENDENTS"},
 		"300x250":{
-			"global":{"logoAlt":"Nationwide® PROUD PARTNER OF INDEPENDENTS"},
 			"Opt1":{
-				"NCrop":{},
-				"NGraphic":{},
-				"TextOnly":{}
+				"NCrop":{}, "NGraphic":{}, "TextOnly":{}
+			},
+			"Opt2":{
+				"NCrop":{}, "NGraphic":{}, "TextOnly":{}
+			},
+			"Opt3":{
+				"NCrop":{}, "NGraphic":{}, "TextOnly":{}
+			},
+			"Opt4":{
+				"NCrop":{}, "NGraphic":{}, "TextOnly":{}
+			},
+			"CL1":{
+				"NCrop":{}, "NGraphic":{}, "TextOnly":{}
+			},
+			"PL1":{
+				"NCrop":{}, "NGraphic":{}, "TextOnly":{}
 			}
 		},
 		"300x600":{
-			"global":{"logoAlt":"Nationwide® PROUD PARTNER OF INDEPENDENTS"},
 			"Opt1":{
-				"NCrop":{},
-				"NGraphic":{},
-				"TextOnly":{}
+				"NCrop":{}, "NGraphic":{}, "TextOnly":{}
+			},
+			"Opt2":{
+				"NCrop":{}, "NGraphic":{}, "TextOnly":{}
+			},
+			"Opt3":{
+				"NCrop":{}, "NGraphic":{}, "TextOnly":{}
+			},
+			"Opt4":{
+				"NCrop":{}, "NGraphic":{}, "TextOnly":{}
+			},
+			"CL1":{
+				"NCrop":{}, "NGraphic":{}, "TextOnly":{}
+			},
+			"PL1":{
+				"NCrop":{}, "NGraphic":{}, "TextOnly":{}
 			}
 		}
 	}

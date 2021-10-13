@@ -4,7 +4,7 @@ var initBanner = (function(){
 
 	var _json, aniStyle, aniOptions, aniProps, initCompleted, isRibbon, isLogoSlide, isTextOnly, theme, useDefaultTheme,
 		cta, end, imgLoader, replay, ribbon, svg, swipeSpeed,
-		version='1.1.0';// Major.Minor.Bug Fix
+		version='1.1.1';// Major.Minor.Bug Fix
 
 		/*
 		* List of NW campaign color names/values from style guide
@@ -586,7 +586,7 @@ var initBanner = (function(){
 		cl('initImgs');
 		var _logo = id('logo');
 		setImgStart(_logo, dc.Logo_img_css, dc.Logo_img.Url);
-		_logo.alt = _json.global ? _json.global.logoAlt : "Nationwide&reg;";//Set Alt txt from json if needed.
+		_logo.alt = _json.global ? _json.global.logoAlt : "Nationwide®";//Set Alt txt from json if needed.
 		// _logo.alt = _json.global && _json.global.logoAlt || "Nationwide&reg;";
 		// _logo.alt = _json.global?.logoAlt || "Nationwide&reg;"; // Use when there's support for Optional Chaining.
 

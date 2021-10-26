@@ -90,6 +90,7 @@ img.nc-pic{
 	left:297px;
 	width: 466px;
 	height: 70px; /* Height to top of ribbon */
+	-webkit-backface-visibility: hidden; /*Fix flickering in Chrome*/
 }
 .txt-container-no-ribbon{
 	height: 90px;
@@ -158,6 +159,7 @@ img.nc-pic{
 	display:block;
 	position: absolute;
 	vertical-align: top;
+	-webkit-backface-visibility: hidden; /*Fix flickering in Chrome*/
 }
 #cta {
 	background-color:var(--mintgreen);

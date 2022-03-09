@@ -222,12 +222,13 @@ svg.end-swipe, #end-swipe {
 	font-weight: 600;
 	letter-spacing:0;
 	text-align:left;
-	width: 126px;
+	width: 124px;
 }
 .ng-t1{
 	font-size: 22px;
 	line-height: 24px;
-	padding: 17px 0px 0px 18px;
+	margin: 18px;
+	/*padding: 17px 0px 0px 18px;*/
 }
 .nc-t1{
 	font-size: 19px;
@@ -247,7 +248,7 @@ svg.end-swipe, #end-swipe {
 	font-size: 19px;
 	line-height: 21px;
 	letter-spacing:0;
-	width: 126px;
+	width: 124px;
 }
 .t2{
 	padding: 19px 0px 16px 21px;

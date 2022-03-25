@@ -86,13 +86,13 @@ myTimeline.fromTo( '#myElement', { clipPath: getPath('wipeInEnd') }, { clipPath:
 ````
 - The leader sizes wipe from side to side using a shape with a set slope.
 - The slope on the leader sizes is set as a global variable, and calculated using a handlebar helper `getSlope (x1, x2, y1, y2)`.
-- The box sizes banners require 2 images cut to the same dimensions. A PNG in the foreground and a JPG in the background.
+- For the N-Graphic box & skyscraper sizes, the versions require 2 images cut to the same dimensions. A PNG in the foreground and a JPG in the background.
 
 ---
 ### Versioning
-Creating versions requires 1) making and populating a new row in the feed and 2) loading the image assets in the local library (`build/assets/images/`) & [Google&nbsp;Asset&nbsp;Library](###). Even though I have built in the option to customize animation properties through the JSON file and CSS properties in the feed sheet, this project hasn't needed to do so after the first several batches of versions.
+Creating versions requires 1) making and populating a new row in the feed and 2) loading the image assets in the local library (`build/assets/images/`) & [Google&nbsp;Asset&nbsp;Library](https://s0.2mdn.net/creatives/assets/4306432/). Even though I have built in the option to customize animation properties through the JSON file and CSS properties in the feed sheet, this project hasn't needed to do so after the first several batches of versions.
 
-- Create images for **N-Graphic** and **N-Window** layouts:
+- Create images for **N-Graphic** layouts (300x250, 300x600, & 160x600 only):
     - There is a PNG in the foreground and a JPG in the background. 
     - Both files use the same dimensions and are @2x. 
     - Check the feed for the naming convention.
@@ -106,7 +106,7 @@ Creating versions requires 1) making and populating a new row in the feed and 2)
 	- I typically copy a previously created row and paste into a blank row. Be careful NOT to break the equation set in column I (Abbv). That will break all rows underneath.
   - All versions need a unique `Banner_ID` and `Reporting_Label`. 
   - You can add new concept & version names inside the drop down menus by adding them inside the `LookupTable` tab inside the feed doc.
-  - Most copy should be able to "flow", but frame 1 on N-Window 300x250 an N Crop (both sizes) require "soft returns" (break tags) `<br>`.
+  - Most copy should be able to "flow", but frame 1 on N-Crop 300x250 an N Crop (both sizes) require manual line breaks (break tags) `<br>`.
   - Be careful copying and pasting text from the PSDs as they often include "soft returns" which will need to be removed or else the preview tool will throw errors. To avoid this simply paste the copy into a text editor and remove or replace the soft returns.
 - Preview your changes.
   - Start up a [local preview site](#preview-tool-notes) and hit the `Refresh Feed` button at top to refresh the list & banners after every change in the feed sheet.

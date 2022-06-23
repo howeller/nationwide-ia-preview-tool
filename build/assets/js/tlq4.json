@@ -20,6 +20,9 @@
 			},
 			"PL1":{
 				"NCrop":{}, "NGraphic":{}, "TextOnly":{}
+			},
+			"TL":{
+				"NCrop":{}, "NGraphic":{}, "TextOnly":{}
 			}
 		},
 		"300x600":{
@@ -39,6 +42,9 @@
 				"NCrop":{}, "NGraphic":{}, "TextOnly":{}
 			},
 			"PL1":{
+				"NCrop":{}, "NGraphic":{}, "TextOnly":{}
+			},
+			"TL":{
 				"NCrop":{}, "NGraphic":{}, "TextOnly":{}
 			}
 		}

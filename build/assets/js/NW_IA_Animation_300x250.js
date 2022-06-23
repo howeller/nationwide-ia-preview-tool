@@ -536,7 +536,7 @@ var initBanner = (function(){
 		cl('initImgs');
 		var _logo = id('logo');
 		setImgStart(_logo, dc.Logo_img_css, dc.Logo_img.Url);
-		_logo.alt = _json.global ? _json.global.logoAlt : "Nationwide® PROUD PARTNER OF INDEPENDENTS";//Set Alt txt from json if needed.
+		_logo.alt = _json.global ? _json.global.logoAlt : "Nationwide®PROUD PARTNER OF INDEPENDENTS";//Set Alt txt from json if needed.
 		// _logo.alt = _json.global && _json.global.logoAlt || "Nationwide&reg;";
 		// _logo.alt = _json.global?.logoAlt || "Nationwide&reg;"; // Use when there's support for Optional Chaining.
 

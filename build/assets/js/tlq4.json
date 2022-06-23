@@ -23,6 +23,12 @@
 			},
 			"TL":{
 				"NCrop":{}, "NGraphic":{}, "TextOnly":{}
+			},
+			"CL":{
+				"NCrop":{}, "NGraphic":{}, "TextOnly":{}
+			},
+			"PL":{
+				"NCrop":{}, "NGraphic":{}, "TextOnly":{}
 			}
 		},
 		"300x600":{
@@ -45,6 +51,12 @@
 				"NCrop":{}, "NGraphic":{}, "TextOnly":{}
 			},
 			"TL":{
+				"NCrop":{}, "NGraphic":{}, "TextOnly":{}
+			},
+			"CL":{
+				"NCrop":{}, "NGraphic":{}, "TextOnly":{}
+			},
+			"PL":{
 				"NCrop":{}, "NGraphic":{}, "TextOnly":{}
 			}
 		}

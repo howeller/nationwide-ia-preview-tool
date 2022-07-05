@@ -4,7 +4,7 @@ var initBanner = (function(){
 
 	var _json, aniStyle, aniOptions, aniProps, initCompleted, isRibbon, isLogoSlide, isTextOnly, theme, useDefaultTheme,
 		cta, end, imgLoader, replay, ribbon, svg,
-		version='1.1.1';// Major.Minor.Bug Fix
+		version='1.2.0';// Major.Minor.Bug Fix
 
 		/*
 		* List of NW campaign color names/values from style guide
@@ -331,11 +331,11 @@ var initBanner = (function(){
 		aniStyle = removeSpaces(dc.Ani_Style);
 		
 		// Do not modify colors if any customizations are entered in the feed.
-		useDefaultTheme = (_feedTheme === 'VibrantBlue-White-EndStripe' && !dc.TxtColor && !dc.RibbonColor && !dc.RibbonTxtColor && !dc.ReplayColor);
+		useDefaultTheme = (_feedTheme === 'VibrantBlue-White-EndStripe' && !dc.TxtColor && !dc.RibbonColor && !dc.RibbonTxtColor);
 		
 		theme = themeMap[_feedTheme]; //Get color choices
 
-		isRibbon = (dc.RibbonTxt.length > 0);//cl('isRibbon ? '+isRibbon, 'red');
+		isRibbon = (dc.RibbonTxt.length > 0);
 
 		isTextOnly = (aniStyle === 'TextOnly');
 		isLogoSlide = (dc.LogoSlideX > 0);
@@ -348,8 +348,6 @@ var initBanner = (function(){
 		}else{
 			_json = {};
 		}
-		// _json = (dc.Banner_json.Url) ? myJson.data['300x250'][dc.Color_Version][aniStyle] : {};
-		// _json.global = (dc.Banner_json.Url) ? myJson.data['global'] : false;
 
 		svg = {
 			nGraphic: id('n-graphic'),
@@ -368,7 +366,6 @@ var initBanner = (function(){
 		end = {
 			container: id('end-container'),
 			t2: id('t2'),
-			//stripes: document.getElementsByClassName('stripe')//id('end-stripe'), 
 			swipe: id('end-swipe')
 		}
 		replay = {
@@ -536,9 +533,9 @@ var initBanner = (function(){
 		cl('initImgs');
 		var _logo = id('logo');
 		setImgStart(_logo, dc.Logo_img_css, dc.Logo_img.Url);
-		_logo.alt = _json.global ? _json.global.logoAlt : "Nationwide® PROUD PARTNER OF INDEPENDENTS";//Set Alt txt from json if needed.
-		// _logo.alt = _json.global && _json.global.logoAlt || "Nationwide&reg;";
-		// _logo.alt = _json.global?.logoAlt || "Nationwide&reg;"; // Use when there's support for Optional Chaining.
+
+		// Set Alt txt from json if needed.
+		_logo.alt = _json.global ? _json.global.logoAlt : "Nationwide® PROUD PARTNER OF INDEPENDENTS";
 
 		if(!isTextOnly){
 			setImgStart(aniProps.imgBack, null, dc.Back_img.Url);

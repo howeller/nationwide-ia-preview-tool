@@ -13,22 +13,37 @@ function isCustomCtaPos(){
 	}
 	return false;
 }
+
+/*
+*	Get the width of wrapped text with no defined width.
+*/
+function getTextRect(containerNode) {
+	// For simplicity, we assume plain text here (no nested markup)
+	var textRect,
+		textNode = containerNode.childNodes[0],
+		textRange = document.createRange();
+
+	textRange.selectNode( textNode );
+	textRect = textRange.getBoundingClientRect();
+
+	// Clean up
+	textRange.detach();
+
+	return textRect;
+}
+
 /*
 *	Centers CTA button between end of end txt and logo
 */
 function centerCtaBtn(){
 	if (isCustomCtaPos())return; // Nuke this if there's a left position entered in custom CSS
-	var _endTxt = id('t2'),{{!-- 
-			// _rightX = gsap.getProperty('#{{logo.id}}', 'left'),
-			// _leftX = _endTxt.offsetWidth + gsap.getProperty(_endTxt,'left'),--}}
-			_rightX = gsap.getProperty('#t2-container', 'width'),
-			_leftX = _endTxt.offsetWidth,
-			_ctaSpace = _rightX - _leftX,
-			_centerX = Math.round(_leftX + _ctaSpace/2 ),
-			_ctaW = cta.container.clientWidth,
-			_ctaX = Math.round(_centerX-(_ctaW/2));
+	var _rightX = gsap.getProperty('#t2-container', 'width'),
+		_leftX = Math.round(getTextRect(id('t2')).width) || id('t2').offsetWidth,
+		_ctaSpace = _rightX - _leftX,
+		_centerX = Math.round(_leftX + _ctaSpace/2 ),
+		_ctaW = cta.container.clientWidth,
+		_ctaX = Math.round(_centerX-(_ctaW/2));
 
-	cl('	|•| autoCenterCtaBtn: _centerX:'+_centerX+' _ctaX:'+_ctaX+' cta width:'+_ctaW);
 	cta.container.style.left = toCssNum(_ctaX);
 }
 {{/if}}{{!/}}

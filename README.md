@@ -3,15 +3,18 @@
 ## Nationwide Insurance Dynamic Independent Agent 
 
 ### Table of Contents
-1. [Project Links](#project-links)
-2. [Dev overview](#dev-overview)
-3. [Local Build Notes](#local-build-notes)
-4. [Gulp Tasks](#gulp-tasks)
-5. [Dynamic Build Notes](#dynamic-build-notes)
-6. [Preview Tool Notes](#preview-tool-notes)
-7. [Animation Notes](#animation-notes)
-8. [Versioning](#versioning)
-9. [ADA Compliance](#ada-compliance)
+- [Nationwide Insurance Dynamic Independent Agent](#nationwide-insurance-dynamic-independent-agent)
+  - [Table of Contents](#table-of-contents)
+  - [Project Links](#project-links)
+  - [Dev overview](#dev-overview)
+- [- Banners have been QA certified as ADA compliant.](#--banners-have-been-qa-certified-as-ada-compliant)
+  - [Local Build Notes](#local-build-notes)
+  - [Gulp Tasks](#gulp-tasks)
+  - [Dynamic Build Notes](#dynamic-build-notes)
+  - [Preview Tool Notes](#preview-tool-notes)
+  - [Animation Notes](#animation-notes)
+  - [Versioning](#versioning)
+  - [ADA Compliance](#ada-compliance)
 
 
 ### Project Links
@@ -21,7 +24,7 @@ Google Studio | JIRA | Internal
 [Google Dynamic Profile ID&nbsp;10615014](https://www.google.com/doubleclick/studio/#ContentManagement/ProfileGuides:id=10024964&pr=10671564) | [Main Build](https://hogarthdigital.atlassian.net/browse/CTUS-423) | [Preview site](https://www.campaign.hogarthww.digital/ctus-nationwide/nationwide-h216652/preview/)
 [Google Feed Sheet](https://docs.google.com/spreadsheets/d/19fokeHLH4s2s-O4h7hFQtM_xMMeHfnpYio12QXpGBco/edit?usp=sharing) | [Mid Funnel Versions](https://hogarthdigital.atlassian.net/browse/CTUS-444) | [NW Dynamic Portal](https://app.smartsheet.com/b/publish?EQBCT=70380f11c65145f0877331e26abd1ab4)
 [Google Creatives In&nbsp;Studio](https://www.google.com/doubleclick/studio/#campaign:campaignId=60276429&advertiserId=42896968&ownerId=300648) | [Q2 22 Versions](https://hogarthdigital.atlassian.net/browse/CTUS-535)
-[Google&nbsp;Asset&nbsp;Library](https://www.google.com/doubleclick/studio/#assets:accountId=1441&folderId=62429945) 
+[Google&nbsp;Asset&nbsp;Library](https://www.google.com/doubleclick/studio/#assets:accountId=1441&folderId=62429945) | [Q3 22 Versions](https://hogarthdigital.atlassian.net/browse/CTUS-564)
 
 ### Dev overview
 

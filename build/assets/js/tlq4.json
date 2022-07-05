@@ -2,6 +2,11 @@
 	"data":{
 		"Name":"Default",
 		"global":{"logoAlt":"Nationwide® PROUD PARTNER OF INDEPENDENTS"},
+		"160x600":{
+			"Opt1":{
+				"NCrop":{}, "NGraphic":{}, "TextOnly":{}
+			}
+		},
 		"300x250":{
 			"Opt1":{
 				"NCrop":{}, "NGraphic":{}, "TextOnly":{}
@@ -39,6 +44,16 @@
 				"NCrop":{}, "NGraphic":{}, "TextOnly":{}
 			},
 			"PL1":{
+				"NCrop":{}, "NGraphic":{}, "TextOnly":{}
+			}
+		},
+		"728x90":{
+			"Opt1":{
+				"NCrop":{}, "NGraphic":{}, "TextOnly":{}
+			}
+		},
+		"970x90":{
+			"Opt1":{
 				"NCrop":{}, "NGraphic":{}, "TextOnly":{}
 			}
 		}

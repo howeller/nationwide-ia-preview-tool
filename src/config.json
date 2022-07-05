@@ -2,6 +2,7 @@
 	"global":{
 	},
 	"NW_Dyn_IA_160x600": {
+		"version": "1.1.1",
 		"width": 160, "height": 600,
 		"hasLogoSlide": false,
 		"ribbon":{
@@ -27,6 +28,7 @@
 		}
 	},
 	"NW_Dyn_IA_300x250": {
+		"version": "1.1.1",
 		"width": 300, "height": 250,
 		"hasLogoSlide": true,
 		"ribbon":{
@@ -51,6 +53,7 @@
 		}
 	},
 	"NW_Dyn_IA_300x600": {
+		"version": "1.1.1",
 		"width": 300, "height": 600,
 		"hasLogoSlide": true,
 		"ribbon":{
@@ -76,6 +79,7 @@
 		}
 	},
 	"NW_Dyn_IA_728x90": {
+		"version": "1.2.0",
 		"width": 728, "height": 90,
 		"hasLogoSlide": false,
 		"pic":{
@@ -103,6 +107,7 @@
 		}
 	},
 	"NW_Dyn_IA_970x90": {
+		"version": "1.2.0",
 		"width": 970, "height": 90,
 		"hasLogoSlide": false,
 		"pic":{

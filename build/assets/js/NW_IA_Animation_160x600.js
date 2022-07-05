@@ -359,11 +359,11 @@ var initBanner = (function(){
 		aniStyle = removeSpaces(dc.Ani_Style);
 		
 		// Do not modify colors if any customizations are entered in the feed.
-		useDefaultTheme = (_feedTheme === 'VibrantBlue-White-EndStripe' && !dc.TxtColor && !dc.RibbonColor && !dc.RibbonTxtColor && !dc.ReplayColor);
+		useDefaultTheme = (_feedTheme === 'VibrantBlue-White-EndStripe' && !dc.TxtColor && !dc.RibbonColor && !dc.RibbonTxtColor);
 		
 		theme = themeMap[_feedTheme]; //Get color choices
 
-		isRibbon = (dc.RibbonTxt.length > 0);//cl('isRibbon ? '+isRibbon, 'red');
+		isRibbon = (dc.RibbonTxt.length > 0);
 
 		isTextOnly = (aniStyle === 'TextOnly');
 
@@ -376,8 +376,6 @@ var initBanner = (function(){
 		}else{
 			_json = {};
 		}
-		// _json = (dc.Banner_json.Url) ? myJson.data['160x600'][dc.Color_Version][aniStyle] : {};
-		// _json.global = (dc.Banner_json.Url) ? myJson.data['global'] : false;
 
 		svg = {
 			nGraphic: id('n-graphic'),
@@ -419,7 +417,6 @@ var initBanner = (function(){
 				imgFront: id('ng-pic-front'),
 				swipe: id('ng-end-swipe'),
 				swipePath: id('ng-swipe-path'),
-				// endSwipeTl: defaultSwipeTl,
 				newEndPos:false
 			},
 			'NCrop':{
@@ -431,7 +428,6 @@ var initBanner = (function(){
 				replayClass:'replay-nc',
 				swipe: id('nc-end-swipe'),
 				swipePath: id('nc-swipe-path'),
-				// endSwipeTl: clippedSwipeTl,
 				newEndPos:true
 			},
 			'TextOnly':{
@@ -442,8 +438,6 @@ var initBanner = (function(){
 				replayClass:'replay-to',
 				swipe: id('to-end-swipe'),
 				swipePath: id('to-swipe-path'),
-				// swipePath: document.querySelector('svg#to-end-swipe polygon.swipe-class'),
-				// endSwipeTl: defaultSwipeTl,
 				newEndPos:true
 			}
 		}
@@ -580,9 +574,9 @@ var initBanner = (function(){
 		cl('initImgs');
 		var _logo = id('logo');
 		setImgStart(_logo, dc.Logo_img_css, dc.Logo_img.Url);
-		_logo.alt = _json.global ? _json.global.logoAlt : "Nationwide®";//Set Alt txt from json if needed.
-		// _logo.alt = _json.global && _json.global.logoAlt || "Nationwide&reg;";
-		// _logo.alt = _json.global?.logoAlt || "Nationwide&reg;"; // Use when there's support for Optional Chaining.
+
+		// Set Alt txt from json if needed.
+		_logo.alt = _json.global ? _json.global.logoAlt : "Nationwide®";
 
 		if(!isTextOnly){
 			setImgStart(aniProps.imgBack, null, dc.Back_img.Url);

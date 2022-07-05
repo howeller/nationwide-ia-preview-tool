@@ -4,7 +4,7 @@ var initBanner = (function(){
 
 	var _json, aniStyle, aniOptions, aniProps, initCompleted, isRibbon, isLogoSlide, isTextOnly, theme, useDefaultTheme,
 		cta, end, imgLoader, replay, ribbon, svg,slope,
-		version='1.1.1';// Major.Minor.Bug Fix
+		version='1.2.1';// Major.Minor.Bug Fix
 
 		/*
 		* List of NW campaign color names/values from style guide
@@ -13,7 +13,6 @@ var initBanner = (function(){
 			'black':					'#000000',
 			'coolgray8': 			'#87898b',
 			'darkblue':				'#141b4d',
-			// 'darkmint': 			'#008775',
 			'lightblue':			'#8cc8e9',
 			'lightmint' : 		'#6eceb2',
 			'mediumblue':			'#1f74db',
@@ -45,7 +44,6 @@ var initBanner = (function(){
 				ribbonTxtColor: 'white',
 				replayColor: 'white',
 				txtColor: 'white',
-				// stripeColor: false,
 				swipeColor: 'mediumblue'
 			},
 			'VibrantBlue-White-EndStripe':{
@@ -90,8 +88,7 @@ var initBanner = (function(){
 		element.classList.add(classToAdd);
 	}
 	function getPercentage(num1, num2){
-		// return Math.round((num1 / num2)*100) // whole number
-		 return Math.ceil((num1 / num2)*100)/100; // Decimal rounded to 100th
+		return Math.ceil((num1 / num2)*100)/100; // Decimal rounded to 100th
 	}
 	function removeSpaces(str){
 		return str.replace(/\s/g,''); 

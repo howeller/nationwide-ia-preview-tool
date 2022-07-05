@@ -123,7 +123,7 @@ var initBanner = (function(){
 		initColors();
 		initTxt();
 		initADACompliance();
-		{{#unless (isLeader)}}initLogo();//setRibbonSize();
+		{{#unless (isLeader)}}initLogo();
 		{{else}}centerCtaBtn();
 		{{/unless}}initReplay();
 		initCompleted = true;
@@ -165,14 +165,14 @@ var initBanner = (function(){
 	*/
 	function setRibbonSize(){
 		if(ribbon.container.offsetHeight <= {{ribbon.singleLineHeight}}){return;}
-		cl('setRibbonSize	NEW RIBBON HEIGHT '+ribbon.container.offsetHeight+' <= {{ribbon.singleLineHeight}}', 'red');
-		cl(Math.ceil(ribbon.container.offsetHeight / {{ribbon.singleLineHeight}})+' Lines of text', 'red');
+		// cl('setRibbonSize	NEW RIBBON HEIGHT '+ribbon.container.offsetHeight+' <= {{ribbon.singleLineHeight}}', 'red');
+		// cl(Math.ceil(ribbon.container.offsetHeight / {{ribbon.singleLineHeight}})+' Lines of text', 'red');
 
 		var _slope = -1.0{{!getRibbonSlope}},//-1.03225806//-1.055555556
 			_height = ribbon.container.offsetHeight,
 			_xOffset = 5,
 			_newPaddingRight = Math.abs(_height / _slope) + _xOffset;
-		cl('	_height: '+_height+'\n	_startWidth: '+ribbon.container.scrollWidth+'\n	 NEW RIGHT PADDING: '+_newPaddingRight,'pink');
+		// cl('	_height: '+_height+'\n	_startWidth: '+ribbon.container.scrollWidth+'\n	 NEW RIGHT PADDING: '+_newPaddingRight,'pink');
 		// cl('	.getBoundingClientRect(): '+ribbon.container.getBoundingClientRect().width+'\n	scrollWidth: '+ribbon.container.scrollWidth+'\n	 clientWidth: '+ribbon.container.clientWidth+'\n	 gsap width: '+gsap.getProperty(ribbon.container, 'width'),'pink');
 
 		gsap.set(ribbon.txt, { paddingRight: _newPaddingRight });
@@ -185,26 +185,12 @@ var initBanner = (function(){
 	function initLogo(){
 		cl('initLogo ','yellow');
 		isRibbon && swapClasses(id('logo'), 'logo-no-ribbon', 'logo-over-ribbon'); // short circuit over if statement
-		// if(isRibbon){
+		{{!--// if(isRibbon){
 			// cl(' BUMP UP LOGO','yellow');
 		// 	swapClasses(id('logo'), 'logo-no-ribbon', 'logo-over-ribbon');
-		// }
+		// }--}}
 	}
-	/*function setLogoColor(){
-
-		switch(theme.logoColor){
-			case 'white':
-				gsap.set(['#logoWordmark', '#logoN', '#logoEagle'], { fill: '#ffffff' })
-				gsap.set('#logoEagleStroke', { alpha: 0 })
-				break;
-			case '2color':
-				gsap.set( ['#logoEagle','#logoWordmark'] , {fill:"#ffffff"});
-				gsap.set( ['#logoN','#logoEagleStroke'], {fill:"#1658a5"});
-				break;
-			default:
-				break;
-		}
-	}*/{{/unless}}{{!/}}
+{{/unless}}{{!/}}
 
 	function initTxt(){
 		cl('initTxt ');

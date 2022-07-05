@@ -4,7 +4,7 @@ var initBanner = (function(){
 
 	var _json, aniStyle, aniOptions, aniProps, initCompleted, isRibbon, isLogoSlide, isTextOnly, theme, useDefaultTheme,
 		cta, end, imgLoader, replay, ribbon, svg,
-		version='1.2.0';// Major.Minor.Bug Fix
+		version='1.3.1';// Major.Minor.Bug Fix
 
 		/*
 		* List of NW campaign color names/values from style guide
@@ -13,7 +13,6 @@ var initBanner = (function(){
 			'black':					'#000000',
 			'coolgray8': 			'#87898b',
 			'darkblue':				'#141b4d',
-			// 'darkmint': 			'#008775',
 			'lightblue':			'#8cc8e9',
 			'lightmint' : 		'#6eceb2',
 			'mediumblue':			'#1f74db',
@@ -45,7 +44,6 @@ var initBanner = (function(){
 				ribbonTxtColor: 'white',
 				replayColor: 'white',
 				txtColor: 'white',
-				// stripeColor: false,
 				swipeColor: 'mediumblue'
 			},
 			'VibrantBlue-White-EndStripe':{
@@ -90,8 +88,7 @@ var initBanner = (function(){
 		element.classList.add(classToAdd);
 	}
 	function getPercentage(num1, num2){
-		// return Math.round((num1 / num2)*100) // whole number
-		 return Math.ceil((num1 / num2)*100)/100; // Decimal rounded to 100th
+		return Math.ceil((num1 / num2)*100)/100; // Decimal rounded to 100th
 	}
 	function removeSpaces(str){
 		return str.replace(/\s/g,''); 
@@ -417,7 +414,7 @@ var initBanner = (function(){
 		initColors();
 		initTxt();
 		initADACompliance();
-		initLogo();//setRibbonSize();
+		initLogo();
 		initReplay();
 		initCompleted = true;
 		cl('* initCompleted *');	
@@ -456,14 +453,14 @@ var initBanner = (function(){
 	*/
 	function setRibbonSize(){
 		if(ribbon.container.offsetHeight <= 20){return;}
-		cl('setRibbonSize	NEW RIBBON HEIGHT '+ribbon.container.offsetHeight+' <= 20', 'red');
-		cl(Math.ceil(ribbon.container.offsetHeight / 20)+' Lines of text', 'red');
+		// cl('setRibbonSize	NEW RIBBON HEIGHT '+ribbon.container.offsetHeight+' <= 20', 'red');
+		// cl(Math.ceil(ribbon.container.offsetHeight / 20)+' Lines of text', 'red');
 
 		var _slope = -1.0,//-1.03225806//-1.055555556
 			_height = ribbon.container.offsetHeight,
 			_xOffset = 5,
 			_newPaddingRight = Math.abs(_height / _slope) + _xOffset;
-		cl('	_height: '+_height+'\n	_startWidth: '+ribbon.container.scrollWidth+'\n	 NEW RIGHT PADDING: '+_newPaddingRight,'pink');
+		// cl('	_height: '+_height+'\n	_startWidth: '+ribbon.container.scrollWidth+'\n	 NEW RIGHT PADDING: '+_newPaddingRight,'pink');
 		// cl('	.getBoundingClientRect(): '+ribbon.container.getBoundingClientRect().width+'\n	scrollWidth: '+ribbon.container.scrollWidth+'\n	 clientWidth: '+ribbon.container.clientWidth+'\n	 gsap width: '+gsap.getProperty(ribbon.container, 'width'),'pink');
 
 		gsap.set(ribbon.txt, { paddingRight: _newPaddingRight });
@@ -476,26 +473,8 @@ var initBanner = (function(){
 	function initLogo(){
 		cl('initLogo ','yellow');
 		isRibbon && swapClasses(id('logo'), 'logo-no-ribbon', 'logo-over-ribbon'); // short circuit over if statement
-		// if(isRibbon){
-			// cl(' BUMP UP LOGO','yellow');
-		// 	swapClasses(id('logo'), 'logo-no-ribbon', 'logo-over-ribbon');
-		// }
 	}
-	/*function setLogoColor(){
 
-		switch(theme.logoColor){
-			case 'white':
-				gsap.set(['#logoWordmark', '#logoN', '#logoEagle'], { fill: '#ffffff' })
-				gsap.set('#logoEagleStroke', { alpha: 0 })
-				break;
-			case '2color':
-				gsap.set( ['#logoEagle','#logoWordmark'] , {fill:"#ffffff"});
-				gsap.set( ['#logoN','#logoEagleStroke'], {fill:"#1658a5"});
-				break;
-			default:
-				break;
-		}
-	}*/
 
 	function initTxt(){
 		cl('initTxt ');

@@ -225,9 +225,13 @@ var initBanner = (function(){
 	}
 
 	function initADACompliance(){
-		cl('initADACompliance');{{#unless (isLeader)}}
+		cl('initADACompliance');
+		{{#unless (isLeader)}}
 		var t1Container = (aniStyle === 'NCrop') ? id('nc-t1-container') : id('t1-container');
-		t1Container.removeAttribute('aria-hidden');{{/unless}}{{!/}}
+		t1Container.removeAttribute('aria-hidden');
+		{{else}}
+		id('t1-container').removeAttribute('aria-hidden');
+		{{/unless}}
 
 		id('logo').removeAttribute('aria-hidden');// REMOVE IN MARKUP (& THIS) IF WE EVER RETRAFFICK SHELLS.
 		aniProps.t1.setAttribute('role', "heading");

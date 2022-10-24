@@ -4,7 +4,7 @@ var initBanner = (function(){
 
 	var _json, aniStyle, aniOptions, aniProps, initCompleted, isRibbon, isLogoSlide, isTextOnly, theme, useDefaultTheme,
 		cta, end, imgLoader, replay, ribbon, svg,slope,
-		version='1.2.1';// Major.Minor.Bug Fix
+		version='1.3.0';// Major.Minor.Bug Fix
 
 		/*
 		* List of NW campaign color names/values from style guide
@@ -456,6 +456,7 @@ var initBanner = (function(){
 
 	function initADACompliance(){
 		cl('initADACompliance');
+		id('t1-container').removeAttribute('aria-hidden');
 
 		id('logo').removeAttribute('aria-hidden');// REMOVE IN MARKUP (& THIS) IF WE EVER RETRAFFICK SHELLS.
 		aniProps.t1.setAttribute('role', "heading");

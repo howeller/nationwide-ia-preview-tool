@@ -514,7 +514,7 @@ var initBanner = (function(){
 		setImgStart(_logo, dc.Logo_img_css, dc.Logo_img.Url);
 
 		// Set Alt txt from json if needed.
-		_logo.alt = _json.global ? _json.global.logoAlt : "Nationwide® PROUD PARTNER OF INDEPENDENTS";
+		_logo.alt = _json.global ? _json.global.logoAlt : "Nationwide® PROUD PARTNER OF INDEPENDENTS℠";
 
 		if(!isTextOnly){
 			setImgStart(aniProps.imgBack, null, dc.Back_img.Url);

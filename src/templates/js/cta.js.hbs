@@ -13,25 +13,53 @@ function isCustomCtaPos(){
 	}
 	return false;
 }
+
+/*
+* Find the longest line in #t2. 
+* Accounts for single lines that wrap, multiple lines separated by <br>, and a combination of the two.
+*/
+function getLongestTextNodeWidth( parentNode ){
+	console.table(parentNode.childNodes);
+	var txtLines = Array.from(parentNode.childNodes),// Convert nodelist to array to use Array.reduce method to compare values.
+		longestWidth = 0;
+		
+	var longestLine = txtLines.reduce(function( previousNode, currentNode ){
+		// Check to see if node is text. Maybe update this to a better check later.
+		if(currentNode.length){
+
+			// Draw a bounding box around text node
+			var _rect,
+				_range = document.createRange();
+
+			_range.selectNode( currentNode );
+			_rect = _range.getBoundingClientRect();
+			_range.detach();
+
+			longestWidth = _rect.width > longestWidth ? _rect.width : longestWidth;
+
+			return longestWidth;
+		}
+	}, []);
+	// cl(`longestLine ${longestLine}`);
+	return Math.round(longestLine);
+}
+
+
 /*
 *	Centers CTA button between end of end txt and logo
 */
 function centerCtaBtn(){
 	if (isCustomCtaPos())return; // Nuke this if there's a left position entered in custom CSS
-	var _endTxt = id('t2'),{{!-- 
-			// _rightX = gsap.getProperty('#{{logo.id}}', 'left'),
-			// _leftX = _endTxt.offsetWidth + gsap.getProperty(_endTxt,'left'),--}}
-			_rightX = gsap.getProperty('#t2-container', 'width'),
-			_leftX = _endTxt.offsetWidth,
-			_ctaSpace = _rightX - _leftX,
-			_centerX = Math.round(_leftX + _ctaSpace/2 ),
-			_ctaW = cta.container.clientWidth,
-			_ctaX = Math.round(_centerX-(_ctaW/2));
+	var _rightX = gsap.getProperty('#t2-container', 'width'),
+		_leftX = getLongestTextNodeWidth(id('t2')),
+		_ctaSpace = _rightX - _leftX,
+		_centerX = Math.round(_leftX + _ctaSpace/2 ),
+		_ctaW = cta.container.clientWidth,
+		_ctaX = Math.round(_centerX-(_ctaW/2));
 
-	cl('	|•| autoCenterCtaBtn: _centerX:'+_centerX+' _ctaX:'+_ctaX+' cta width:'+_ctaW);
 	cta.container.style.left = toCssNum(_ctaX);
 }
-{{/if}}{{!/}}
+{{/if}}
 
 function ctaBounceTl(){
 	return gsap.timeline({paused:false, repeat: 1, repeatDelay: 0, yoyo: true})

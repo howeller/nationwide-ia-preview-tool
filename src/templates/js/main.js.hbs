@@ -32,7 +32,7 @@ var initBanner = (function(){
 
 		isTextOnly = (aniStyle === 'TextOnly');
 		{{#if (hasLogoSlide)}}
-		isLogoSlide = (dc.LogoSlideX > 0);{{/if}}{{!/}}
+		isLogoSlide = (dc.LogoSlideX > 0);{{/if}}
 
 		cl('useDefaultTheme ? '+useDefaultTheme, 'red');
 
@@ -60,7 +60,7 @@ var initBanner = (function(){
 		end = {
 			container: id('end-container'),
 			t2: id('t2'){{#unless (isSkyscraper)}},
-			swipe: id('end-swipe'){{/unless}}{{!/}}
+			swipe: id('end-swipe'){{/unless}}
 		}
 		replay = {
 			container: id('replay-container'),
@@ -74,7 +74,8 @@ var initBanner = (function(){
 			container: id('ribbon')
 		}
 
-		aniOptions = { {{#unless (isLeader)}}
+		aniOptions = { 
+			{{#unless (isLeader)}}
 			'NGraphic':{
 				frame1Tl: nGraphicIntroTl,
 				container: id('ng-parent'),
@@ -84,21 +85,25 @@ var initBanner = (function(){
 				imgFront: id('ng-pic-front'){{#if (isSkyscraper)}},
 				swipe: id('ng-end-swipe'),
 				swipePath: id('ng-swipe-path'),
-				newEndPos:false{{/if}}{{!/}}
-			},{{/unless}}{{!/}}
+				newEndPos:false{{/if}}
+			},
+			{{/unless}}
 			'NCrop':{
 				frame1Tl: nCropIntroTl,
-				container: id('nc-parent'),{{#unless (isLeader)}}
+				container: id('nc-parent'),
+				{{#unless (isLeader)}}
 				t1: id('nc-t1'),
 				overlap: _json.overlap || '-=0.5',
-				imgBack: id('nc-pic-back'),{{else}}
+				imgBack: id('nc-pic-back'),
+				{{else}}
 				t1: id('t1'),
 				overlap: _json.overlap || '-=0',
-				imgBack: id('nc-pic'),{{/unless}}{{!/}}
+				imgBack: id('nc-pic'),
+				{{/unless}}
 				replayClass:'replay-nc'{{#if (isSkyscraper)}},
 				swipe: id('nc-end-swipe'),
 				swipePath: id('nc-swipe-path'),
-				newEndPos:true{{/if}}{{!/}}
+				newEndPos:true{{/if}}
 			},
 			'TextOnly':{
 				frame1Tl: txtOnlyIntroTl,
@@ -108,7 +113,7 @@ var initBanner = (function(){
 				replayClass:'replay-to'{{#if (isSkyscraper)}},
 				swipe: id('to-end-swipe'),
 				swipePath: id('to-swipe-path'),
-				newEndPos:true{{/if}}{{!/}}
+				newEndPos:true{{/if}}
 			}
 		}
 
@@ -123,9 +128,12 @@ var initBanner = (function(){
 		initColors();
 		initTxt();
 		initADACompliance();
-		{{#unless (isLeader)}}initLogo();
-		{{else}}centerCtaBtn();
-		{{/unless}}initReplay();
+		{{#unless (isLeader)}}
+		initLogo();
+		{{else}}
+		centerCtaBtn();
+		{{/unless}}
+		initReplay();
 		initCompleted = true;
 		cl('* initCompleted *');	
 	}
@@ -148,8 +156,10 @@ var initBanner = (function(){
 		cta.btn.style.backgroundColor = theme.ctaBtnColor;
 		end.container.style.backgroundColor = id('banner').style.backgroundColor = colorNameToHex(theme.bgColor);
 		{{#unless (isSkyscraper)}}
-		end.swipe.style.backgroundColor = colorNameToHex(theme.swipeColor);{{else}}
-		gsap.set('.swipe-path', {fill:colorNameToHex(theme.swipeColor)}){{/unless}}{{!/}}
+		end.swipe.style.backgroundColor = colorNameToHex(theme.swipeColor);
+		{{else}}
+		gsap.set('.swipe-path', {fill:colorNameToHex(theme.swipeColor)})
+		{{/unless}}
 		
 		if(theme.stripeColor && !isRibbon) {
 			gsap.set('.stripe',{backgroundColor:colorNameToHex(theme.stripeColor)})
@@ -159,7 +169,8 @@ var initBanner = (function(){
 	}
 
 
-	{{#unless (isLeader)}}/*
+	{{#unless (isLeader)}}
+	/*
 	* If Ribbon text is more lines than the height of a single line then redraw the polygon. 
 	* Need to manually calculate the slope (M) = (y2 - y1) / (x2 - x1)
 	*/
@@ -182,47 +193,68 @@ var initBanner = (function(){
 
 		ribbon.container.style.clipPath = 'polygon(0% 0%, '+_x2+'px 0%, 100% 100%, 0% 100%)';
 	}
+
 	function initLogo(){
 		cl('initLogo ','yellow');
 		isRibbon && swapClasses(id('logo'), 'logo-no-ribbon', 'logo-over-ribbon'); // short circuit over if statement
-		{{!--// if(isRibbon){
-			// cl(' BUMP UP LOGO','yellow');
-		// 	swapClasses(id('logo'), 'logo-no-ribbon', 'logo-over-ribbon');
-		// }--}}
 	}
-{{/unless}}{{!/}}
+	{{/unless}}
 
 	function initTxt(){
 		cl('initTxt ');
 
 		if(isTextOnly){
-			{{#if (isSkyscraper)}}gsap.set([end.container, id('nc-t1-container')], {top:'0px'});// Move copy up
+			{{#if (isSkyscraper)}}
+			gsap.set([end.container, id('nc-t1-container')], {top:'0px'});// Move copy up
 			gsap.set(end.container, {height:'100%'});
 			gsap.set('.txt-container', {top:'{{textOnly.txtTop}}px', paddingTop:0 });
 			swapClasses(aniProps.t1, 'ng-t1', 'to-t1');
-			swapClasses(end.t2, 'ng-t2', 'to-t2');{{/if}}{{!/}}{{#if (isLeader)}}
+			swapClasses(end.t2, 'ng-t2', 'to-t2');
+			{{/if}}
+			{{#if (isLeader)}}
 			swapClasses(aniProps.t1, 'ng-t1', 'to-t1');
 			swapClasses(end.t2, 'ng-t2', 'to-t2');
 			swapClasses(ribbon.txt, 'ribbon-txt', 'to-ribbon-txt');
 			swapClasses(id('t1-container'), 'txt-container', 'to-txt-container');
-			swapClasses(id('t2-container'), 'txt-container', 'to-txt-container');{{/if}}{{!/}}
+			swapClasses(id('t2-container'), 'txt-container', 'to-txt-container');
+			{{/if}}
 		}
 
 		if(isRibbon){
 			setTxt(ribbon.txt, dc.RibbonTxt, dc.RibbonTxt_css);
-			ribbon.container.style.opacity = 1;{{#unless (isLeader)}}
+			ribbon.container.style.opacity = 1;
+			{{#unless (isLeader)}}
 			setRibbonSize();
-		}{{else}}
+		}
+		{{else}}
 		}else{
 			// cl('||	RE-CENTER TXT CONTAINERS', 'red');
 			id('t1-container').style.height=id('t2-container').style.height='100%';// Increase height to vertically center txt
-		}{{/unless}}{{!/}}
+		}
+		{{/unless}}
 
 		setTxt(cta.txt, dc.CtaTxt, dc.CtaTxt_css);
 		setTxt(aniProps.t1, dc.Txt1, dc.Txt1_css);
 		setTxt(end.t2, dc.Txt2, dc.Txt2_css);
+		{{#if (isLeader)}}
+		setT2MaxWidth();
+		{{/if}}
 		applyFeedCss(cta.btn, dc.CtaBtn_css);
 	}
+
+	{{#if (isLeader)}}
+
+	/*
+	* Automatically set a max-width on #t2.
+	* Accounts for the final CTA button width + a default 12px of padding around it.
+	*/
+	function setT2MaxWidth() {
+		var ctaTotalWidth = cta.btn.offsetWidth + 24,
+			containerWidth = id('t2-container').offsetWidth;
+
+		id('t2').style.maxWidth = toCssNum(containerWidth - ctaTotalWidth);
+	}
+	{{/if}}
 
 	function initADACompliance(){
 		cl('initADACompliance');

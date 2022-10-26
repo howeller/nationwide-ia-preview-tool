@@ -4,7 +4,7 @@ var initBanner = (function(){
 
 	var _json, aniStyle, aniOptions, aniProps, initCompleted, isRibbon, isLogoSlide, isTextOnly, theme, useDefaultTheme,
 		cta, end, imgLoader, replay, ribbon, svg,slope,
-		version='2.0.0';// Major.Minor.Bug Fix
+		version='2.0.1';// Major.Minor.Bug Fix
 
 		/*
 		* List of NW campaign color names/values from style guide

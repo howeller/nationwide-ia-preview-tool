@@ -19,7 +19,7 @@ function isCustomCtaPos(){
 * Accounts for single lines that wrap, multiple lines separated by <br>, and a combination of the two.
 */
 function getLongestTextNodeWidth( parentNode ){
-	console.table(parentNode.childNodes);
+	// console.table(parentNode.childNodes);
 	var txtLines = Array.from(parentNode.childNodes),// Convert nodelist to array to use Array.reduce method to compare values.
 		longestWidth = 0;
 		
@@ -36,8 +36,10 @@ function getLongestTextNodeWidth( parentNode ){
 			_range.detach();
 
 			longestWidth = _rect.width > longestWidth ? _rect.width : longestWidth;
+			// id('t2').style.width = toCssNum(longestWidth);
+			// cl('getLongestTextNodeWidth '+Math.round(longestWidth), 'pink');
 
-			return longestWidth;
+			return Math.round(longestWidth);
 		}
 	}, []);
 	// cl(`longestLine ${longestLine}`);
@@ -53,9 +55,9 @@ function centerCtaBtn(){
 	var _rightX = gsap.getProperty('#t2-container', 'width'),
 		_leftX = getLongestTextNodeWidth(id('t2')),
 		_ctaSpace = _rightX - _leftX,
-		_centerX = Math.round(_leftX + _ctaSpace/2 ),
+		_centerX = Math.floor(_leftX + _ctaSpace/2 ),
 		_ctaW = cta.container.clientWidth,
-		_ctaX = Math.round(_centerX-(_ctaW/2));
+		_ctaX = Math.floor(_centerX-(_ctaW/2));
 
 	cta.container.style.left = toCssNum(_ctaX);
 }

@@ -456,13 +456,13 @@ var initBanner = (function(){
 
 	/*
 	* Automatically set a max-width on #t2.
-	* Accounts for the final CTA button width + a default 12px of padding around it.
+	* Accounts for the final CTA button width + a default 8px of padding around it.
 	*/
 	function setT2MaxWidth() {
-		var ctaTotalWidth = cta.btn.offsetWidth + 24,
+		var ctaTotalWidth = cta.btn.offsetWidth + 8,
 			containerWidth = id('t2-container').offsetWidth;
 
-		id('t2').style.maxWidth = toCssNum(containerWidth - ctaTotalWidth);
+		id('t2').style.maxWidth = toCssNum(Math.round(containerWidth - ctaTotalWidth));
 	}
 
 	function initADACompliance(){
@@ -524,7 +524,7 @@ var initBanner = (function(){
 	* Accounts for single lines that wrap, multiple lines separated by <br>, and a combination of the two.
 	*/
 	function getLongestTextNodeWidth( parentNode ){
-		console.table(parentNode.childNodes);
+		// console.table(parentNode.childNodes);
 		var txtLines = Array.from(parentNode.childNodes),// Convert nodelist to array to use Array.reduce method to compare values.
 			longestWidth = 0;
 			
@@ -541,8 +541,10 @@ var initBanner = (function(){
 				_range.detach();
 	
 				longestWidth = _rect.width > longestWidth ? _rect.width : longestWidth;
+				// id('t2').style.width = toCssNum(longestWidth);
+				// cl('getLongestTextNodeWidth '+Math.round(longestWidth), 'pink');
 	
-				return longestWidth;
+				return Math.round(longestWidth);
 			}
 		}, []);
 		// cl(`longestLine ${longestLine}`);
@@ -558,9 +560,9 @@ var initBanner = (function(){
 		var _rightX = gsap.getProperty('#t2-container', 'width'),
 			_leftX = getLongestTextNodeWidth(id('t2')),
 			_ctaSpace = _rightX - _leftX,
-			_centerX = Math.round(_leftX + _ctaSpace/2 ),
+			_centerX = Math.floor(_leftX + _ctaSpace/2 ),
 			_ctaW = cta.container.clientWidth,
-			_ctaX = Math.round(_centerX-(_ctaW/2));
+			_ctaX = Math.floor(_centerX-(_ctaW/2));
 	
 		cta.container.style.left = toCssNum(_ctaX);
 	}

@@ -246,13 +246,13 @@ var initBanner = (function(){
 
 	/*
 	* Automatically set a max-width on #t2.
-	* Accounts for the final CTA button width + a default 12px of padding around it.
+	* Accounts for the final CTA button width + a default 8px of padding around it.
 	*/
 	function setT2MaxWidth() {
-		var ctaTotalWidth = cta.btn.offsetWidth + 24,
+		var ctaTotalWidth = cta.btn.offsetWidth + 8,
 			containerWidth = id('t2-container').offsetWidth;
 
-		id('t2').style.maxWidth = toCssNum(containerWidth - ctaTotalWidth);
+		id('t2').style.maxWidth = toCssNum(Math.round(containerWidth - ctaTotalWidth));
 	}
 	{{/if}}
 
